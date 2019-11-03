@@ -1,0 +1,5 @@
+https://www.swharden.com/wp/2013-05-09-realtime-fft-audio-visualization-with-python/
+https://www.swharden.com/wp/2016-07-31-real-time-audio-monitor-with-pyqt/
+https://julip.co/2012/05/arduino-python-soundlight-spectrum/
+https://julip.co/2012/05/arduino-python-soundlight-spectrum/
+https://www.analyticsvidhya.com/blog/2018/02/audio-beat-tracking-for-music-information-retrieval/
