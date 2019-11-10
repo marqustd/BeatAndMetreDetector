@@ -5,7 +5,7 @@ import sys
 from PyQt5 import QtCore, QtGui
 
 if __name__ == "__main__":
-    app = QtGui.QApplication(sys.argv)
+    app = QtGui.QGuiApplication(sys.argv)
 
     ### SET-UP WINDOWS
     

@@ -48,16 +48,16 @@ class Ui_win_plot(object):
         QtCore.QMetaObject.connectSlotsByName(win_plot)
 
     def retranslateUi(self, win_plot):
-        win_plot.setWindowTitle(QtGui.QApplication.translate("win_plot", "MainWindow", None, QtGui.QApplication.UnicodeUTF8))
-        self.btnA.setText(QtGui.QApplication.translate("win_plot", "A", None, QtGui.QApplication.UnicodeUTF8))
-        self.btnB.setText(QtGui.QApplication.translate("win_plot", "B", None, QtGui.QApplication.UnicodeUTF8))
-        self.btnC.setText(QtGui.QApplication.translate("win_plot", "C", None, QtGui.QApplication.UnicodeUTF8))
-        self.btnD.setText(QtGui.QApplication.translate("win_plot", "BPM", None, QtGui.QApplication.UnicodeUTF8))
+        win_plot.setWindowTitle(QtGui.QGuiApplication.translate("win_plot", "MainWindow", None, QtGui.QGuiApplication.UnicodeUTF8))
+        self.btnA.setText(QtGui.QGuiApplication.translate("win_plot", "A", None, QtGui.QGuiApplication.UnicodeUTF8))
+        self.btnB.setText(QtGui.QGuiApplication.translate("win_plot", "B", None, QtGui.QGuiApplication.UnicodeUTF8))
+        self.btnC.setText(QtGui.QGuiApplication.translate("win_plot", "C", None, QtGui.QGuiApplication.UnicodeUTF8))
+        self.btnD.setText(QtGui.QGuiApplication.translate("win_plot", "BPM", None, QtGui.QGuiApplication.UnicodeUTF8))
 
 
 if __name__ == "__main__":
     import sys
-    app = QtGui.QApplication(sys.argv)
+    app = QtGui.QGuiApplication(sys.argv)
     win_plot = QtGui.QMainWindow()
     ui = Ui_win_plot()
     ui.setupUi(win_plot)
