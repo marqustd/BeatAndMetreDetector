@@ -1,9 +1,8 @@
-import scipy
-import numpy as np
+import scipy.io.wavfile
+import numpy
 
 
-class WavReader:
-
-    def read(f, normalized=False):
-        """MP3 to numpy array"""
-        rate, data = scipy.io.wavfile.read(f)
+def read(filename):
+    rate, data = scipy.io.wavfile.read(filename)
+    signal = numpy.frombuffer(data, numpy.int16)
+    return signal
