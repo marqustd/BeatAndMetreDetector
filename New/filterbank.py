@@ -1,25 +1,50 @@
 import numpy
 
 
+# FILTERBANK divides a time domain signal into individual frequency bands.
+#
+#      FREQBANDS = FILTERBANK(SIG, BANDLIMITS, MAXFREQ) takes in a
+#      time domain signal stored in a column vector, and outputs a
+#      vector of the signal in the frequency domain, with each
+#      column representing a different band. BANDLIMITS is a vector
+#      of one row in which each element represents the frequency
+#      bounds of a band. The final band is bounded by the last
+#      element of BANDLIMITS and  MAXFREQ.
+#
+#      Defaults are:
+#         BANDLIMITS = [0 200 400 800 1600 3200]
+#         MAXFREQ = 4096
+#
+#      This is the first step of the beat detection sequence.
+#
+#      See also HWINDOW, DIFFRECT, and TIMECOMB
+
 def filterbank(signal, bandlimits, maxFreq):
     dft = numpy.fft.fft(signal)
-    n = dft.size
-    nbands = bandlimits.size
-    bl = numpy.zeros(nbands)
-    br = numpy.zeros(nbands)
+    n = len(dft)
+    nbands = len(bandlimits)
+    bl = numpy.zeros(nbands, int)
+    br = numpy.zeros(nbands, int)
 
-    for i in range(1, nbands - 1):
-        bl[i] = numpy.floor(bandlimits(i) / maxFreq * n / 2) + 1
-        br[i] = numpy.floor(bandlimits(i + 1) / maxFreq * n / 2)
+    #   % Bring band scale from Hz to the points in our vectors
+    for band in range(0, nbands - 1):
+        bl[band] = numpy.floor(bandlimits[band] / maxFreq * n / 2) + 1
+        br[band] = numpy.floor(bandlimits[band + 1] / maxFreq * n / 2)
 
-    bl[nbands] = numpy.floor(bandlimits(nbands) / maxFreq * n / 2) + 1
-    br[nbands] = numpy.floor(n / 2)
+    bl[0] = 0
+    bl[nbands - 1] = numpy.floor(bandlimits[nbands - 1] / maxFreq * n / 2) + 1
+    br[nbands - 1] = numpy.floor(n / 2)
 
-    output = numpy.zeros(n, nbands)
+    output = numpy.zeros([nbands, n])
 
-    for i in range(1, nbands):
-        output[bl(i): br(i), i] = dft[bl(i): br(i)]
-        output[n + 1 - br(i): n + 1 - bl(i), i] = dft[n + 1 - br(i): n + 1 - bl(i)]
+    # Create the frequency bands and put them in the vector output.
+    for band in range(0, nbands):
+        for hz in range(bl[band], br[band]):
+            output[band, hz] = dft[hz]
+        for hz in range(n - br[band], n - bl[band]):
+            output[band, hz] = dft[hz]
+        # output[int(bl[band]): int(br[band])][band] = dft[int(bl[band]): int(br[band])]
+        # output[n + 1 - br[band]: n + 1 - bl[band], band] = dft[n + 1 - br[band]: n + 1 - bl[band]]
 
     output[1, 1] = 0
     return output

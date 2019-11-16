@@ -2,8 +2,8 @@ import numpy
 
 
 def timecomb(signal, accuracy, minBpm, maxBpm, bandlimits, maxFreq):
-    n = signal.size
-    nbands = bandlimits.size
+    n = len(signal)
+    nbands = len(bandlimits)
     npulses = 3
     dft = numpy.zeros([nbands, nbands])
 
