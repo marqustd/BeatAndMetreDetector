@@ -11,13 +11,7 @@ import numpy
 #      bounds of a band. The final band is bounded by the last
 #      element of BANDLIMITS and  MAXFREQ.
 #
-#      Defaults are:
-#         BANDLIMITS = [0 200 400 800 1600 3200]
-#         MAXFREQ = 4096
-#
 #      This is the first step of the beat detection sequence.
-#
-#      See also HWINDOW, DIFFRECT, and TIMECOMB
 
 def filterbank(signal, bandlimits, maxFreq):
     dft = numpy.fft.fft(signal)
@@ -35,7 +29,7 @@ def filterbank(signal, bandlimits, maxFreq):
     bl[nbands - 1] = numpy.floor(bandlimits[nbands - 1] / maxFreq * n / 2) + 1
     br[nbands - 1] = numpy.floor(n / 2)
 
-    output = numpy.zeros([nbands, n])
+    output = numpy.zeros([nbands, n], dtype=complex)
 
     # Create the frequency bands and put them in the vector output.
     for band in range(0, nbands):

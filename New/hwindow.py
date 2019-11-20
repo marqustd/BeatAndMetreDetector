@@ -1,5 +1,5 @@
 import numpy
-
+from matplotlib import pyplot as plt
 
 #      HWINDOW rectifies a signal, then convolves it with a half Hanning
 #      window.
@@ -24,10 +24,10 @@ def hwindow(signal, winLength, bandlimits, maxFreq):
     nbands = len(bandlimits)
     hannlen = winLength * 2 * maxFreq
     hann = numpy.zeros(n)
-    wave = numpy.zeros([nbands, n])
-    output = numpy.zeros([nbands, n])
-    freq = numpy.zeros([nbands, n])
-    filtered = numpy.zeros([nbands, n])
+    wave = numpy.zeros([nbands, n], dtype=complex)
+    output = numpy.zeros([nbands, n], dtype=complex)
+    freq = numpy.zeros([nbands, n], dtype=complex)
+    filtered = numpy.zeros([nbands, n], dtype=complex)
 
     # Create half-Hanning window.
     for a in range(1, int(hannlen)):
@@ -35,18 +35,19 @@ def hwindow(signal, winLength, bandlimits, maxFreq):
 
     # Take IFFT to transfrom to time domain.
     for band in range(0, nbands):
-        wave[band, :] = numpy.real(numpy.fft.ifft(signal[band, :]))
+        wave[band] = numpy.real(numpy.fft.ifft(signal[band]))
 
     # Full - wave rectification in the time domain. And back to frequency with FFT.
     for band in range(0, nbands):
         for j in range(0, n):
             if wave[band, j] < 0:
                 wave[band, j] = -wave[band, j]
-        freq[band, :] = numpy.fft.fft(wave[band, :])
+        freq[band] = numpy.fft.fft(wave[band])
 
     # Convolving with half - Hanning same as multiplying in frequency.Multiply half - Hanning
     # FFT by signal FFT.Inverse transform to get output in the time domain.
     for band in range(0, nbands):
-        filtered[band, :] = freq[band, :] * numpy.fft.fft(hann)
-        output[band, :] = numpy.real(numpy.fft.ifft(filtered[band, :]))
+        filtered[band] = freq[band] * numpy.fft.fft(hann)
+        output[band] = numpy.real(numpy.fft.ifft(filtered[band]))
+
     return output
