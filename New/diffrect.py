@@ -2,14 +2,13 @@ import numpy
 
 
 def diffrect(signal, nbands=6):
-    n = signal.size
+    n = len(signal[0])
+    output = numpy.zeros([nbands, n])
 
-    output = numpy.zeros(n, nbands)
-
-    for i in range(1, nbands):
+    for band in range(0, nbands):
         for j in range(5, n):
-            d = signal[j, i] - signal[j - 1, i]
+            d = signal[band, j] - signal[band, j-1]
             if d > 0:
-                output[j, i] = d;
+                output[band, j] = d;
 
     return output

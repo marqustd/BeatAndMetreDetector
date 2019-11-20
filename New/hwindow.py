@@ -25,9 +25,9 @@ def hwindow(signal, winLength, bandlimits, maxFreq):
     hannlen = winLength * 2 * maxFreq
     hann = numpy.zeros(n)
     wave = numpy.zeros([nbands, n])
-    output = numpy.zeros([nbands, nbands])
+    output = numpy.zeros([nbands, n])
     freq = numpy.zeros([nbands, n])
-    filtered = numpy.zeros([nbands, nbands])
+    filtered = numpy.zeros([nbands, n])
 
     # Create half-Hanning window.
     for a in range(1, int(hannlen)):
@@ -41,12 +41,12 @@ def hwindow(signal, winLength, bandlimits, maxFreq):
     for band in range(0, nbands):
         for j in range(0, n):
             if wave[band, j] < 0:
-                wave[band, j] = -wave[band, :]
+                wave[band, j] = -wave[band, j]
         freq[band, :] = numpy.fft.fft(wave[band, :])
 
     # Convolving with half - Hanning same as multiplying in frequency.Multiply half - Hanning
     # FFT by signal FFT.Inverse transform to get output in the time domain.
-    for band in range(1, nbands):
-        filtered[:, band] = freq[:, band] * numpy.fft.fft(hann)
-        output[:, band] = numpy.real(numpy.fft.ifft(filtered[:, band]))
+    for band in range(0, nbands):
+        filtered[band, :] = freq[band, :] * numpy.fft.fft(hann)
+        output[band, :] = numpy.real(numpy.fft.ifft(filtered[band, :]))
     return output
