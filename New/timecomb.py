@@ -24,6 +24,12 @@ def timecomb(signal, accuracy, minBpm, maxBpm, bandlimits, maxFreq):
     npulses = 3
     dft = numpy.zeros([nbands, n], dtype=complex)
 
+    if minBpm < 60:
+        minBpm = 60
+
+    if maxBpm > 240:
+        maxBpm = 240
+
     # Get signal in frequency domain
     for band in range(0, nbands):
         dft[band] = numpy.fft.fft(signal[band])
