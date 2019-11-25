@@ -21,7 +21,7 @@ def timecomb(signal, accuracy, minBpm, maxBpm, bandlimits, maxFreq):
     n = len(signal[0])
     nbands = len(bandlimits)
     # Set the number of pulses in the comb filter
-    npulses = 3
+    npulses = 2
     dft = numpy.zeros([nbands, n], dtype=complex)
 
     if minBpm < 60:
@@ -47,7 +47,7 @@ def timecomb(signal, accuracy, minBpm, maxBpm, bandlimits, maxFreq):
         print(percent_done)
 
         # Set every nstep samples of the filter to one
-        for a in range(0, npulses - 1):
+        for a in range(0, npulses):
             fil[a * int(nstep) + 1] = 1
 
         # Get the filter in the frequency domain
