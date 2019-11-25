@@ -4,7 +4,7 @@ from matplotlib import pyplot as plt
 
 
 def detect(song, draw_plots=False):
-    band_limits = [0, 250, 500, 1000]
+    band_limits = [0, 100, 500, 1000, 2000, 8000, 16000]
     max_freq = 44100
     # Set the number of pulses in the comb filter
     npulses = 2
@@ -53,9 +53,10 @@ def detect(song, draw_plots=False):
     print(status)
     diffrected = diffrect.diffrect(hanningWindow, len(band_limits))
     if draw_plots:
-        plt.plot(diffrected[1])
-        plt.title("diffrect")
-        plt.show()
+        for band in range(0, len(band_limits)):
+            plt.plot(diffrected[band])
+            plt.title(f"diffrect[{band}]")
+            plt.show()
     status = 'CombFiltering song...'
     print(status)
 
@@ -71,11 +72,12 @@ def detect(song, draw_plots=False):
     print(f"first: {first}")
     song_bpm = timecomb.timecomb(diffrected, 1, first - 5, first + 5, band_limits, max_freq, npulses, dict)
 
-    keys = list(dict.keys())
-    values = list(dict.values())
-    plt.plot(keys, values)
-    plt.title("Tempo")
-    plt.show()
+    if draw_plots:
+        keys = list(dict.keys())
+        values = list(dict.values())
+        plt.plot(keys, values)
+        plt.title("Tempo")
+        plt.show()
     return song_bpm
 
 
