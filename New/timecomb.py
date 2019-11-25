@@ -17,7 +17,7 @@ import numpy
 #     accuracy and a smaller range to speed up computation.
 #
 #     This is the last step of the beat detection sequence.
-def timecomb(signal, accuracy, minBpm, maxBpm, bandlimits, maxFreq, npulses):
+def timecomb(signal, accuracy, minBpm, maxBpm, bandlimits, maxFreq, npulses, dict):
     n = len(signal[0])
     nbands = len(bandlimits)
     dft = numpy.zeros([nbands, n], dtype=complex)
@@ -40,7 +40,7 @@ def timecomb(signal, accuracy, minBpm, maxBpm, bandlimits, maxFreq, npulses):
         fil = numpy.zeros(n)
 
         # Calculate the difference between peaks in the filter for a certain tempo
-        nstep = numpy.floor(120 / bpm * maxFreq)
+        nstep = numpy.floor(60 / bpm * maxFreq)
         percent_done = 100 * (bpm - minBpm) / (maxBpm - minBpm)
         print(percent_done)
 
@@ -55,6 +55,7 @@ def timecomb(signal, accuracy, minBpm, maxBpm, bandlimits, maxFreq, npulses):
             x = (abs(dftfil * dft[band, :])) ** 2
             e = e + sum(x)
 
+        dict[bpm] = e
         # If greater than all previous energies, set current bpm to the bpm of the signal
         if e > maxe:
             sbpm = bpm
