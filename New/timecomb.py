@@ -17,11 +17,9 @@ import numpy
 #     accuracy and a smaller range to speed up computation.
 #
 #     This is the last step of the beat detection sequence.
-def timecomb(signal, accuracy, minBpm, maxBpm, bandlimits, maxFreq):
+def timecomb(signal, accuracy, minBpm, maxBpm, bandlimits, maxFreq, npulses):
     n = len(signal[0])
     nbands = len(bandlimits)
-    # Set the number of pulses in the comb filter
-    npulses = 2
     dft = numpy.zeros([nbands, n], dtype=complex)
 
     if minBpm < 60:
