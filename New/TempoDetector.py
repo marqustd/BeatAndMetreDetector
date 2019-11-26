@@ -1,4 +1,5 @@
 import numpy
+import WavReader
 import filterbank, diffrect, hwindow, timecomb, center
 from matplotlib import pyplot as plt
 
@@ -7,22 +8,28 @@ def detect(song, draw_plots=False):
     band_limits = [0, 200, 400, 800, 1600, 3200]
     max_freq = 44100
     # Set the number of pulses in the comb filter
-    npulses = 12
-    sample_length = (npulses-1) * max_freq + 400
-    seconds = sample_length * 3
+    npulses = 10
+    sample_length = npulses * max_freq + 4000
+    seconds = sample_length * 4
     minBpm = 60
     maxBpm = 240
 
+    signal = WavReader.read(song.filepath)
+
     if draw_plots:
-        plt.plot(song)
+        plt.plot(signal)
         plt.title("song")
         plt.show()
-    song_length = song.size
+    song_length = signal.size
 
     start = int(numpy.floor(song_length / 2 - seconds / 2))
     stop = int(numpy.floor(song_length / 2 + seconds / 2))
+    if start < 0:
+        start = 0
+    if stop > song_length:
+        stop = song_length
 
-    sample = song[start:stop]
+    sample = signal[start:stop]
     if draw_plots:
         plt.plot(sample)
         plt.title("Sample")
@@ -33,7 +40,7 @@ def detect(song, draw_plots=False):
         plt.plot(centred)
         plt.title("Centred")
         plt.show()
-    status = 'Filtering song...'
+    status = f'Filtering song {song.name}...'
     print(status)
     fastFourier = filterbank.filterbank(centred, band_limits, max_freq)
 
@@ -42,14 +49,14 @@ def detect(song, draw_plots=False):
         plt.title("Filterbank")
         plt.show()
 
-    status = 'Windowing song...'
+    status = f'Windowing song {song.name}...'
     print(status)
     hanningWindow = hwindow.hwindow(fastFourier, 0.2, band_limits, max_freq)
     if draw_plots:
         plt.plot(hanningWindow[1])
         plt.title("hwindow")
         plt.show()
-    status = 'Differentiating song...'
+    status = f'Differentiating song {song.name}...'
     print(status)
     diffrected = diffrect.diffrect(hanningWindow, len(band_limits))
     if draw_plots:
@@ -57,7 +64,7 @@ def detect(song, draw_plots=False):
             plt.plot(diffrected[band])
             plt.title(f"diffrect[{band}]")
             plt.show()
-    status = 'CombFiltering song...'
+    status = f'CombFiltering song {song.name}...'
     print(status)
 
     dict = PrepareDict(minBpm, maxBpm)
