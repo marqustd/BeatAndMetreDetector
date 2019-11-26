@@ -1,4 +1,5 @@
 import numpy
+from matplotlib import pyplot as plt
 
 
 # TIMECOMB finds the tempo of a musical signal, divided into
@@ -44,6 +45,7 @@ def timecomb(signal, accuracy, minBpm, maxBpm, bandlimits, maxFreq, npulses, dic
         percent_done = 100 * (bpm - minBpm) / (maxBpm - minBpm)
         print(percent_done)
 
+
         # Set every nstep samples of the filter to one
         for a in range(0, npulses):
             fil[a * int(nstep) + 1] = 1
@@ -51,8 +53,22 @@ def timecomb(signal, accuracy, minBpm, maxBpm, bandlimits, maxFreq, npulses, dic
         # Get the filter in the frequency domain
         dftfil = numpy.fft.fft(fil)
 
+        # plt.plot(fil)
+        # plt.title(f"fil bpm:{bpm} npulses:{npulses}")
+        # plt.show()
+        #
+        # plt.plot(dftfil)
+        # plt.title(f"dftfil bpm:{bpm} npulses:{npulses}")
+        # plt.show()
+
         for band in range(0, nbands):
-            x = (abs(dftfil * dft[band, :])) ** 2
+            # plt.plot(signal[band])
+            # plt.title(f"signal[{band}]")
+            # plt.show()
+            # plt.plot(dft[band])
+            # plt.title(f"dft[{band}]")
+            # plt.show()
+            x = (abs(dftfil * dft[band])) ** 2
             e = e + sum(x)
 
         dict[bpm] = e

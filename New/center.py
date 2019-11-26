@@ -1,7 +1,7 @@
 import numpy
 
 
-def centerSample(signal, maxfreq, seconds):
+def centerSample(signal, seconds):
     n = len(signal)
     index = 0
 
@@ -12,7 +12,7 @@ def centerSample(signal, maxfreq, seconds):
             index = i
             break
 
-    lastindex = seconds * maxfreq
+    lastindex = seconds
     lastindex += index
     if lastindex > n:
         lastindex = n

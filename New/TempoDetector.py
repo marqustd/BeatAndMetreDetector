@@ -4,11 +4,11 @@ from matplotlib import pyplot as plt
 
 
 def detect(song, draw_plots=False):
-    band_limits = [0, 100, 500, 1000, 2000, 8000, 16000]
+    band_limits = [0, 200, 400, 800, 1600, 3200]
     max_freq = 44100
     # Set the number of pulses in the comb filter
-    npulses = 2
-    sample_length = npulses * max_freq + 1
+    npulses = 12
+    sample_length = (npulses-1) * max_freq + 400
     seconds = sample_length * 3
     minBpm = 60
     maxBpm = 240
@@ -28,7 +28,7 @@ def detect(song, draw_plots=False):
         plt.title("Sample")
         plt.show()
 
-    centred = center.centerSample(sample, max_freq, sample_length)
+    centred = center.centerSample(sample, sample_length)
     if draw_plots:
         plt.plot(centred)
         plt.title("Centred")
