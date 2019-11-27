@@ -6,7 +6,10 @@ from matplotlib import pyplot as plt
 
 def detect(song, draw_plots=False):
     band_limits = [0, 200, 400, 800, 1600, 3200]
-    max_freq = 44100
+
+    signal, sample_freq = WavReader.read(song.filepath)
+
+    max_freq = sample_freq
     # Set the number of pulses in the comb filter
     npulses = 10
     sample_length = npulses * max_freq + 4000
@@ -14,7 +17,7 @@ def detect(song, draw_plots=False):
     minBpm = 60
     maxBpm = 240
 
-    signal = WavReader.read(song.filepath)
+
 
     if draw_plots:
         plt.plot(signal)

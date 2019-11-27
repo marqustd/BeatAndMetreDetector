@@ -7,5 +7,5 @@
 12-rotgut			rock	147	4/4
 4-buffalo_nights		rock	147	8/8
 6-didn't_i			rock	85	4/4
-1-prospects			jazz	114	4/4
-7-heavenly_rain			metal	127	4/4
+1-prospects			jazz	116	4/4
+7-heavenly_rain			metal	126	4/4
