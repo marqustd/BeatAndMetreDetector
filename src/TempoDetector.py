@@ -70,7 +70,7 @@ def detect(song, draw_plots=False):
     status = f'CombFiltering song {song.name}...'
     print(status)
 
-    dict = PrepareDict(minBpm, maxBpm)
+    plot_dictionary = PrepareDict(minBpm, maxBpm)
     first = timecomb.timecomb(signal=diffrected,
                               accuracy=5,
                               minBpm=minBpm,
@@ -78,13 +78,13 @@ def detect(song, draw_plots=False):
                               bandlimits=band_limits,
                               maxFreq=max_freq,
                               npulses=npulses,
-                              dict=dict)
+                              plot_dictionary=plot_dictionary)
     print(f"first: {first}")
-    song_bpm = timecomb.timecomb(diffrected, 1, first - 5, first + 5, band_limits, max_freq, npulses, dict)
+    song_bpm = timecomb.timecomb(diffrected, 1, first - 5, first + 5, band_limits, max_freq, npulses, plot_dictionary)
 
     if draw_plots:
-        keys = list(dict.keys())
-        values = list(dict.values())
+        keys = list(plot_dictionary.keys())
+        values = list(plot_dictionary.values())
         plt.plot(keys, values)
         plt.title("Tempo")
         plt.show()
