@@ -12,17 +12,12 @@ def detect(song, draw_plots=False):
     max_freq = sample_freq
     # Set the number of pulses in the comb filter
     npulses = 10
-    sample_length = npulses * max_freq + 4000
+    sample_length = npulses * max_freq
     seconds = sample_length * 4
     minBpm = 60
     maxBpm = 240
 
-
-
-    if draw_plots:
-        plt.plot(signal)
-        plt.title("song")
-        plt.show()
+    DrawPlot(draw_plots, signal, f"Song: {song.name}", "Sample/Time", "Amplitude")
     song_length = signal.size
 
     start = int(numpy.floor(song_length / 2 - seconds / 2))
@@ -33,16 +28,10 @@ def detect(song, draw_plots=False):
         stop = song_length
 
     sample = signal[start:stop]
-    if draw_plots:
-        plt.plot(sample)
-        plt.title("Sample")
-        plt.show()
 
     centred = center.centerSample(sample, sample_length)
-    if draw_plots:
-        plt.plot(centred)
-        plt.title("Centred")
-        plt.show()
+    DrawPlot(draw_plots, centred, f"Centred to beat: {song.name}", "Sample/Time", "Amplitude")
+
     status = f'Filtering song {song.name}...'
     print(status)
     fastFourier = filterbank.filterbank(centred, band_limits, max_freq)
@@ -96,3 +85,16 @@ def PrepareDict(minBpm, maxBpm):
     for bpm in range(minBpm, maxBpm):
         dict[bpm] = 0
     return dict
+
+
+def DrawPlot(isDrawPlots, data, title, xAxis, yAxis, xData= 0):
+    if isDrawPlots:
+        if xData is 0:
+            plt.plot(data)
+        else:
+            plt.plot(data, xData)
+        plt.title(title)
+        plt.xlabel(xAxis)
+        plt.ylabel(yAxis)
+        plt.show()
+
