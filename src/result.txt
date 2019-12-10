@@ -1,0 +1,2 @@
+Detected in 1-prospects song's bpm: 116 should be 100
+Detected in 7-heavenly_rain song's bpm: 126 should be 100
