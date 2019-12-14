@@ -1,5 +1,5 @@
 import numpy
-import scipy.io.wavfile
+import scipy.io.wavfile, scipy.signal
 from matplotlib import pyplot as plt
 
 def PrepareDict(minBpm, maxBpm):
@@ -26,13 +26,14 @@ def DrawFftPlot(isDrawPlots, data, title, max_freq):
         L = len(data)
         H = abs(data / L)
         H = H[1:int(L / 2 + 1)]
-        f = max_freq * (numpy.arange(0, int(L / 2))) / L
+        f = max_freq * ((numpy.arange(0, int(L / 2), 1)) / L)
 
         plt.plot(f, H)
         plt.title(title)
         plt.xlabel("f[Hz]")
         plt.ylabel("|H(f)|")
-        plt.xlim(0, max(f))
+        # plt.xlim(0, max(f))
+        plt.xlim(0, 4000)
         plt.show()
 
 
@@ -41,7 +42,7 @@ def DrawTimeCombFftPlot(isDrawPlots, data, title, max_freq):
         L = len(data)
         H = abs(data / L)
         H = H[1:int(L / 2 + 1)]
-        f = max_freq * (numpy.arange(0, int(L / 2))) / L
+        f = max_freq * ((numpy.arange(0, int(L / 2), 1)) / L)
 
         plt.plot(f, H)
         plt.title(title)
@@ -190,22 +191,33 @@ def timecomb(signal, accuracy, minBpm, maxBpm, bandlimits, maxFreq, npulses, plo
         # Calculate the difference between peaks in the filter for a certain tempo
         nstep = numpy.floor(60 / bpm * maxFreq)
         percent_done = 100 * (bpm - minBpm) / (maxBpm - minBpm)
-        fil = numpy.zeros(int(nstep*npulses))
+        fil = numpy.zeros(int(2 * nstep))
 
         print(percent_done)
 
         # Set every nstep samples of the filter to one
-        for a in range(0, npulses):
+        for a in range(0, 2):
             fil[a * int(nstep)] = 1
 
         DrawPlot(True, fil, f"Timecomb bpm: {bpm}", "Sample/Time", "Amplitude")
+
         # Get the filter in the frequency domain
         dftfil = numpy.fft.fft(fil)
-        DrawTimeCombFftPlot(True, dftfil, f"Signal DFT {bpm}", maxFreq)
+        # dftfil = scipy.signal.resample(dftfil, len(dft[0]))
 
-        for band in range(0, nbands):
-            x = (abs(dftfil * dft[band])) ** 2
+        DrawTimeCombFftPlot(True, dftfil, f"Signal DFT {bpm}", maxFreq)
+        for band in range(0, nbands-1):
+
+            # if band == 2:
+            #     DrawFftPlot(True, dftfil * dft[band], f"{bpm}", max_freq)
+            # x = (abs(dftfil * dft[band])) ** 2
+            filt = scipy.convolve(signal[band], fil)
+            f_filt = abs(numpy.fft.fft(filt))
+            DrawFftPlot(True, f_filt, f"Signal DFT {bpm}", maxFreq)
+
+            x = abs(f_filt)**2
             e = e + sum(x)
+
 
         plot_dictionary[bpm] = e
         # If greater than all previous energies, set current bpm to the bpm of the signal
@@ -287,14 +299,16 @@ def threeForth(tempo, n, maxFreq, npulses):
     return "3/4", numpy.fft.fft(fil)
 
 band_limits = [0, 200, 400, 800, 1600, 3200]
-npulses = 10
-minBpm = 60
-maxBpm = 240
+npulses = 5
+minBpm = 100
+maxBpm = 160
 draw_plots = False
 
 song = Song("8-i'll_pretend", 140, "songs\\rock\\8-i'll_pretend.wav")
 signal, sample_freq = readSong(song.filepath)
-max_freq = sample_freq
+
+signal = scipy.signal.resample(signal, int(len(signal)/4))
+max_freq = sample_freq/4
 sample_length = npulses * max_freq
 seconds = sample_length * 4
 DrawPlot(draw_plots, signal, f"Song: {song.name}", "Sample/Time", "Amplitude")

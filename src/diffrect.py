@@ -9,6 +9,6 @@ def diffrect(signal, nbands=6):
         for j in range(5, n):
             d = signal[band, j] - signal[band, j-1]
             if d > 0:
-                output[band, j] = d;
+                output[band, j] = d
 
     return output

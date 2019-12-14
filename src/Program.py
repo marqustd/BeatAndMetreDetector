@@ -2,7 +2,8 @@ import TempoDetector
 import Song
 
 songs = {
-    # Song.Song('120', 120, 'songs\\test\\120.wav'),
+
+}    # Song.Song('120', 120, 'songs\\test\\120.wav'),
     # Song.Song('100', 100, 'songs\\test\\100.wav'),
     #
     # Song.Song("7-don't_look_back", 89, "songs\\rock\\7-don't_look_back.wav"),
@@ -18,7 +19,6 @@ songs = {
     # Song.Song('1-prospects', 126, 'songs\\jazz\\1-prospects.wav'),
     #
     # Song.Song('7-heavenly_rain', 116, 'songs\\metal\\7-heavenly_rain.wav'),
-}
 
 file = open("result.txt", 'w')
 

@@ -40,6 +40,7 @@ def detect(song, draw_plots=False):
     print(status)
     hanningWindow = hwindow.hwindow(fastFourier, 0.2, band_limits, max_freq)
     if draw_plots:
+        plt.figure()
         plt.plot(hanningWindow[1])
         plt.title("hwindow")
         plt.show()
