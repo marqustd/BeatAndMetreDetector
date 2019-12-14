@@ -36,11 +36,6 @@ def detect(song, draw_plots=False):
     print(status)
     fastFourier = filterbank.filterbank(centred, band_limits, max_freq)
 
-    if draw_plots:
-        plt.plot(fastFourier[1])
-        plt.title("Filterbank")
-        plt.show()
-
     status = f'Windowing song {song.name}...'
     print(status)
     hanningWindow = hwindow.hwindow(fastFourier, 0.2, band_limits, max_freq)
