@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[129]:
+# In[1]:
 
 
 import numpy as np
@@ -10,7 +10,7 @@ from matplotlib import pyplot as plt
 import time
 
 
-# In[130]:
+# In[2]:
 
 
 class Song:
@@ -25,7 +25,7 @@ class Song:
          
 
 
-# In[131]:
+# In[3]:
 
 
 bandLimits = [0, 200, 400, 800, 1600, 3200, 6400]    
@@ -41,14 +41,14 @@ drawFftPlots = True
 drawCombFilterPlots = True
 drawSongBpmEnergyPlot = True
 
-useConvolveMethod = False
+useConvolveMethod = True
 
 startTime = time.time()
 
 song = Song("8-i'll_pretend", 140, "songs\\rock\\8-i'll_pretend.wav")
 
 
-# In[132]:
+# In[4]:
 
 
 def prepare_plot_dictionary(minBpm, maxBpm):
@@ -58,7 +58,7 @@ def prepare_plot_dictionary(minBpm, maxBpm):
     return dictionary
 
 
-# In[133]:
+# In[5]:
 
 
 def draw_plot(is_draw_plots:bool, yData, title, xAxis, yAxis, xData = 0):
@@ -74,7 +74,7 @@ def draw_plot(is_draw_plots:bool, yData, title, xAxis, yAxis, xData = 0):
         
 
 
-# In[134]:
+# In[6]:
 
 
 def draw_fft_plot(drawPlots:bool, yData, plotTitle, samplingFrequency:int):
@@ -92,7 +92,7 @@ def draw_fft_plot(drawPlots:bool, yData, plotTitle, samplingFrequency:int):
         plt.show()   
 
 
-# In[135]:
+# In[7]:
 
 
 def draw_comb_filter_fft_plot(is_draw_plots:bool, yData, plotTitle, samplingFrequency:int):
@@ -110,17 +110,17 @@ def draw_comb_filter_fft_plot(is_draw_plots:bool, yData, plotTitle, samplingFreq
         plt.show() 
 
 
-# In[136]:
+# In[8]:
 
 
 def center_sample_to_beat(signal, seconds):
     n = len(signal)
     index = 0
 
-    max = np.max(signal)
+    max = np.max(abs(signal))
 
     for i in range(0, n):
-        if signal[i] > max*0.9:
+        if abs(signal[i]) > max*0.9:
             index = i
             break
 
@@ -128,11 +128,10 @@ def center_sample_to_beat(signal, seconds):
     lastindex += index
     if lastindex > n:
         lastindex = n
-    output = signal[index:int(lastindex)]
-    return output
+    return signal[index:int(lastindex)]
 
 
-# In[137]:
+# In[9]:
 
 
 def filterbank(signal, bandlimits, samplingFrequency):
@@ -159,14 +158,12 @@ def filterbank(signal, bandlimits, samplingFrequency):
             output[band, hz] = dft[hz]
         for hz in range(n - br[band], n - bl[band]):
             output[band, hz] = dft[hz]
-        # output[int(bl[band]): int(br[band])][band] = dft[int(bl[band]): int(br[band])]
-        # output[n + 1 - br[band]: n + 1 - bl[band], band] = dft[n + 1 - br[band]: n + 1 - bl[band]]
 
     output[1, 1] = 0
     return output
 
 
-# In[138]:
+# In[10]:
 
 
 def read_song(filename):
@@ -175,7 +172,7 @@ def read_song(filename):
     return signal, sample_freq
 
 
-# In[139]:
+# In[11]:
 
 
 def hann(signal, winLength, bandslimits, samplingFrequency):
@@ -212,7 +209,7 @@ def hann(signal, winLength, bandslimits, samplingFrequency):
     return output
 
 
-# In[140]:
+# In[12]:
 
 
 def diffrect(signal, nbands=6):
@@ -228,7 +225,7 @@ def diffrect(signal, nbands=6):
     return output
 
 
-# In[141]:
+# In[13]:
 
 
 def bpm_comb_filter(signal, accuracy:int, minBpm:int, maxBpm:int, bandsLimits, samplingFrequency, combFilterPulses, plotDictionary):
@@ -282,7 +279,7 @@ def bpm_comb_filter(signal, accuracy:int, minBpm:int, maxBpm:int, bandsLimits, s
     return songBpm
 
 
-# In[142]:
+# In[14]:
 
 
 def bpm_comb_filter_convolve(signal, accuracy, minBpm, maxBpm, bandlimits, maxFreq, plot_dictionary):
@@ -344,7 +341,7 @@ def bpm_comb_filter_convolve(signal, accuracy, minBpm, maxBpm, bandlimits, maxFr
     return sbpm
 
 
-# In[143]:
+# In[15]:
 
 
 def detectMetre(signal, tempo:int, bandlimits, maxFreq, npulses):
@@ -416,7 +413,7 @@ def three_forth(song_tempo:int, n:int, sampling_frequency:int, filter_pulses:int
     return "3/4", np.fft.fft(fil)
 
 
-# In[144]:
+# In[16]:
 
 
 signal, samplingFrequency = read_song(song.filepath)
@@ -438,16 +435,17 @@ if stop > song_length:
     stop = song_length
 
 sample = signal[start:stop]
+draw_plot(drawPlots, sample, f"Sample of: {song.name}", "Sample/Time", "Amplitude")
 
 
-# In[145]:
+# In[17]:
 
 
 centred = center_sample_to_beat(sample, sample_length)
 draw_plot(drawPlots, centred, f"Centred to beat: {song.name}", "Sample/Time", "Amplitude")
 
 
-# In[146]:
+# In[18]:
 
 
 print('Filtering song {song.name}...')
@@ -456,7 +454,7 @@ for i in range(0, len(bandLimits)):
     draw_fft_plot(drawPlots, fastFourier[i], f"Filterbank[{i}]{song.name}", samplingFrequency)
 
 
-# In[147]:
+# In[19]:
 
 
 print(f'Windowing song {song.name}...')
@@ -464,7 +462,7 @@ hanningWindow = hann(fastFourier, 0.2, bandLimits, samplingFrequency)
 draw_plot(drawPlots, hanningWindow[1], f"Hanning Window: {song.name}", "Sample/Time", "Amplitude")
 
 
-# In[148]:
+# In[20]:
 
 
 print(f'Differentiating song {song.name}...')
