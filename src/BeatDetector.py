@@ -46,7 +46,8 @@ songs = {
     # tmd.Song('100', 100, 'songs\\test\\100.wav'),
     #
     # tmd.Song("7-don't_look_back", 89, "songs\\rock\\7-don't_look_back.wav"),
-    tmd.Song("8-i'll_pretend", 140, "songs\\rock\\8-i'll_pretend.wav"),
+    # tmd.Song("8-i'll_pretend", 140, "songs\\rock\\8-i'll_pretend.wav"),
+    tmd.Song("Dave_Brubeck_Quartet_Take_Five", 140, "songs\\jazz\\Dave_Brubeck_Quartet_Take_Five.wav"),
     # tmd.Song("10-at_least_you've_been_told", 130, "songs\\rock\\10-at_least_you've_been_told.wav"),
     # tmd.Song("1-don't_rain_on_my_parade", 160, "songs\\rock\\1-don't_rain_on_my_parade.wav"),
     # tmd.Song("4-goodbye_on_a_beautiful_day", 60, "songs\\rock\\4-goodbye_on_a_beautiful_day.wav"),
