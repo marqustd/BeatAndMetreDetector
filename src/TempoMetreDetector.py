@@ -45,7 +45,7 @@ useConvolveMethod = False
 
 startTime = time.time()
 
-song = Song("Dave_Brubeck_Quartet_Take_Five", 140, "songs\\jazz\\Dave_Brubeck_Quartet_Take_Five.wav")
+song = Song("12-rotgut", 147, "songs\\rock\\12-rotgut.wav")
 
 
 # In[4]:
@@ -466,6 +466,141 @@ def five_forth(song_tempo:int, n:int, sampling_frequency:int, filter_pulses:int)
 # In[16]:
 
 
+def detectMetre_normalized(signal, tempo:int, bandlimits, maxFreq, npulses):
+    length = len(signal[0])
+    print(length)
+    n = int(npulses * maxFreq * (60/tempo))
+    print(n)
+    nbands = len(bandlimits)
+    dft = np.zeros([nbands, n], dtype=complex)
+
+    # Get signal in frequency domain
+    for band in range(0, nbands):
+        dft[band] = np.fft.fft(signal[band, 0:n])
+        draw_plot(drawPlots, signal[band], f"Signal[{band}]", "Sample/Time", "Amplitude")
+        draw_fft_plot(drawFftPlots, dft[band], f"Signal[{band}] dft", maxFreq)
+        draw_comb_filter_fft_plot(drawFftPlots, dft[band], f"Signal[{band}] dft", maxFreq)
+
+    metres = {}
+    metre, metre_dft = four_forth(tempo, n, maxFreq, npulses)
+    metres[metre] = metre_dft
+    metre, metre_dft = three_forth(tempo, n, maxFreq, npulses)
+    metres[metre] = metre_dft
+    metre, metre_dft = five_forth(tempo, n, maxFreq, npulses)
+    metres[metre] = metre_dft
+    # % Initialize max energy to zero
+    maxe = 0
+    for metrum in metres:
+        # % Initialize energy and filter to zero(s)
+        e = 0
+
+        for band in range(0, nbands):
+            x = (abs(metres[metrum] * dft[band])) ** 2
+            e = e + sum(x)
+
+        # If greater than all previous energies, set current bpm to the bpm of the signal
+        if e > maxe:
+            song_metre = metrum
+            maxe = e
+
+    return song_metre
+
+
+def four_forth(tempo, n, sampling_frequency, filter_pulses):
+    fil = np.zeros(n)
+    nstep = np.floor(60 / tempo * sampling_frequency)
+    index = 0
+    bit = 0
+    pulse = 1 / (filter_pulses + np.floor(filter_pulses/2))
+    while index < n and bit < filter_pulses:
+        value = 2 * pulse
+        if bit % 2 > 0:
+            value = 1 * pulse
+
+        fil[int(index)] = value
+        index += nstep
+        bit += 1
+
+    filterSum = sum(abs(fil))
+    print("Sum 4/4: ", filterSum)
+    draw_plot(drawCombFilterPlots, fil, "4/4", "Sample/Time", "Amplitude")
+    dft = np.fft.fft(fil)
+    draw_comb_filter_fft_plot(drawFftPlots, dft, f"Metre 4/4 filter dft", sampling_frequency)
+    energy = sum(abs(dft) ** 2)
+    print("filter 4/4 energy: ", energy)
+    dft = dft / energy
+    energy = sum(abs(dft) ** 2)
+    print("normalized filter 4/4 energy: ", energy)
+    draw_comb_filter_fft_plot(drawFftPlots, dft, f"Metre 4/4 filter normalized dft", sampling_frequency)
+    return "4/4", dft
+
+
+def three_forth(song_tempo:int, n:int, sampling_frequency:int, filter_pulses:int):
+    fil = np.zeros(n)
+    nstep = np.floor(60 / song_tempo * sampling_frequency)  # every third bit
+    index = 0
+    bit = 0
+    
+    pulse = 1 / (filter_pulses + np.floor(filter_pulses/3))
+    
+    while index < n and bit < filter_pulses:
+        value = 2 * pulse
+        if bit % 3 > 0:
+            value = 1 * pulse
+        fil[int(index)] = value
+        index += nstep
+        bit += 1
+
+    filterSum = sum(abs(fil))
+    print("Sum 3/4: ", filterSum)
+    draw_plot(drawCombFilterPlots, fil, "3/4", "Sample/Time", "Amplitude")
+    dft = np.fft.fft(fil)
+    draw_comb_filter_fft_plot(drawFftPlots, dft, f"Metre 3/4 filter dft", sampling_frequency)
+    energy = sum(abs(dft) ** 2)
+    print("filter 3/4 energy: ", energy)
+    dft = dft / energy
+    energy = sum(abs(dft) ** 2)
+    print("normalized filter 3/4 energy: ", energy)
+    draw_comb_filter_fft_plot(drawFftPlots, dft, f"Metre 3/4 filter normalized dft", sampling_frequency)
+    return "3/4", dft
+
+def five_forth(song_tempo:int, n:int, sampling_frequency:int, filter_pulses:int):
+    fil = np.zeros(n)
+    nstep = np.floor(60 / song_tempo * sampling_frequency)  # every third bit
+    index = 0
+    bits = 0
+    bit = 1
+    
+    pulse = 1 / (filter_pulses + np.floor(filter_pulses/5)*3 + abs(filter_pulses%5-1))
+    
+    while index < n and bits < filter_pulses:
+        value = 1 * pulse
+        if bit == 2 or bit == 4 or bit == 5:
+            value = 2 * pulse
+        fil[int(index)] = value
+        index += nstep
+        bit += 1
+        bits += 1
+        if bit > 5:
+            bit = 1
+
+    filterSum = sum(abs(fil))
+    print("Sum 5/4: ", filterSum)
+    draw_plot(drawCombFilterPlots, fil, "5/4", "Sample/Time", "Amplitude")
+    dft = np.fft.fft(fil)
+    draw_comb_filter_fft_plot(drawFftPlots, dft, f"Metre 5/4 filter dft", sampling_frequency)
+    energy = sum(abs(dft) ** 2)
+    print("filter 5/4 energy: ", energy)
+    dft = dft / energy
+    energy = sum(abs(dft) ** 2)
+    print("normalized filter 5/4 energy: ", energy)
+    draw_comb_filter_fft_plot(drawFftPlots, dft, f"Metre 5/4 filter normalized dft", sampling_frequency)
+    return "5/4", dft
+
+
+# In[17]:
+
+
 def detectMetre_convolve(signal, tempo:int, bandlimits, maxFreq, npulses):
     length = len(signal[0])
     print(length)
@@ -548,7 +683,95 @@ def five_forth(song_tempo:int, n:int, sampling_frequency:int, filter_pulses:int)
     return "5/4", fil
 
 
-# In[17]:
+# In[18]:
+
+
+def detectMetre_convolve_normalized(signal, tempo:int, bandlimits, maxFreq, npulses):
+    length = len(signal[0])
+    print(length)
+    n = int(npulses * maxFreq * (60/tempo))
+    print(n)
+    nbands = len(bandlimits)
+    
+    for band in range(0, nbands):
+        draw_plot(drawPlots, signal[band], f"band: {band}", "Sample/Time", "Amplitude")
+
+    metres = {}
+    metre, metre_dft = four_forth(tempo, n, maxFreq, npulses)
+    metres[metre] = metre_dft
+    metre, metre_dft = three_forth(tempo, n, maxFreq, npulses)
+    metres[metre] = metre_dft
+    metre, metre_dft = five_forth(tempo, n, maxFreq, npulses)
+    metres[metre] = metre_dft
+    # % Initialize max energy to zero
+    maxe = 0
+    for metrum in metres:
+        # % Initialize energy and filter to zero(s)
+        e = 0
+
+        for band in range(0, nbands):
+            filt = scipy.convolve(signal[band], metres[metrum])
+            f_filt = abs(np.fft.fft(filt))
+            draw_plot(drawPlots, f_filt, metrum, "Sample/Time", "Amplitude")
+            x = abs(f_filt)**2
+            e = e + sum(x)
+
+        # If greater than all previous energies, set current bpm to the bpm of the signal
+        if e > maxe:
+            song_metre = metrum
+            maxe = e
+
+    return song_metre
+
+
+def four_forth(song_tempo:int, n:int, sampling_frequency:int, npulses:int):
+    fil = np.zeros(int(4 * sampling_frequency * (60/song_tempo)))
+    nstep = np.floor(60 / song_tempo * sampling_frequency)
+    
+    value = 1 / 6
+    fil[int(0*nstep)] = 1 * value
+    fil[int(1*nstep)] = 2 * value
+    fil[int(2*nstep)] = 1 * value
+    fil[int(3*nstep)] = 2 * value
+
+    draw_plot(drawCombFilterPlots, fil, "4/4", "Sample/Time", "Amplitude")
+    dft = np.fft.fft(fil)
+    draw_comb_filter_fft_plot(drawFftPlots, dft, f"Metre 4/4 filter dft", sampling_frequency)
+    return "4/4", fil
+
+
+def three_forth(song_tempo:int, n:int, sampling_frequency:int, filter_pulses:int):
+    fil = np.zeros(int(3 * sampling_frequency * (60/song_tempo)))
+    nstep = np.floor(60 / song_tempo * sampling_frequency)
+    
+    value = 1 / 4
+    fil[int(0*nstep)] = 1* value
+    fil[int(1*nstep)] = 1* value
+    fil[int(2*nstep)] = 2* value
+
+    draw_plot(drawCombFilterPlots, fil, "3/4", "Sample/Time", "Amplitude")
+    dft = np.fft.fft(fil)
+    draw_comb_filter_fft_plot(drawFftPlots, dft, f"Metre 3/4 filter dft", sampling_frequency)
+    return "3/4", fil
+
+def five_forth(song_tempo:int, n:int, sampling_frequency:int, filter_pulses:int):
+    fil = np.zeros(int(5 * sampling_frequency * (60/song_tempo)))
+    nstep = np.floor(60 / song_tempo * sampling_frequency)
+    
+    value = 1 / 8
+    fil[int(0*nstep)] = 1* value
+    fil[int(1*nstep)] = 2* value
+    fil[int(2*nstep)] = 1* value
+    fil[int(3*nstep)] = 2* value
+    fil[int(4*nstep)] = 2* value
+
+    draw_plot(drawCombFilterPlots, fil, "5/4", "Sample/Time", "Amplitude")
+    dft = np.fft.fft(fil)
+    draw_comb_filter_fft_plot(drawFftPlots, dft, f"Metre 5/4 filter dft", sampling_frequency)
+    return "5/4", fil
+
+
+# In[19]:
 
 
 signal, samplingFrequency = read_song(song.filepath)
@@ -573,14 +796,14 @@ sample = signal[start:stop]
 draw_plot(drawPlots, sample, f"Sample of: {song.name}", "Sample/Time", "Amplitude")
 
 
-# In[18]:
+# In[20]:
 
 
 centred = center_sample_to_beat(sample, sample_length)
 draw_plot(drawPlots, centred, f"Centred to beat: {song.name}", "Sample/Time", "Amplitude")
 
 
-# In[19]:
+# In[21]:
 
 
 print('Filtering song {song.name}...')
@@ -589,7 +812,7 @@ for i in range(0, len(bandLimits)):
     draw_fft_plot(drawPlots, fastFourier[i], f"Filterbank[{i}]{song.name}", samplingFrequency)
 
 
-# In[20]:
+# In[22]:
 
 
 print(f'Windowing song {song.name}...')
@@ -597,7 +820,7 @@ hanningWindow = hann(fastFourier, 0.2, bandLimits, samplingFrequency)
 draw_plot(drawPlots, hanningWindow[1], f"Hanning Window: {song.name}", "Sample/Time", "Amplitude")
 
 
-# In[21]:
+# In[23]:
 
 
 print(f'Differentiating song {song.name}...')
@@ -605,7 +828,7 @@ diffrected = diffrect(hanningWindow, len(bandLimits))
 draw_plot(drawPlots, diffrected[1], f"Diffrected: {song.name}", "Sample/Time", "Amplitude")
 
 
-# In[ ]:
+# In[24]:
 
 
 print(f'CombFiltering song {song.name}...')
@@ -630,7 +853,7 @@ else:
 first
 
 
-# In[ ]:
+# In[25]:
 
 
 if useConvolveMethod:
@@ -641,10 +864,10 @@ draw_plot(drawSongBpmEnergyPlot, list(plotDictionary.keys()), f"Tempo: {song.nam
 song_bpm
 
 
-# In[ ]:
+# In[26]:
 
 
-metre = detectMetre_convolve(diffrected, song_bpm, bandLimits, samplingFrequency, combFilterPulses)
+metre = detectMetre_normalized(diffrected, song_bpm, bandLimits, samplingFrequency, combFilterPulses)
 metre
 
 
