@@ -1,7 +1,7 @@
 import song
 import settings
 import time
-import combfilterTempoDetector
+import combFilterTempoDetector
 import detectMetreConvolve
 import songReader
 import scipy.signal
@@ -10,7 +10,7 @@ import numpy as np
 
 
 class TempoMetreDetector:
-    tempoDetector = combfilterTempoDetector.CombFilterTempoDetector()
+    tempoDetector = combFilterTempoDetector.CombFilterTempoDetector()
     metreDetector = detectMetreConvolve.DetectMetreConvolve()
 
     def __init__(self, tempoDetector, metreDetector):
