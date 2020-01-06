@@ -1,13 +1,8 @@
-import sys
 import tempoMetreDetector as tmd
 import song
-import combFilterTempoDetector
-import convolveTempoDetector
+from tempo import combFilterTempoDetector
 
-import detectMetreConvolve
-import detectMetre
-import detectMetreConvolveNormalized
-import detectMetreNormalized
+from metre import detectMetreConvolve
 
 songs = {
     # song.Song('120', 120, "4/4", 'songs\\test\\120.wav'),
@@ -29,12 +24,6 @@ songs = {
     # song.Song('7-heavenly_rain', 116, "4/4", 'songs\\metal\\7-heavenly_rain.wav'),
 }
 
-print("This is the name of the script: ", sys.argv[0])
-print("Number of arguments: ", len(sys.argv))
-print("The arguments are: ", str(sys.argv))
-
-print()
-
 tempoDetector = combFilterTempoDetector.CombFilterTempoDetector()
 # tempoDetector = convolveTempoDetector.ConvolveTempoDetector()
 
@@ -51,7 +40,7 @@ for song in songs:
     bpm, metre = detector.detect_tempo_metre(song)
     message = f"Detected in {song.name} song's bpm: {bpm} should be {song.bpm} and metre {metre} should be {song.metre}"
     print(message)
-    file.write(message+'\n')
+    file.write(message + '\n')
 
 print("End")
 file.close()

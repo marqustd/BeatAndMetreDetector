@@ -82,10 +82,10 @@ class DetectMetreConvolveNormalized:
         dft = np.fft.fft(fil)
         plots.draw_comb_filter_fft_plot(settings.drawFftPlots, dft, f"Metre 5/4 filter dft", sampling_frequency)
         return "5/4", fil
-    
+
     def __six_eigth(self, song_tempo: int, n: int, sampling_frequency: int, filter_pulses: int):
         fil = np.zeros(int(3 * sampling_frequency * (60 / song_tempo)))
-        nstep = np.floor((60 / song_tempo * sampling_frequency)/2)
+        nstep = np.floor((60 / song_tempo * sampling_frequency) / 2)
 
         value = 1 / 2
         fil[int(0 * nstep)] = 1 * value

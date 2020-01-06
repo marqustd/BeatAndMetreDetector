@@ -3,13 +3,9 @@ import song
 import argparse
 import settings
 
-import combFilterTempoDetector
-import convolveTempoDetector
+from tempo import combFilterTempoDetector, convolveTempoDetector
 
-import detectMetreConvolve
-import detectMetre
-import detectMetreConvolveNormalized
-import detectMetreNormalized
+from metre import detectMetre, detectMetreConvolveNormalized, detectMetreNormalized, detectMetreConvolve
 
 
 def prepare_parser():
@@ -25,7 +21,7 @@ def prepare_parser():
     metreParser.add_argument("-m", help=metreDetectorHelp, dest='metreDetector', default='detectMetreNormalized')
 
     parser = argparse.ArgumentParser(parents=[tempoParser, metreParser])
-    parser.add_argument("song", help="Path to song")
+    parser.add_argument("song", help="path to song")
     parser.add_argument('--plots', dest='showPlots', default=False,
                         help='show plots (default: disabled)', action='store_const', const=True)
     return parser
@@ -39,6 +35,7 @@ def parse_tempo_detector(detector: str):
     else:
         return None
 
+
 def parse_metre_detector(detector: str):
     if detector == 'detectMetre':
         return detectMetre.DetectMetre()
@@ -51,6 +48,7 @@ def parse_metre_detector(detector: str):
     else:
         return None
 
+
 def parse_show_plots(showPlots):
     if not showPlots:
         settings.drawCombFilterPlots = False
@@ -60,7 +58,7 @@ def parse_show_plots(showPlots):
 
 
 parser = prepare_parser()
-args = parser.parse_args()
+args = parser.parse_args(['song.wav'])
 metreDetector = parse_metre_detector(args.metreDetector)
 if metreDetector is None:
     parser.error("Wrong metreDetector provided")
@@ -69,7 +67,7 @@ if tempoDetector is None:
     parser.error("Wrong tempoDetector provided")
 parse_show_plots(args.showPlots)
 
-detector = tmd.TempoMetreDetector(tempoDetector,metreDetector)
+detector = tmd.TempoMetreDetector(tempoDetector, metreDetector)
 song = song.Song(args.song)
 tempo, metre = detector.detect_tempo_metre(song)
 print("Song tempo: ", tempo)

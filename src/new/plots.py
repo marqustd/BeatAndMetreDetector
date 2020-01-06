@@ -9,7 +9,7 @@ def prepare_plot_dictionary(minBpm, maxBpm):
     return dictionary
 
 
-def draw_plot(is_draw_plots:bool, yData, title, xAxis, yAxis, xData = 0):
+def draw_plot(is_draw_plots: bool, yData, title, xAxis, yAxis, xData=0):
     if is_draw_plots:
         if xData is 0:
             plt.plot(yData)
@@ -18,35 +18,34 @@ def draw_plot(is_draw_plots:bool, yData, title, xAxis, yAxis, xData = 0):
         plt.title(title)
         plt.xlabel(xAxis)
         plt.ylabel(yAxis)
-        plt.show() 
-        
+        plt.show()
 
 
-def draw_fft_plot(drawPlots:bool, yData, plotTitle, samplingFrequency:int):
+def draw_fft_plot(drawPlots: bool, yData, plotTitle, samplingFrequency: int):
     if drawPlots:
         length = len(yData)
-        h = abs(yData/length)
-        h = h[1:int(length/2+1)]
-        f = samplingFrequency * ((np.arange(0,int(length/2)))/length)
-        
+        h = abs(yData / length)
+        h = h[1:int(length / 2 + 1)]
+        f = samplingFrequency * ((np.arange(0, int(length / 2))) / length)
+
         plt.plot(f, h)
         plt.title(plotTitle)
         plt.xlabel("f[Hz]")
         plt.ylabel("|H(f)|")
         plt.xlim(0, 5000)
-        plt.show()   
+        plt.show()
 
 
-def draw_comb_filter_fft_plot(is_draw_plots:bool, yData, plotTitle, samplingFrequency:int):
+def draw_comb_filter_fft_plot(is_draw_plots: bool, yData, plotTitle, samplingFrequency: int):
     if is_draw_plots:
         length = len(yData)
-        h = abs(yData/length)
-        h = h[1:int(length/2+1)]
-        f = samplingFrequency* ((np.arange(0,int(length/2)))/length)
-        
+        h = abs(yData / length)
+        h = h[1:int(length / 2 + 1)]
+        f = samplingFrequency * ((np.arange(0, int(length / 2))) / length)
+
         plt.plot(f, h)
         plt.title(plotTitle)
         plt.xlabel("f[Hz]")
         plt.ylabel("|H(f)|")
         plt.xlim(0, 10)
-        plt.show() 
+        plt.show()
