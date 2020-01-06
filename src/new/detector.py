@@ -27,7 +27,7 @@ def prepare_parser():
     parser = argparse.ArgumentParser(parents=[tempoParser, metreParser])
     parser.add_argument("song", help="Path to song")
     parser.add_argument('--plots', dest='showPlots', default=False,
-                        help='show plots (default: disabled)')
+                        help='show plots (default: disabled)', action='store_const', const=True)
     return parser
 
 
@@ -60,7 +60,7 @@ def parse_show_plots(showPlots):
 
 
 parser = prepare_parser()
-args = parser.parse_args(['songs\\jazz\\Dave_Brubeck_Quartet_Take_Five.wav'])
+args = parser.parse_args()
 metreDetector = parse_metre_detector(args.metreDetector)
 if metreDetector is None:
     parser.error("Wrong metreDetector provided")
@@ -72,5 +72,5 @@ parse_show_plots(args.showPlots)
 detector = tmd.TempoMetreDetector(tempoDetector,metreDetector)
 song = song.Song(args.song)
 tempo, metre = detector.detect_tempo_metre(song)
-print("Song tempo:" , tempo)
-print("Song metre:" , metre)
+print("Song tempo: ", tempo)
+print("Song metre: ", metre)
