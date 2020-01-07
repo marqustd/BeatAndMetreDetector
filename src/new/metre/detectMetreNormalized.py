@@ -1,11 +1,10 @@
-import scipy.signal
 import numpy as np
 import plots
 import settings
 
 
 class DetectMetreNormalized:
-    def detectMetre(self, signal, tempo: int, bandlimits, maxFreq, npulses):
+    def detect_metre(self, signal, tempo: int, bandlimits, maxFreq, npulses):
         length = len(signal[0])
         print(length)
         n = int(npulses * maxFreq * (60 / tempo))

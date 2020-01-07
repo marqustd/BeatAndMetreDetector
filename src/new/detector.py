@@ -24,9 +24,10 @@ def prepare_parser():
     parser.add_argument("song", help="path to song")
     parser.add_argument('--plots', dest='showPlots', default=False,
                         help='show plots (default: disabled)', action='store_const', const=True)
+    parser.add_argument("-p", help='Comb filter pulses (default: 10)', dest='pulses', default=10, type=int)
     return parser
 
-
+# todo parametr do resample
 def parse_tempo_detector(detector: str):
     if detector == 'combFilterTempoDetector':
         return combFilterTempoDetector.CombFilterTempoDetector()
@@ -58,7 +59,7 @@ def parse_show_plots(showPlots):
 
 
 parser = prepare_parser()
-args = parser.parse_args(['song.wav'])
+args = parser.parse_args()
 metreDetector = parse_metre_detector(args.metreDetector)
 if metreDetector is None:
     parser.error("Wrong metreDetector provided")

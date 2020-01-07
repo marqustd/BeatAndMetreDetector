@@ -5,7 +5,7 @@ import settings
 
 
 class DetectMetreConvolveNormalized:
-    def detectMetre(self, signal, tempo: int, bandlimits, maxFreq, npulses):
+    def detect_metre(self, signal, tempo: int, bandlimits, maxFreq, npulses):
         length = len(signal[0])
         print(length)
         n = int(npulses * maxFreq * (60 / tempo))
