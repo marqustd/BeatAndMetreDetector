@@ -5,6 +5,9 @@ import scipy.signal
 
 
 class ConvolveTempoDetector:
+    def __str__(self):
+        return "ConvolveTempoDetector"
+
     def detect_tempo(self, signal, accuracy: int, minBpm: int, maxBpm: int, bandsLimits, samplingFrequency,
                      combFilterPulses, plotDictionary):
         n = len(signal[0])
@@ -34,7 +37,7 @@ class ConvolveTempoDetector:
             percent_done = 100 * (bpm - minBpm) / (maxBpm - minBpm)
             fil = np.zeros(int(filterLength * nstep))
 
-            print(percent_done)
+            print("%.2f" % percent_done, "%")
 
             # Set every nstep samples of the filter to one
             for a in range(0, filterLength):

@@ -2,7 +2,7 @@ import tempoMetreDetector as tmd
 import song
 from tempo import combFilterTempoDetector
 
-from metre import detectMetreConvolve
+from metre import convolveMetreDetector
 
 songs = {
     song.Song('songs\\test\\120.wav', '120', 120, "4/4"),
@@ -27,7 +27,7 @@ songs = {
 tempoDetector = combFilterTempoDetector.CombFilterTempoDetector()
 # tempoDetector = convolveTempoDetector.ConvolveTempoDetector()
 
-metreDetector = detectMetreConvolve.DetectMetreConvolve()
+metreDetector = convolveMetreDetector.ConvolveMetreDetector()
 # metreDetector = detectMetreNormalized.DetectMetreNormalized()
 # metreDetector = detectMetreConvolveNormalized.DetectMetreConvolveNormalized()
 # metreDetector = detectMetre.DetectMetre()
@@ -37,7 +37,7 @@ file = open("result.txt", 'w')
 detector = tmd.TempoMetreDetector(tempoDetector, metreDetector)
 
 for song in songs:
-    bpm, metre = detector.detect_tempo_metre(song)
+    bpm, metre, time = detector.detect_tempo_metre(song)
     message = f"Detected in {song.name} song's bpm: {bpm} should be {song.bpm} and metre {metre} should be {song.metre}"
     print(message)
     file.write(message + '\n')

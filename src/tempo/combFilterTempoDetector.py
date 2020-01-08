@@ -4,6 +4,9 @@ import settings
 
 
 class CombFilterTempoDetector:
+    def __str__(self):
+        return "CombFilterTempoDetector"
+
     def detect_tempo(self, signal, accuracy: int, minBpm: int, maxBpm: int, bandsLimits, samplingFrequency,
                      combFilterPulses, plotDictionary):
         n = len(signal[0])
@@ -31,7 +34,7 @@ class CombFilterTempoDetector:
             # Calculate the difference between peaks in the filter for a certain tempo
             filter_step = np.floor(60 / bpm * samplingFrequency)
             percent_done = 100 * (bpm - minBpm) / (maxBpm - minBpm)
-            print(percent_done)
+            print("%.2f" % percent_done, "%")
 
             # Set every filter's step samples of the filter to one
             for a in range(0, combFilterPulses):

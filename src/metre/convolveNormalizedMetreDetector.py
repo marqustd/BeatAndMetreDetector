@@ -4,16 +4,17 @@ import plots
 import settings
 
 
-class DetectMetreConvolveNormalized:
+class ConvolveNormalizedMetreDetector:
+    def __str__(self):
+        return "ConvolveNormalizedMetreDetector"
+
     def detect_metre(self, signal, tempo: int, bandlimits, maxFreq, npulses):
         length = len(signal[0])
-        print(length)
         n = int(npulses * maxFreq * (60 / tempo))
-        print(n)
         nbands = len(bandlimits)
 
         for band in range(0, nbands):
-            plots.draw_plot(settings.drawPlots, signal[band], f"band: {band}", "Sample/Time", "Amplitude")
+            plots.draw_plot(settings.drawPlots, signal[band], f"Band: {band}", "Sample/Time", "Amplitude")
 
         metres = {}
         metre, metre_dft = self.__four_forth(tempo, n, maxFreq, npulses)
@@ -26,7 +27,13 @@ class DetectMetreConvolveNormalized:
         metres[metre] = metre_dft
         # % Initialize max energy to zero
         maxe = 0
+        done = 0
+        todo = len(metres.keys())
         for metrum in metres:
+            done += 1
+            percent_done = 100 * done / todo
+            print("%.2f" % percent_done, "%")
+
             # % Initialize energy and filter to zero(s)
             e = 0
 
