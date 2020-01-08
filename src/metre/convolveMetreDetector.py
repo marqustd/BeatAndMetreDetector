@@ -5,26 +5,28 @@ import settings
 
 
 class ConvolveMetreDetector:
+    __methods = []
+
     def __str__(self):
         return "ConvolveMetreDetector"
 
     def detect_metre(self, signal, songTempo: int, bandLimits, samplingFrequency, combFilterPulses):
-        length = len(signal[0])
         n = int(combFilterPulses * samplingFrequency * (60 / songTempo))
         nbands = len(bandLimits)
 
         for band in range(0, nbands):
             plots.draw_plot(settings.drawPlots, signal[band], f"Band: {band}", "Sample/Time", "Amplitude")
 
+        self.__methods.append(self.__five_forth)
+        self.__methods.append(self.__four_forth)
+        self.__methods.append(self.__six_eigth)
+        self.__methods.append(self.__three_forth)
+
         metres = {}
-        metre, metre_dft = self.__four_forth(songTempo, n, samplingFrequency, combFilterPulses)
-        metres[metre] = metre_dft
-        metre, metre_dft = self.__three_forth(songTempo, n, samplingFrequency, combFilterPulses)
-        metres[metre] = metre_dft
-        metre, metre_dft = self.__five_forth(songTempo, n, samplingFrequency, combFilterPulses)
-        metres[metre] = metre_dft
-        metre, metre_dft = self.__six_eigth(songTempo, n, samplingFrequency, combFilterPulses)
-        metres[metre] = metre_dft
+        for method in self.__methods:
+            metre, metre_dft = method(songTempo, n, samplingFrequency, combFilterPulses)
+            metres[metre] = metre_dft
+
         # % Initialize max energy to zero
         maxe = 0
         done = 0

@@ -3,12 +3,13 @@ import plots
 import settings
 
 
-class CombfilterMetreDetector:
+class CombFilterMetreDetector:
+    __methods = []
+
     def __str__(self):
-        return "CombfilterMetreDetector"
+        return "CombFilterMetreDetector"
 
     def detect_metre(self, signal, tempo: int, bandlimits, maxFreq, npulses):
-        length = len(signal[0])
         n = int(npulses * maxFreq * (60 / tempo))
         nbands = len(bandlimits)
         dft = np.zeros([nbands, n], dtype=complex)
@@ -20,15 +21,16 @@ class CombfilterMetreDetector:
             plots.draw_fft_plot(settings.drawFftPlots, dft[band], f"Signal[{band}] dft", maxFreq)
             plots.draw_comb_filter_fft_plot(settings.drawFftPlots, dft[band], f"Signal[{band}] dft", maxFreq)
 
+        self.__methods.append(self.__five_forth)
+        self.__methods.append(self.__four_forth)
+        self.__methods.append(self.__six_eigth)
+        self.__methods.append(self.__three_forth)
+
         metres = {}
-        metre, metre_dft = self.__four_forth(tempo, n, maxFreq, npulses)
-        metres[metre] = metre_dft
-        metre, metre_dft = self.__three_forth(tempo, n, maxFreq, npulses)
-        metres[metre] = metre_dft
-        metre, metre_dft = self.__five_forth(tempo, n, maxFreq, npulses)
-        metres[metre] = metre_dft
-        metre, metre_dft = self.__six_eigth(tempo, n, maxFreq, npulses)
-        metres[metre] = metre_dft
+        for method in self.__methods:
+            metre, metre_dft = method(tempo, n, maxFreq, npulses)
+            metres[metre] = metre_dft
+
         # % Initialize max energy to zero
         maxe = 0
         done = 0

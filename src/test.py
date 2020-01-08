@@ -1,8 +1,9 @@
 import tempoMetreDetector as tmd
 import song
-from tempo import combFilterTempoDetector
+from tempo import combFilterTempoDetector, convolveTempoDetector
 
-from metre import convolveMetreDetector
+from metre import convolveMetreDetector, convolveNormalizedMetreDetector, combFilterMetreDetector, \
+    combFilterNormalizedMetreDetector
 
 songs = {
     song.Song('songs\\test\\120.wav', '120', 120, "4/4"),
@@ -25,12 +26,12 @@ songs = {
 }
 
 tempoDetector = combFilterTempoDetector.CombFilterTempoDetector()
-# tempoDetector = convolveTempoDetector.ConvolveTempoDetector()
+tempoDetector = convolveTempoDetector.ConvolveTempoDetector()
 
 metreDetector = convolveMetreDetector.ConvolveMetreDetector()
-# metreDetector = detectMetreNormalized.DetectMetreNormalized()
-# metreDetector = detectMetreConvolveNormalized.DetectMetreConvolveNormalized()
-# metreDetector = detectMetre.DetectMetre()
+metreDetector = convolveNormalizedMetreDetector.ConvolveNormalizedMetreDetector()
+metreDetector = combFilterMetreDetector.CombFilterMetreDetector()
+metreDetector = combFilterNormalizedMetreDetector.CombFilterNormalizedMetreDetector()
 
 
 file = open("result.txt", 'w')

@@ -3,12 +3,12 @@ import plots
 import settings
 
 
-class CombfilterNormalizedMetreDetector:
+class CombFilterNormalizedMetreDetector:
+    __methods = []
     def __str__(self):
-        return "CombfilterNormalizedMetreDetector"
+        return "CombFilterNormalizedMetreDetector"
 
     def detect_metre(self, signal, tempo: int, bandlimits, maxFreq, npulses):
-        length = len(signal[0])
         n = int(npulses * maxFreq * (60 / tempo))
         nbands = len(bandlimits)
         dft = np.zeros([nbands, n], dtype=complex)
@@ -20,13 +20,16 @@ class CombfilterNormalizedMetreDetector:
             plots.draw_fft_plot(settings.drawFftPlots, dft[band], f"Signal[{band}] dft", maxFreq)
             plots.draw_comb_filter_fft_plot(settings.drawFftPlots, dft[band], f"Signal[{band}] dft", maxFreq)
 
+        self.__methods.append(self.__five_forth)
+        self.__methods.append(self.__four_forth)
+        self.__methods.append(self.__six_eigth)
+        self.__methods.append(self.__three_forth)
+
         metres = {}
-        metre, metre_dft = self.__four_forth(tempo, n, maxFreq, npulses)
-        metres[metre] = metre_dft
-        metre, metre_dft = self.__three_forth(tempo, n, maxFreq, npulses)
-        metres[metre] = metre_dft
-        metre, metre_dft = self.__five_forth(tempo, n, maxFreq, npulses)
-        metres[metre] = metre_dft
+        for method in self.__methods:
+            metre, metre_dft = method(tempo, n, maxFreq, npulses)
+            metres[metre] = metre_dft
+
         # % Initialize max energy to zero
         maxe = 0
         done = 0
@@ -142,3 +145,28 @@ class CombfilterNormalizedMetreDetector:
         plots.draw_comb_filter_fft_plot(settings.drawFftPlots, dft, f"Metre 5/4 filter normalized dft",
                                         sampling_frequency)
         return "5/4", dft
+
+    def __six_eigth(self, song_tempo: int, n: int, sampling_frequency: int, filter_pulses: int):
+        fil = np.zeros(n)
+        nstep = np.floor((60 / song_tempo * sampling_frequency) / 2)
+        bit = 0
+        index = 0
+        while index < n and bit <= filter_pulses * 2:
+            value = 1
+            if bit % 3 > 0:
+                value = 0
+            fil[int(index)] = value
+            index += nstep
+            bit += 1
+
+        plots.draw_plot(settings.drawCombFilterPlots, fil, "6/8", "Sample/Time", "Amplitude")
+        dft = np.fft.fft(fil)
+        plots.draw_comb_filter_fft_plot(settings.drawFftPlots, dft, f"Metre 6/8 filter dft", sampling_frequency)
+        energy = sum(abs(dft) ** 2)
+        print("6/8 filter energy: ", energy)
+        dft = dft / energy
+        energy = sum(abs(dft) ** 2)
+        print("6/8 filter energy normalized: ", energy)
+        plots.draw_comb_filter_fft_plot(settings.drawFftPlots, dft, f"Metre 6/8 filter normalized dft",
+                                        sampling_frequency)
+        return "6/8", dft

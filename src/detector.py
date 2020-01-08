@@ -5,7 +5,7 @@ import settings
 
 from tempo import combFilterTempoDetector, convolveTempoDetector
 
-from metre import combfilterMetreDetector, convolveNormalizedMetreDetector, combfilterNormalizedMetreDetector, \
+from metre import combFilterMetreDetector, convolveNormalizedMetreDetector, combFilterNormalizedMetreDetector, \
     convolveMetreDetector
 
 
@@ -53,9 +53,9 @@ def parse_tempo_detector(detector: str):
 
 def parse_metre_detector(detector: str):
     if detector == 'detectMetre':
-        return combfilterMetreDetector.CombfilterMetreDetector()
+        return combFilterMetreDetector.CombFilterMetreDetector()
     elif detector == 'detectMetreNormalized':
-        return combfilterNormalizedMetreDetector.CombfilterNormalizedMetreDetector()
+        return combFilterNormalizedMetreDetector.CombFilterNormalizedMetreDetector()
     elif detector == 'detectMetreConvolve':
         return convolveMetreDetector.ConvolveMetreDetector()
     elif detector == 'detectMetreConvolveNormalized':
