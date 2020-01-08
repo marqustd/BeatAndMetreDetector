@@ -24,8 +24,11 @@ def prepare_parser():
     parser.add_argument("song", help="path to song")
     parser.add_argument('--plots', dest='showPlots', default=False,
                         help='show plots (default: disabled)', action='store_const', const=True)
-    parser.add_argument("-p", help='Comb filter pulses (default: 10)', dest='pulses', default=10, type=int)
+    parser.add_argument("-p", help='Comb fiter pulses (default: 10)', dest='pulses', default=10, type=int)
+    parser.add_argument("-r", help='Resampling ratio. 0 turns off resampling. (default: 4)', dest='resampleRatio',
+                        default=4, type=int)
     return parser
+
 
 # todo parametr do resample
 def parse_tempo_detector(detector: str):
@@ -50,6 +53,15 @@ def parse_metre_detector(detector: str):
         return None
 
 
+def parse_resample_ratio(resampleRatio, parser):
+    if resampleRatio < 0:
+        parser.error("Resample ratio has to be positive or zero!")
+    elif resampleRatio == 0:
+        settings.resampleSignal = False
+    else:
+        settings.resampleRatio = resampleRatio
+
+
 def parse_show_plots(showPlots):
     if not showPlots:
         settings.drawCombFilterPlots = False
@@ -59,7 +71,7 @@ def parse_show_plots(showPlots):
 
 
 parser = prepare_parser()
-args = parser.parse_args()
+args = parser.parse_args(['song.wav', '-p 5', '-r 4'])
 metreDetector = parse_metre_detector(args.metreDetector)
 if metreDetector is None:
     parser.error("Wrong metreDetector provided")
@@ -67,7 +79,11 @@ tempoDetector = parse_tempo_detector(args.tempoDetector)
 if tempoDetector is None:
     parser.error("Wrong tempoDetector provided")
 parse_show_plots(args.showPlots)
-
+parse_resample_ratio(args.resampleRatio, parser)
+if args.pulses >= 0:
+    settings.combFilterPulses = args.pulses
+else:
+    parser.error("Pulses amount has to be positive!")
 detector = tmd.TempoMetreDetector(tempoDetector, metreDetector)
 song = song.Song(args.song)
 tempo, metre = detector.detect_tempo_metre(song)
