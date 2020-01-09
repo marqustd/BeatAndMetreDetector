@@ -6,16 +6,22 @@ import settings
 from tempo import combFilterTempoDetector, convolveTempoDetector
 
 from metre import combFilterMetreDetector, convolveNormalizedMetreDetector, combFilterNormalizedMetreDetector, \
-    convolveMetreDetector
+    convolveMetreDetector, correlateNormalizedMetreDetector
 
 
 def prepare_parser():
-    tempoDetectorHelp = "tempo detector method. \n Possible detectors: \n combFilterTempoDetector, " \
-                        "\n convolveTempoDetector \n (default: combFilterTempoDetector) "
-    metreDetectorHelp = "metre detector method. \n Possible detectors: \n combFilterMetreDetector, " \
+    tempoDetectorHelp = "tempo detector method. \n Possible detectors: " \
+                        "\n combFilterTempoDetector, " \
+                        "\n convolveTempoDetector " \
+                        "\n (default: combFilterTempoDetector) "
+
+    metreDetectorHelp = "metre detector method. \n Possible detectors: " \
+                        "\n combFilterMetreDetector, " \
                         "\n combFilterNormalizedMetreDetector, " \
-                        "\n convolveMetreDetector, \n convolveNormalizedMetreDetector \n(default: " \
-                        "detectMetreNormalized) "
+                        "\n convolveMetreDetector , " \
+                        "\n convolveNormalizedMetreDetector, " \
+                        "\n correlateNormalizedMetreDetector " \
+                        "\n(default: detectMetreNormalized)"
 
     tempoParser = argparse.ArgumentParser(add_help=False)
     tempoParser.add_argument("-t", help=tempoDetectorHelp, dest='tempoDetector', default='combFilterTempoDetector')
@@ -62,6 +68,8 @@ def parse_metre_detector(detector: str):
         return convolveMetreDetector.ConvolveMetreDetector()
     elif detector == 'convolveNormalizedMetreDetector':
         return convolveNormalizedMetreDetector.ConvolveNormalizedMetreDetector()
+    elif detector == 'correlateNormalizedMetreDetector':
+        return correlateNormalizedMetreDetector.CorrelateNormalizedMetreDetector()
     else:
         return None
 
