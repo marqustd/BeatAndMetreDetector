@@ -151,18 +151,19 @@ class CombFilterNormalizedMetreDetector:
         rest = filter_pulses % 5
         if rest == 0 or rest == 1:
             return 0
-        elif rest == 2 or rest ==3:
+        elif rest == 2 or rest == 3:
             return 1
         return 2
 
     def __six_eigth(self, song_tempo: int, n: int, sampling_frequency: int, filter_pulses: int):
         fil = np.zeros(n)
+        pulses = (filter_pulses * 2 - 1) / 3
         nstep = np.floor((60 / song_tempo * sampling_frequency) / 2)
-        pulse = 1 / (np.floor(filter_pulses*2 / 3))
+        pulse = 1 / pulses
         bit = 0
         index = 0
 
-        while index < n and bit <= filter_pulses * 2:
+        while index < n and bit < (filter_pulses * 2)-1:
             value = pulse
             if bit % 3 > 0:
                 value = 0
