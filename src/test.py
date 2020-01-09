@@ -26,11 +26,11 @@ songs = {
 }
 
 tempoDetector = combFilterTempoDetector.CombFilterTempoDetector()
-tempoDetector = convolveTempoDetector.ConvolveTempoDetector()
+# tempoDetector = convolveTempoDetector.ConvolveTempoDetector()
 
-metreDetector = convolveMetreDetector.ConvolveMetreDetector()
-metreDetector = convolveNormalizedMetreDetector.ConvolveNormalizedMetreDetector()
-metreDetector = combFilterMetreDetector.CombFilterMetreDetector()
+# metreDetector = convolveMetreDetector.ConvolveMetreDetector()
+# metreDetector = convolveNormalizedMetreDetector.ConvolveNormalizedMetreDetector()
+# metreDetector = combFilterMetreDetector.CombFilterMetreDetector()
 metreDetector = combFilterNormalizedMetreDetector.CombFilterNormalizedMetreDetector()
 
 

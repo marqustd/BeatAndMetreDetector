@@ -8,5 +8,5 @@ resampleRatio = 5
 
 drawPlots = False
 drawFftPlots = False
-drawCombFilterPlots = False
+drawCombFilterPlots = True
 drawSongBpmEnergyPlot = False

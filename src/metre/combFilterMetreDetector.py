@@ -93,7 +93,7 @@ class CombFilterMetreDetector:
 
     def __five_forth(self, song_tempo: int, n: int, sampling_frequency: int, filter_pulses: int):
         fil = np.zeros(n)
-        nstep = np.floor(60 / song_tempo * sampling_frequency)  # every third bit
+        nstep = np.floor(60 / song_tempo * sampling_frequency)
         index = 0
         bits = 0
         bit = 1

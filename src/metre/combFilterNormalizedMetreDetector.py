@@ -5,6 +5,7 @@ import settings
 
 class CombFilterNormalizedMetreDetector:
     __methods = []
+
     def __str__(self):
         return "CombFilterNormalizedMetreDetector"
 
@@ -58,11 +59,11 @@ class CombFilterNormalizedMetreDetector:
         nstep = np.floor(60 / tempo * sampling_frequency)
         index = 0
         bit = 0
-        pulse = 1 / (filter_pulses + np.floor(filter_pulses / 2))
+        pulse = 1 / (np.floor(filter_pulses / 2))
         while index < n and bit < filter_pulses:
-            value = 2 * pulse
-            if bit % 2 > 0:
-                value = 1 * pulse
+            value = pulse
+            if bit % 2 == 0:
+                value = 0
 
             fil[int(index)] = value
             index += nstep
@@ -70,7 +71,7 @@ class CombFilterNormalizedMetreDetector:
 
         filterSum = sum(abs(fil))
         print("Sum 4/4 filter: ", filterSum)
-        plots.draw_plot(settings.drawCombFilterPlots, fil, "4/4", "Sample/Time", "Amplitude")
+        plots.draw_plot(settings.drawCombFilterPlots, fil, "4/4 filter", "Sample/Time", "Amplitude")
         dft = np.fft.fft(fil)
         plots.draw_comb_filter_fft_plot(settings.drawFftPlots, dft, f"Metre 4/4 filter dft", sampling_frequency)
         energy = sum(abs(dft) ** 2)
@@ -88,12 +89,12 @@ class CombFilterNormalizedMetreDetector:
         index = 0
         bit = 0
 
-        pulse = 1 / (filter_pulses + np.floor(filter_pulses / 3))
+        pulse = 1 / (np.floor(filter_pulses / 3))
 
         while index < n and bit < filter_pulses:
-            value = 2 * pulse
-            if bit % 3 > 0:
-                value = 1 * pulse
+            value = 0
+            if bit % 3 == 2:
+                value = pulse
             fil[int(index)] = value
             index += nstep
             bit += 1
@@ -119,12 +120,12 @@ class CombFilterNormalizedMetreDetector:
         bits = 0
         bit = 1
 
-        pulse = 1 / (filter_pulses + np.floor(filter_pulses / 5) * 3 + abs(filter_pulses % 5 - 1))
+        pulse = 1 / (np.floor(filter_pulses / 5) * 3 + self.__rest_pulses(filter_pulses))
 
         while index < n and bits < filter_pulses:
-            value = 1 * pulse
+            value = 0
             if bit == 2 or bit == 4 or bit == 5:
-                value = 2 * pulse
+                value = pulse
             fil[int(index)] = value
             index += nstep
             bit += 1
@@ -146,19 +147,31 @@ class CombFilterNormalizedMetreDetector:
                                         sampling_frequency)
         return "5/4", dft
 
+    def __rest_pulses(self, filter_pulses):
+        rest = filter_pulses % 5
+        if rest == 0 or rest == 1:
+            return 0
+        elif rest == 2 or rest ==3:
+            return 1
+        return 2
+
     def __six_eigth(self, song_tempo: int, n: int, sampling_frequency: int, filter_pulses: int):
         fil = np.zeros(n)
         nstep = np.floor((60 / song_tempo * sampling_frequency) / 2)
+        pulse = 1 / (np.floor(filter_pulses*2 / 3))
         bit = 0
         index = 0
+
         while index < n and bit <= filter_pulses * 2:
-            value = 1
+            value = pulse
             if bit % 3 > 0:
                 value = 0
             fil[int(index)] = value
             index += nstep
             bit += 1
 
+        filterSum = sum(abs(fil))
+        print("Sum 6/8 filter: ", filterSum)
         plots.draw_plot(settings.drawCombFilterPlots, fil, "6/8", "Sample/Time", "Amplitude")
         dft = np.fft.fft(fil)
         plots.draw_comb_filter_fft_plot(settings.drawFftPlots, dft, f"Metre 6/8 filter dft", sampling_frequency)

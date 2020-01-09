@@ -12,8 +12,10 @@ from metre import combFilterMetreDetector, convolveNormalizedMetreDetector, comb
 def prepare_parser():
     tempoDetectorHelp = "tempo detector method. \n Possible detectors: \n combFilterTempoDetector, " \
                         "\n convolveTempoDetector \n (default: combFilterTempoDetector) "
-    metreDetectorHelp = "metre detector method. \n Possible detectors: \n detectMetreConvolve, \n detectMetre, " \
-                        "\n detectMetreConvolveNormalized, \n detectMetreNormalized \n(default: detectMetreNormalized) "
+    metreDetectorHelp = "metre detector method. \n Possible detectors: \n combFilterMetreDetector, " \
+                        "\n combFilterNormalizedMetreDetector, " \
+                        "\n convolveMetreDetector, \n convolveNormalizedMetreDetector \n(default: " \
+                        "detectMetreNormalized) "
 
     tempoParser = argparse.ArgumentParser(add_help=False)
     tempoParser.add_argument("-t", help=tempoDetectorHelp, dest='tempoDetector', default='combFilterTempoDetector')
@@ -52,13 +54,13 @@ def parse_tempo_detector(detector: str):
 
 
 def parse_metre_detector(detector: str):
-    if detector == 'detectMetre':
+    if detector == 'combFilterMetreDetector':
         return combFilterMetreDetector.CombFilterMetreDetector()
-    elif detector == 'detectMetreNormalized':
+    elif detector == 'combFilterNormalizedMetreDetector':
         return combFilterNormalizedMetreDetector.CombFilterNormalizedMetreDetector()
-    elif detector == 'detectMetreConvolve':
+    elif detector == 'convolveMetreDetector':
         return convolveMetreDetector.ConvolveMetreDetector()
-    elif detector == 'detectMetreConvolveNormalized':
+    elif detector == 'convolveNormalizedMetreDetector':
         return convolveNormalizedMetreDetector.ConvolveNormalizedMetreDetector()
     else:
         return None

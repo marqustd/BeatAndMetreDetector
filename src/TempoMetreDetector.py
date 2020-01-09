@@ -40,7 +40,7 @@ class TempoMetreDetector:
         plots.draw_plot(settings.drawPlots, sample, f"Sample of: {song.name}", "Sample/Time", "Amplitude")
 
         centred = self.__center_sample_to_beat(sample, sample_length)
-        plots.draw_plot(settings.drawPlots, centred, f"Centred to beat: {song.name}", "Sample/Time", "Amplitude")
+        plots.draw_plot(settings.drawPlots, centred, f"Sample centred to beat: {song.name}", "Sample/Time", "Amplitude")
 
         print(f'Preparing filterbank for song {song.name}...')
         filterBanks = self.__prepare_filterbanks(centred, settings.bandLimits, samplingFrequency)
