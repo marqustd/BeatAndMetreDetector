@@ -1,3 +1,4 @@
+import common
 import tempoMetreDetector as tmd
 import song
 import argparse
@@ -40,14 +41,6 @@ def prepare_parser():
     parser.add_argument("-r", help='Resampling ratio. 0 turns off resampling. (default: 4)', dest='resampleRatio',
                         default=4, type=int)
     return parser
-
-
-def show_settings(tempoDetector, metreDetector):
-    print("Settings:")
-    print(f"Combfilter pulses: {settings.combFilterPulses}")
-    print(f"Resample ratio: {settings.resampleRatio}")
-    print(f"Tempo detection method: {tempoDetector}")
-    print(f"Metre detection method: {metreDetector}")
 
 
 def parse_tempo_detector(detector: str):
@@ -118,4 +111,4 @@ print("Song tempo: ", tempo)
 print("Song metre: ", metre)
 if args.showSettings:
     print()
-    show_settings(tempoDetector, metreDetector)
+    print(common.prepare_settings_string(tempoDetector, metreDetector))

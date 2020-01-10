@@ -67,11 +67,12 @@ class ConvolveMetreDetector:
         return "4/4", fil
 
     def __three_forth(self, songTempo: int, n: int, samplingFrequency: int, filter_pulses: int):
-        fil = np.zeros(int(3 * samplingFrequency * (60 / songTempo)))
+        fil = np.zeros(int(6 * samplingFrequency * (60 / songTempo)))
         nstep = np.floor(60 / songTempo * samplingFrequency)
 
         value = 1
         fil[int(2 * nstep)] = 1 * value
+        fil[int(5 * nstep)] = 1 * value
 
         plots.draw_plot(settings.drawCombFilterPlots, fil, "3/4", "Sample/Time", "Amplitude")
         dft = np.fft.fft(fil)

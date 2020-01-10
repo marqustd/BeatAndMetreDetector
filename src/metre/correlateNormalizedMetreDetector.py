@@ -67,11 +67,12 @@ class CorrelateNormalizedMetreDetector:
         return "4/4", fil
 
     def __three_forth(self, song_tempo: int, n: int, sampling_frequency: int, filter_pulses: int):
-        fil = np.zeros(int(3 * sampling_frequency * (60 / song_tempo)))
+        fil = np.zeros(int(6 * sampling_frequency * (60 / song_tempo)))
         nstep = np.floor(60 / song_tempo * sampling_frequency)
 
-        value = 1 / 1
+        value = 1 / 2
         fil[int(2 * nstep)] = 1 * value
+        fil[int(5 * nstep)] = 1 * value
 
         plots.draw_plot(settings.drawCombFilterPlots, fil, "3/4", "Sample/Time", "Amplitude")
         dft = np.fft.fft(fil)
