@@ -61,10 +61,10 @@ class ConvolveMetreDetector:
         fil[int(1 * nstep)] = 1 * value
         fil[int(3 * nstep)] = 1 * value
 
-        plots.draw_plot(settings.drawCombFilterPlots, fil, "4/4", "Sample/Time", "Amplitude")
+        plots.draw_plot(settings.drawCombFilterPlots, fil, "4\\4", "Sample/Time", "Amplitude")
         dft = np.fft.fft(fil)
-        plots.draw_comb_filter_fft_plot(settings.drawFftPlots, dft, f"Metre 4/4 filter dft", samplingFrequency)
-        return "4/4", fil
+        plots.draw_comb_filter_fft_plot(settings.drawFftPlots, dft, f"Metre 4\\4 filter dft", samplingFrequency)
+        return "4\\4", fil
 
     def __three_forth(self, songTempo: int, n: int, samplingFrequency: int, filter_pulses: int):
         fil = np.zeros(int(6 * samplingFrequency * (60 / songTempo)))
@@ -74,10 +74,10 @@ class ConvolveMetreDetector:
         fil[int(2 * nstep)] = 1 * value
         fil[int(5 * nstep)] = 1 * value
 
-        plots.draw_plot(settings.drawCombFilterPlots, fil, "3/4", "Sample/Time", "Amplitude")
+        plots.draw_plot(settings.drawCombFilterPlots, fil, "3\\4", "Sample/Time", "Amplitude")
         dft = np.fft.fft(fil)
-        plots.draw_comb_filter_fft_plot(settings.drawFftPlots, dft, f"Metre 3/4 filter dft", samplingFrequency)
-        return "3/4", fil
+        plots.draw_comb_filter_fft_plot(settings.drawFftPlots, dft, f"Metre 3\\4 filter dft", samplingFrequency)
+        return "3\\4", fil
 
     def __five_forth(self, songTempo: int, n: int, samplingFrequency: int, filter_pulses: int):
         fil = np.zeros(int(5 * samplingFrequency * (60 / songTempo)))
@@ -88,10 +88,10 @@ class ConvolveMetreDetector:
         fil[int(3 * nstep)] = 1 * value
         fil[int(4 * nstep)] = 1 * value
 
-        plots.draw_plot(settings.drawCombFilterPlots, fil, "5/4", "Sample/Time", "Amplitude")
+        plots.draw_plot(settings.drawCombFilterPlots, fil, "5\\4", "Sample/Time", "Amplitude")
         dft = np.fft.fft(fil)
-        plots.draw_comb_filter_fft_plot(settings.drawFftPlots, dft, f"Metre 5/4 filter dft", samplingFrequency)
-        return "5/4", fil
+        plots.draw_comb_filter_fft_plot(settings.drawFftPlots, dft, f"Metre 5\\4 filter dft", samplingFrequency)
+        return "5\\4", fil
 
     def __six_eigth(self, songTempo: int, n: int, samplingFrequency: int, filter_pulses: int):
         fil = np.zeros(int(3 * samplingFrequency * (60 / songTempo)))
@@ -101,7 +101,7 @@ class ConvolveMetreDetector:
         fil[int(0 * nstep)] = 1 * value
         fil[int(3 * nstep)] = 1 * value
 
-        plots.draw_plot(settings.drawCombFilterPlots, fil, "6/8", "Sample/Time", "Amplitude")
+        plots.draw_plot(settings.drawCombFilterPlots, fil, "6\\8", "Sample/Time", "Amplitude")
         dft = np.fft.fft(fil)
-        plots.draw_comb_filter_fft_plot(settings.drawFftPlots, dft, f"Metre 6/8 filter dft", samplingFrequency)
-        return "6/8", fil
+        plots.draw_comb_filter_fft_plot(settings.drawFftPlots, dft, f"Metre 6\\8 filter dft", samplingFrequency)
+        return "6\\8", fil
