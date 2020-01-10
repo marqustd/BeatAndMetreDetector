@@ -1,0 +1,20 @@
+Settings:
+Combfilter pulses: 8
+Resample ratio: 4
+Tempo detection method: CombFilterTempoDetector
+Metre detection method: CorrelateNormalizedMetreDetector
+Song;Detected BPM;Real BPM;Detected metre;Real metre;Time
+Dave_Brubeck_Quartet_Take_Five;80;140;6\8;5\4;22.18345832824707;
+10-at_least_you've_been_told;131;130;6\8;4\4;16.20285701751709;
+7-heavenly_rain;85;116;6\8;4\4;22.06833577156067;
+6-didn't_i;85;85;6\8;4\4;18.998013257980347;
+1-don't_rain_on_my_parade;80;160;6\8;4\4;20.936256170272827;
+4-goodbye_on_a_beautiful_day;225;60;4\4;4\4;15.711698293685913;
+5-apartment_a;60;115;6\8;4\4;18.311845541000366;
+100;100;100;4\4;3\4;16.878747940063477;
+120;60;120;6\8;4\4;24.158979654312134;
+12-rotgut;142;147;6\8;4\4;25.099787712097168;
+7-don't_look_back;60;89;6\8;4\4;24.735806703567505;
+4-buffalo_nights;148;147;6\8;4\4;17.92784309387207;
+8-i'll_pretend;140;140;6\8;4\4;17.184690713882446;
+1-prospects;225;126;4\4;4\4;15.822039604187012;
