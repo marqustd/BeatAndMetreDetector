@@ -18,11 +18,10 @@ class TempoMetreDetector:
         self.metreDetector = metreDetector
 
     def detect_tempo_metre(self, song: song.Song):
+        print(f'Detecting tempo and metre for song {song.name}...')
         startTime = time.time()
         signal, samplingFrequency = songReader.read_song(song.filepath)
-        if settings.resampleSignal:
-            signal = scipy.signal.resample(signal, int(len(signal) / settings.resampleRatio))
-            samplingFrequency /= settings.resampleRatio
+        print(f'Signal read...')
 
         sample_length = settings.combFilterPulses * samplingFrequency
         seconds = sample_length * 4
@@ -41,6 +40,10 @@ class TempoMetreDetector:
 
         centred = self.__center_sample_to_beat(sample, sample_length)
         plots.draw_plot(settings.drawPlots, centred, f"Sample centred to beat: {song.name}", "Sample/Time", "Amplitude")
+
+        if settings.resampleSignal:
+            centred = scipy.signal.resample(centred, int(len(centred) / settings.resampleRatio))
+            samplingFrequency /= settings.resampleRatio
 
         print(f'Preparing filterbank for song {song.name}...')
         filterBanks = self.__prepare_filterbanks(centred, settings.bandLimits, samplingFrequency)
