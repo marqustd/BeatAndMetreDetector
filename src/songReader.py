@@ -1,8 +1,8 @@
 import scipy.io.wavfile
-import numpy
+import numpy as np
 
 
-def read(filename):
+def read_song(filename):
     sample_freq, data = scipy.io.wavfile.read(filename)
-    signal = numpy.frombuffer(data, numpy.int16)
+    signal = np.frombuffer(data, np.int16)
     return signal, sample_freq

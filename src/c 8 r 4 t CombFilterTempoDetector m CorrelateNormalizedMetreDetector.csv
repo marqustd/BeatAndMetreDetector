@@ -1,0 +1,10 @@
+Settings:
+Combfilter pulses: 8
+Resample ratio: 4
+Tempo detection method: CombFilterTempoDetector
+Metre detection method: CorrelateNormalizedMetreDetector
+Song;Detected BPM;Real BPM;Detected metre;Real metre;Time
+120;60;120;6\8;4\4;17.71905255317688;
+7-don't_look_back;60;89;6\8;4\4;18.78330636024475;
+100;100;100;4\4;3\4;23.916964769363403;
+8-i'll_pretend;140;140;6\8;4\4;16.837026357650757;
