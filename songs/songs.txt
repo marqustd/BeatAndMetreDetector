@@ -1,6 +1,5 @@
-120				test	120	4/4
-100				test	100	3/4
-
+120	test	120	4/4
+100	test	100	3/4
 7-don't_look_back		rock	89	4/4
 8-i'll_pretend			rock	140	4/4
 10-at_least_you've_been_told	rock	130	4/4
@@ -11,25 +10,27 @@
 4-buffalo_nights		rock	147	8/8
 6-didn't_i			rock	85	4/4
 4-patterns			rock	106	6/8
-
-1-prospects			jazz	116	4/4
-
-7-heavenly_rain			metal	126	4/4
-
+1-prospects		jazz	116	4/4
+18-slide_boogie		jazz	120	4/4
+6-invisible_pants	jazz	118	4/4
+7-heavenly_rain		metal	126	4/4
+1-by_mourning		metal	202	4/4
+5-kc_rip_off		metal	140	4/4
+5-code_red_love_is_dead	metal	120	4/4
+7-serenade_for_samantha	metal	120	4/4
 1-sweet_dissonance		world	120	4/4
 6-life_glides			world	120	4/4
 1-for_a_good_day_o_host_to_you	world	77	4/4
 5-bliss				world	68	4/4
 10-the_last_faery		world	90	4/4
 1-odysseia			world	93	4/4
-
 28-la_victoire_suite_in_d_from_l 	classical	134	4/4
 18-handel_oxford_water_music_suit	classical	167	3/4
 22-handel_oxford_water_music_suit	classical	150 	4/4
 10-sonata_iii_moderato			classical	152	4/4
 19-sonata_v_allegro			classical	140	4/4
-
 6-click_full_pussy		electronic	160	4/4
 1-blue-tinted_sunglasses	electronic	123	4/4
 1-sunset_(endless_night_journey	electronic	140	4/4
 7-northern_lights		electronic	140	4/4
+9-nibtal_7			electronic	140	4/4
