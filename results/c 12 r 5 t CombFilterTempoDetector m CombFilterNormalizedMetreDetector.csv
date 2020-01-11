@@ -1,0 +1,10 @@
+Settings:
+Combfilter pulses: 12
+Resample ratio: 5
+Tempo detection method: CombFilterTempoDetector
+Metre detection method: CombFilterNormalizedMetreDetector
+Song;Detected BPM;Real BPM;Detected metre;Real metre;Time
+12-rotgut;145;147;6\8;4\4;16.920374155044556;
+4-buffalo_nights;148;147;6\8;8\8;16.916143655776978;
+6-didn't_i;85;85;6\8;4\4;21.92789101600647;
+4-patterns;94;106;6\8;6\8;22.092963218688965;

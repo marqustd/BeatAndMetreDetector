@@ -1,0 +1,42 @@
+Settings:
+Combfilter pulses: 4
+Resample ratio: 5
+Tempo detection method: CombFilterTempoDetector
+Metre detection method: ConvolveMetreDetector
+Song;Detected BPM;Real BPM;Detected metre;Real metre;Time
+12-rotgut;75;147;5\4;4\4;9.598626136779785;
+4-buffalo_nights;62;147;5\4;8\8;10.994818687438965;
+6-didn't_i;85;85;5\4;4\4;9.02962851524353;
+4-patterns;94;106;5\4;6\8;8.427900791168213;
+1-prospects;111;116;5\4;4\4;9.20565152168274;
+18-slide_boogie;60;120;5\4;4\4;11.163896083831787;
+6-invisible_pants;110;118;5\4;4\4;8.372261762619019;
+7-heavenly_rain;84;126;5\4;4\4;9.18393850326538;
+1-by_mourning;160;202;5\4;4\4;6.621942043304443;
+5-kc_rip_off;209;140;5\4;4\4;5.973939418792725;
+5-code_red_love_is_dead;61;120;5\4;4\4;11.266916275024414;
+7-serenade_for_samantha;60;120;5\4;4\4;10.85840916633606;
+1-sweet_dissonance;111;120;5\4;4\4;7.876918315887451;
+6-life_glides;61;120;5\4;4\4;11.375901222229004;
+1-for_a_good_day_o_host_to_you;76;77;5\4;4\4;10.758898496627808;
+5-bliss;62;68;5\4;4\4;12.945898532867432;
+10-the_last_faery;90;90;5\4;4\4;8.686413288116455;
+1-odysseia;83;93;5\4;4\4;9.978935241699219;
+28-la_victoire_suite_in_d_from_l;88;134;5\4;4\4;10.550893306732178;
+18-handel_oxford_water_music_suit;175;167;5\4;3\4;9.463920831680298;
+22-handel_oxford_water_music_suit;76;150;5\4;4\4;10.32986569404602;
+10-sonata_iii_moderato;73;152;5\4;4\4;10.581908226013184;
+19-sonata_v_allegro;78;140;5\4;4\4;10.769914865493774;
+6-click_full_pussy;80;160;5\4;4\4;9.784831762313843;
+120;60;120;5\4;4\4;10.830906867980957;
+1-blue-tinted_sunglasses;61;123;5\4;4\4;11.525905132293701;
+100;100;100;5\4;3\4;8.381937265396118;
+1-sunset_(endless_night_journey;70;140;5\4;4\4;10.89592981338501;
+7-don't_look_back;60;89;5\4;4\4;11.303049802780151;
+7-northern_lights;70;140;5\4;4\4;10.816907405853271;
+8-i'll_pretend;139;140;5\4;4\4;7.032941579818726;
+9-nibtal_7;139;140;5\4;4\4;7.220940351486206;
+10-at_least_you've_been_told;109;130;5\4;4\4;8.073928356170654;
+1-don't_rain_on_my_parade;80;160;5\4;4\4;9.373827695846558;
+4-goodbye_on_a_beautiful_day;115;60;5\4;4\4;8.04193902015686;
+5-apartment_a;60;115;5\4;4\4;11.462898254394531;
