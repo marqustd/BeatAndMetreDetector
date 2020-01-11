@@ -85,7 +85,7 @@ class TempoMetreDetector:
 
         return songTempo, metre, totalTime
 
-    def __center_sample_to_beat(self, signal, seconds):
+    def __center_sample_to_beat(self, signal, required_length):
         n = len(signal)
         index = 0
 
@@ -96,10 +96,14 @@ class TempoMetreDetector:
                 index = i
                 break
 
-        lastindex = seconds
+        lastindex = required_length
         lastindex += index
         if lastindex > n:
             lastindex = n
+        if lastindex - index < required_length:
+            index = index - (required_length - (lastindex - index))
+
+        length = lastindex - index
         return signal[index:int(lastindex)]
 
     def __prepare_filterbanks(self, signal, bandlimits, samplingFrequency):
