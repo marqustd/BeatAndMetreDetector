@@ -22,7 +22,7 @@ def prepare_parser():
                         "\n convolveMetreDetector , " \
                         "\n convolveNormalizedMetreDetector, " \
                         "\n correlateNormalizedMetreDetector " \
-                        "\n(default: combFilterMetreDetector)" ## todo zmienic te rzeczy tu
+                        "\n(default: combFilterMetreDetector)"
 
     tempoParser = argparse.ArgumentParser(add_help=False)
     tempoParser.add_argument("-t", help=tempoDetectorHelp, dest='tempoDetector', default='combFilterTempoDetector')
@@ -90,7 +90,7 @@ def parse_show_plots(showPlots):
 
 
 parser = prepare_parser()
-args = parser.parse_args(["..\\songs\\world\\5-bliss.wav", '-p 1', '-r 5'])
+args = parser.parse_args()
 metreDetector = parse_metre_detector(args.metreDetector)
 if metreDetector is None:
     parser.error("Wrong metreDetector provided")
