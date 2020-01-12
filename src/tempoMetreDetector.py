@@ -77,6 +77,7 @@ class TempoMetreDetector:
                                                     samplingFrequency, settings.combFilterPulses, plotDictionary)
         plots.draw_plot(settings.drawSongBpmEnergyPlot, list(plotDictionary.keys()), f"Tempo: {song.name}", "BPM",
                         "Energy", list(plotDictionary.values()))
+
         print(f"Detecting song's metre {song.name} with method {self.metreDetector}")
         metre = self.metreDetector.detect_metre(diffrected, songTempo, settings.bandLimits, samplingFrequency,
                                                 settings.combFilterPulses)
@@ -103,7 +104,6 @@ class TempoMetreDetector:
         if lastindex - index < required_length:
             index = index - (required_length - (lastindex - index))
 
-        length = lastindex - index
         return signal[index:int(lastindex)]
 
     def __prepare_filterbanks(self, signal, bandlimits, samplingFrequency):
@@ -113,7 +113,6 @@ class TempoMetreDetector:
         bl = np.zeros(nbands, int)
         br = np.zeros(nbands, int)
 
-        #   % Bring band scale from Hz to the points in our vectors
         for band in range(0, nbands - 1):
             bl[band] = np.floor(bandlimits[band] / samplingFrequency * n / 2) + 1
             br[band] = np.floor(bandlimits[band + 1] / samplingFrequency * n / 2)
@@ -124,7 +123,6 @@ class TempoMetreDetector:
 
         output = np.zeros([nbands, n], dtype=complex)
 
-        # Create the frequency bands and put them in the vector output.
         for band in range(0, nbands):
             for hz in range(bl[band], br[band]):
                 output[band, hz] = dft[hz]
@@ -144,23 +142,18 @@ class TempoMetreDetector:
         freq = np.zeros([nbands, n], dtype=complex)
         filtered = np.zeros([nbands, n], dtype=complex)
 
-        # Create half-Hanning window.
         for a in range(1, int(hannlen)):
             hann[a] = (np.cos(a * np.pi / hannlen / 2)) ** 2
 
-        # Take IFFT to transfrom to time domain.
         for band in range(0, nbands):
             wave[band] = np.real(np.fft.ifft(signal[band]))
 
-        # Full - wave rectification in the time domain. And back to frequency with FFT.
         for band in range(0, nbands):
             for j in range(0, n):
                 if wave[band, j] < 0:
                     wave[band, j] = -wave[band, j]
             freq[band] = np.fft.fft(wave[band])
 
-        # Convolving with half - Hanning same as multiplying in frequency.Multiply half - Hanning
-        # FFT by signal FFT.Inverse transform to get output in the time domain.
         for band in range(0, nbands):
             filtered[band] = freq[band] * np.fft.fft(hann)
             output[band] = np.real(np.fft.ifft(filtered[band]))

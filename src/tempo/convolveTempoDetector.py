@@ -20,18 +20,14 @@ class ConvolveTempoDetector:
         if maxBpm > 240:
             maxBpm = 240
 
-        # Get signal in frequency domain
         for band in range(0, nbands):
             dft[band] = np.fft.fft(signal[band])
             plots.draw_fft_plot(settings.drawFftPlots, dft[band], f"Band[{band}] DFT", samplingFrequency)
 
-        # % Initialize max energy to zero
         maxe = 0
         for bpm in range(minBpm, maxBpm, accuracy):
-            # % Initialize energy and filter to zero(s)
             e = 0
 
-            # Calculate the difference between peaks in the filter for a certain tempo
             filterLength = 2
             nstep = np.floor(60 / bpm * samplingFrequency)
             percent_done = 100 * (bpm - minBpm) / (maxBpm - minBpm)
@@ -39,15 +35,12 @@ class ConvolveTempoDetector:
 
             print("%.2f" % percent_done, "%")
 
-            # Set every nstep samples of the filter to one
             for a in range(0, filterLength):
                 fil[a * int(nstep)] = 1
 
             plots.draw_plot(settings.drawCombFilterPlots, fil, f"Timecomb bpm: {bpm}", "Sample/Time", "Amplitude")
 
-            # Get the filter in the frequency domain
             dftfil = np.fft.fft(fil)
-            # dftfil = scipy.signal.resample(dftfil, len(dft[0]))
 
             plots.draw_comb_filter_fft_plot(settings.drawCombFilterPlots, dftfil, f"Filter DFT {bpm}",
                                             samplingFrequency)
@@ -60,7 +53,6 @@ class ConvolveTempoDetector:
                 e = e + sum(x)
 
             plotDictionary[bpm] = e
-            # If greater than all previous energies, set current bpm to the bpm of the signal
             if e > maxe:
                 sbpm = bpm
                 maxe = e

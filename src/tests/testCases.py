@@ -4,13 +4,13 @@ from tempo import combFilterTempoDetector, convolveTempoDetector
 from tests import testCase
 
 cases = {
-    # CombFilterTempo
-    testCase.TestCase(True, 5, 1, combFilterTempoDetector.CombFilterTempoDetector(),
-                      combFilterMetreDetector.CombFilterMetreDetector()),
-
-    testCase.TestCase(True, 5, 2, combFilterTempoDetector.CombFilterTempoDetector(),
-                      combFilterMetreDetector.CombFilterMetreDetector()),
-
+    # # CombFilterTempo
+    # testCase.TestCase(True, 5, 1, combFilterTempoDetector.CombFilterTempoDetector(),
+    #                   combFilterMetreDetector.CombFilterMetreDetector()),
+    #
+    # testCase.TestCase(True, 5, 2, combFilterTempoDetector.CombFilterTempoDetector(),
+    #                   combFilterMetreDetector.CombFilterMetreDetector()),
+    #
     testCase.TestCase(True, 5, 4, combFilterTempoDetector.CombFilterTempoDetector(),
                       combFilterMetreDetector.CombFilterMetreDetector()),
 
@@ -19,13 +19,13 @@ cases = {
 
     testCase.TestCase(True, 5, 12, combFilterTempoDetector.CombFilterTempoDetector(),
                       combFilterMetreDetector.CombFilterMetreDetector()),
-
-    # ConvolveTempo
-    testCase.TestCase(True, 5, 4, convolveTempoDetector.ConvolveTempoDetector(),
-                      combFilterMetreDetector.CombFilterMetreDetector()),
-
-    testCase.TestCase(True, 5, 8, convolveTempoDetector.ConvolveTempoDetector(),
-                      combFilterMetreDetector.CombFilterMetreDetector()),
+    #
+    # # ConvolveTempo
+    # testCase.TestCase(True, 5, 4, convolveTempoDetector.ConvolveTempoDetector(),
+    #                   combFilterMetreDetector.CombFilterMetreDetector()),
+    #
+    # testCase.TestCase(True, 5, 8, convolveTempoDetector.ConvolveTempoDetector(),
+    #                   combFilterMetreDetector.CombFilterMetreDetector()),
 
     # CombFilterMetreNormalized
     testCase.TestCase(True, 5, 4, combFilterTempoDetector.CombFilterTempoDetector(),
@@ -67,9 +67,9 @@ cases = {
     testCase.TestCase(True, 5, 12, combFilterTempoDetector.CombFilterTempoDetector(),
                       correlateNormalizedMetreDetector.CorrelateNormalizedMetreDetector()),
 
-    # best
-    testCase.TestCase(True, 3, 12, combFilterTempoDetector.CombFilterTempoDetector(),
-                      correlateNormalizedMetreDetector.CorrelateNormalizedMetreDetector()),
-    testCase.TestCase(True, 3, 16, combFilterTempoDetector.CombFilterTempoDetector(),
-                      correlateNormalizedMetreDetector.CorrelateNormalizedMetreDetector()),
+    # # best
+    # testCase.TestCase(True, 3, 12, combFilterTempoDetector.CombFilterTempoDetector(),
+    #                   correlateNormalizedMetreDetector.CorrelateNormalizedMetreDetector()),
+    # testCase.TestCase(True, 3, 16, combFilterTempoDetector.CombFilterTempoDetector(),
+    #                   correlateNormalizedMetreDetector.CorrelateNormalizedMetreDetector()),
 }

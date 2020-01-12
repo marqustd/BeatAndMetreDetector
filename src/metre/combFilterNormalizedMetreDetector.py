@@ -14,7 +14,6 @@ class CombFilterNormalizedMetreDetector:
         nbands = len(bandlimits)
         dft = np.zeros([nbands, n], dtype=complex)
 
-        # Get signal in frequency domain
         for band in range(0, nbands):
             dft[band] = np.fft.fft(signal[band, 0:n])
             plots.draw_plot(settings.drawPlots, signal[band], f"Signal[{band}]", "Sample/Time", "Amplitude")
@@ -31,7 +30,6 @@ class CombFilterNormalizedMetreDetector:
             metre, metre_dft = method(tempo, n, maxFreq, npulses)
             metres[metre] = metre_dft
 
-        # % Initialize max energy to zero
         maxe = 0
         done = 0
         todo = len(metres.keys())
@@ -40,14 +38,12 @@ class CombFilterNormalizedMetreDetector:
             percent_done = 100 * done / todo
             print("%.2f" % percent_done, "%")
 
-            # % Initialize energy and filter to zero(s)
             e = 0
 
             for band in range(0, nbands):
                 x = (abs(metres[metrum] * dft[band])) ** 2
                 e = e + sum(x)
 
-            # If greater than all previous energies, set current bpm to the bpm of the signal
             if e > maxe:
                 song_metre = metrum
                 maxe = e

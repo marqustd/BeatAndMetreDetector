@@ -27,7 +27,6 @@ class ConvolveMetreDetector:
             metre, metre_dft = method(songTempo, n, samplingFrequency, combFilterPulses)
             metres[metre] = metre_dft
 
-        # % Initialize max energy to zero
         maxe = 0
         done = 0
         todo = len(metres.keys())
@@ -36,7 +35,6 @@ class ConvolveMetreDetector:
             percent_done = 100 * done / todo
             print("%.2f" % percent_done, "%")
 
-            # % Initialize energy and filter to zero(s)
             e = 0
 
             for band in range(0, nbands):
@@ -46,7 +44,6 @@ class ConvolveMetreDetector:
                 x = abs(f_filt) ** 2
                 e = e + sum(x)
 
-            # If greater than all previous energies, set current bpm to the bpm of the signal
             if e > maxe:
                 song_metre = metrum
                 maxe = e
