@@ -40,7 +40,7 @@ class CorrelateNormalizedMetreDetector:
             for band in range(0, nbands):
                 filt = scipy.correlate(signal[band], metres[metrum])
                 f_filt = abs(np.fft.fft(filt))
-                plots.draw_plot(settings.drawPlots, f_filt, metrum, "Sample/Time", "Amplitude")
+                plots.draw_plot(settings.drawMetreFftPlots, f_filt, metrum, "Sample/Time", "Amplitude")
                 x = abs(f_filt) ** 2
                 e = e + sum(x)
 
@@ -58,9 +58,7 @@ class CorrelateNormalizedMetreDetector:
         fil[int(1 * nstep)] = 1 * value
         fil[int(3 * nstep)] = 1 * value
 
-        plots.draw_plot(settings.drawCombFilterPlots, fil, "4\\4", "Sample/Time", "Amplitude")
-        dft = np.fft.fft(fil)
-        plots.draw_comb_filter_fft_plot(settings.drawFftPlots, dft, f"Metre 4\\4 filter dft", sampling_frequency)
+        plots.draw_plot(settings.drawMetreFilterPlots, fil, "4\\4", "Sample/Time", "Amplitude")
         return "4\\4", fil
 
     def __three_forth(self, song_tempo: int, n: int, sampling_frequency: int, filter_pulses: int):
@@ -71,9 +69,7 @@ class CorrelateNormalizedMetreDetector:
         fil[int(2 * nstep)] = 1 * value
         fil[int(5 * nstep)] = 1 * value
 
-        plots.draw_plot(settings.drawCombFilterPlots, fil, "3\\4", "Sample/Time", "Amplitude")
-        dft = np.fft.fft(fil)
-        plots.draw_comb_filter_fft_plot(settings.drawFftPlots, dft, f"Metre 3\\4 filter dft", sampling_frequency)
+        plots.draw_plot(settings.drawMetreFilterPlots, fil, "3\\4", "Sample/Time", "Amplitude")
         return "3\\4", fil
 
     def __five_forth(self, song_tempo: int, n: int, sampling_frequency: int, filter_pulses: int):
@@ -85,9 +81,7 @@ class CorrelateNormalizedMetreDetector:
         fil[int(3 * nstep)] = 1 * value
         fil[int(4 * nstep)] = 1 * value
 
-        plots.draw_plot(settings.drawCombFilterPlots, fil, "5\\4", "Sample/Time", "Amplitude")
-        dft = np.fft.fft(fil)
-        plots.draw_comb_filter_fft_plot(settings.drawFftPlots, dft, f"Metre 5\\4 filter dft", sampling_frequency)
+        plots.draw_plot(settings.drawMetreFilterPlots, fil, "5\\4", "Sample/Time", "Amplitude")
         return "5\\4", fil
 
     def __six_eigth(self, song_tempo: int, n: int, sampling_frequency: int, filter_pulses: int):
@@ -98,7 +92,5 @@ class CorrelateNormalizedMetreDetector:
         fil[int(0 * nstep)] = 1 * value
         fil[int(3 * nstep)] = 1 * value
 
-        plots.draw_plot(settings.drawCombFilterPlots, fil, "6\\8", "Sample/Time", "Amplitude")
-        dft = np.fft.fft(fil)
-        plots.draw_comb_filter_fft_plot(settings.drawFftPlots, dft, f"Metre 6\\8 filter dft", sampling_frequency)
+        plots.draw_plot(settings.drawMetreFilterPlots, fil, "6\\8", "Sample/Time", "Amplitude")
         return "6\\8", fil

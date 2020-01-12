@@ -78,14 +78,18 @@ def parse_resample_ratio(resampleRatio, parser):
 
 def parse_show_plots(showPlots):
     if not showPlots:
-        settings.drawCombFilterPlots = False
+        settings.drawMetreFftPlots = False
+        settings.drawMetreFilterPlots = False
+        settings.drawTempoFftPlots = False
+        settings.drawTempoFilterPlots = False
         settings.drawPlots = False
-        settings.drawFftPlots = False
-        settings.drawSongBpmEnergyPlot = False
+        settings.drawSongBpmEnergyPlot = True
     else:
-        settings.drawCombFilterPlots = True
+        settings.drawMetreFftPlots = False
+        settings.drawMetreFilterPlots = True
+        settings.drawTempoFftPlots = False
+        settings.drawTempoFilterPlots = False
         settings.drawPlots = True
-        settings.drawFftPlots = True
         settings.drawSongBpmEnergyPlot = True
 
 

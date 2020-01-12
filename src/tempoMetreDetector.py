@@ -47,8 +47,7 @@ class TempoMetreDetector:
 
         print(f'Preparing filterbank for song {song.name}...')
         filterBanks = self.__prepare_filterbanks(centred, settings.bandLimits, samplingFrequency)
-        for i in range(0, len(settings.bandLimits)):
-            plots.draw_fft_plot(settings.drawPlots, filterBanks[i], f"Filterbank[{i}]{song.name}", samplingFrequency)
+        plots.draw_fft_plot(settings.drawPlots, filterBanks[1], f"Filterbank[{1}]{song.name}", samplingFrequency)
 
         print(f'Hanning song {song.name}...')
         hanningWindow = self.__hann(filterBanks, 0.2, settings.bandLimits, samplingFrequency)

@@ -21,7 +21,6 @@ class CombFilterTempoDetector:
 
         for band in range(0, bands_amount):
             dft[band] = np.fft.fft(signal[band])
-            plots.draw_fft_plot(settings.drawFftPlots, dft[band], f"Band[{band}] DFT", samplingFrequency)
 
         maxEnergy = 0
         for bpm in range(minBpm, maxBpm, accuracy):
@@ -35,9 +34,9 @@ class CombFilterTempoDetector:
             for a in range(0, combFilterPulses):
                 fil[a * int(filter_step) + 1] = 1
 
-            plots.draw_plot(settings.drawCombFilterPlots, fil, f"Timecomb bpm: {bpm}", "Sample/Time", "Amplitude")
+            plots.draw_plot(settings.drawTempoFilterPlots, fil, f"Timecomb bpm: {bpm}", "Sample/Time", "Amplitude")
             dftfil = np.fft.fft(fil)
-            plots.draw_comb_filter_fft_plot(settings.drawFftPlots, dftfil, f"Filter's signal DFT {bpm}",
+            plots.draw_comb_filter_fft_plot(settings.drawTempoFftPlots, dftfil, f"Filter's signal DFT {bpm}",
                                             samplingFrequency)
 
             for band in range(0, bands_amount):

@@ -12,17 +12,12 @@ class ConvolveTempoDetector:
                      combFilterPulses, plotDictionary):
         n = len(signal[0])
         nbands = len(bandsLimits)
-        dft = np.zeros([nbands, n], dtype=complex)
 
         if minBpm < 60:
             minBpm = 60
 
         if maxBpm > 240:
             maxBpm = 240
-
-        for band in range(0, nbands):
-            dft[band] = np.fft.fft(signal[band])
-            plots.draw_fft_plot(settings.drawFftPlots, dft[band], f"Band[{band}] DFT", samplingFrequency)
 
         maxe = 0
         for bpm in range(minBpm, maxBpm, accuracy):
@@ -38,16 +33,16 @@ class ConvolveTempoDetector:
             for a in range(0, filterLength):
                 fil[a * int(nstep)] = 1
 
-            plots.draw_plot(settings.drawCombFilterPlots, fil, f"Timecomb bpm: {bpm}", "Sample/Time", "Amplitude")
+            plots.draw_plot(settings.drawMetreFilterPlots, fil, f"Timecomb bpm: {bpm}", "Sample/Time", "Amplitude")
 
             dftfil = np.fft.fft(fil)
 
-            plots.draw_comb_filter_fft_plot(settings.drawCombFilterPlots, dftfil, f"Filter DFT {bpm}",
+            plots.draw_comb_filter_fft_plot(settings.drawTempoFftPlots, dftfil, f"Filter DFT {bpm}",
                                             samplingFrequency)
             for band in range(0, nbands - 1):
                 filt = scipy.convolve(signal[band], fil)
                 f_filt = abs(np.fft.fft(filt))
-                plots.draw_fft_plot(settings.drawFftPlots, f_filt, f"Convolve DFT {bpm}", samplingFrequency)
+                plots.draw_fft_plot(settings.drawTempoFftPlots, f_filt, f"Convolve DFT {bpm}", samplingFrequency)
 
                 x = abs(f_filt) ** 2
                 e = e + sum(x)
