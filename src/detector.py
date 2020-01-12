@@ -22,13 +22,13 @@ def prepare_parser():
                         "\n convolveMetreDetector , " \
                         "\n convolveNormalizedMetreDetector, " \
                         "\n correlateNormalizedMetreDetector " \
-                        "\n(default: detectMetreNormalized)"
+                        "\n(default: combFilterMetreDetector)"
 
     tempoParser = argparse.ArgumentParser(add_help=False)
     tempoParser.add_argument("-t", help=tempoDetectorHelp, dest='tempoDetector', default='combFilterTempoDetector')
 
     metreParser = argparse.ArgumentParser(add_help=False)
-    metreParser.add_argument("-m", help=metreDetectorHelp, dest='metreDetector', default='detectMetreNormalized')
+    metreParser.add_argument("-m", help=metreDetectorHelp, dest='metreDetector', default='combFilterMetreDetector')
 
     parser = argparse.ArgumentParser(parents=[tempoParser, metreParser])
     parser.add_argument("song", help="path to song")
@@ -78,14 +78,18 @@ def parse_resample_ratio(resampleRatio, parser):
 
 def parse_show_plots(showPlots):
     if not showPlots:
-        settings.drawCombFilterPlots = False
+        settings.drawMetreFftPlots = False
+        settings.drawMetreFilterPlots = False
+        settings.drawTempoFftPlots = False
+        settings.drawTempoFilterPlots = False
         settings.drawPlots = False
-        settings.drawFftPlots = False
-        settings.drawSongBpmEnergyPlot = False
+        settings.drawSongBpmEnergyPlot = True
     else:
-        settings.drawCombFilterPlots = True
+        settings.drawMetreFftPlots = False
+        settings.drawMetreFilterPlots = True
+        settings.drawTempoFftPlots = False
+        settings.drawTempoFilterPlots = False
         settings.drawPlots = True
-        settings.drawFftPlots = True
         settings.drawSongBpmEnergyPlot = True
 
 

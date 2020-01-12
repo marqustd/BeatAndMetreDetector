@@ -7,6 +7,8 @@ resampleSignal = True
 resampleRatio = 4
 
 drawPlots = False
-drawFftPlots = False
-drawCombFilterPlots = False
-drawSongBpmEnergyPlot = False
+drawTempoFftPlots = False
+drawMetreFftPlots = False
+drawTempoFilterPlots = False
+drawMetreFilterPlots = False
+drawSongBpmEnergyPlot = True

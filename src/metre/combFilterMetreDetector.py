@@ -14,12 +14,8 @@ class CombFilterMetreDetector:
         nbands = len(bandlimits)
         dft = np.zeros([nbands, n], dtype=complex)
 
-        # Get signal in frequency domain
         for band in range(0, nbands):
             dft[band] = np.fft.fft(signal[band, 0:n])
-            plots.draw_plot(settings.drawPlots, signal[band], f"Signal[{band}]", "Sample/Time", "Amplitude")
-            plots.draw_fft_plot(settings.drawFftPlots, dft[band], f"Signal[{band}] dft", maxFreq)
-            plots.draw_comb_filter_fft_plot(settings.drawFftPlots, dft[band], f"Signal[{band}] dft", maxFreq)
 
         self.__methods.append(self.__five_forth)
         self.__methods.append(self.__four_forth)
@@ -31,7 +27,6 @@ class CombFilterMetreDetector:
             metre, metre_dft = method(tempo, n, maxFreq, npulses)
             metres[metre] = metre_dft
 
-        # % Initialize max energy to zero
         maxe = 0
         done = 0
         todo = len(metres.keys())
@@ -40,14 +35,12 @@ class CombFilterMetreDetector:
             percent_done = 100 * done / todo
             print("%.2f" % percent_done, "%")
 
-            # % Initialize energy and filter to zero(s)
             e = 0
 
             for band in range(0, nbands):
                 x = (abs(metres[metrum] * dft[band])) ** 2
                 e = e + sum(x)
 
-            # If greater than all previous energies, set current bpm to the bpm of the signal
             if e > maxe:
                 song_metre = metrum
                 maxe = e
@@ -68,9 +61,9 @@ class CombFilterMetreDetector:
             index += nstep
             bit += 1
 
-        plots.draw_plot(settings.drawCombFilterPlots, fil, "4\\4", "Sample/Time", "Amplitude")
+        plots.draw_plot(settings.drawMetreFilterPlots, fil, "4\\4", "Sample/Time", "Amplitude")
         dft = np.fft.fft(fil)
-        plots.draw_comb_filter_fft_plot(settings.drawFftPlots, dft, f"Metre 4\\4 filter dft", sampling_frequency)
+        plots.draw_comb_filter_fft_plot(settings.drawMetreFftPlots, dft, f"Metre 4\\4 filter dft", sampling_frequency)
         return "4\\4", dft
 
     def __three_forth(self, song_tempo: int, n: int, sampling_frequency: int, filter_pulses: int):
@@ -86,9 +79,9 @@ class CombFilterMetreDetector:
             index += nstep
             bit += 1
 
-        plots.draw_plot(settings.drawCombFilterPlots, fil, "3\\4", "Sample/Time", "Amplitude")
+        plots.draw_plot(settings.drawMetreFilterPlots, fil, "3\\4", "Sample/Time", "Amplitude")
         dft = np.fft.fft(fil)
-        plots.draw_comb_filter_fft_plot(settings.drawFftPlots, dft, f"Metre 3\\4 filter dft", sampling_frequency)
+        plots.draw_comb_filter_fft_plot(settings.drawMetreFftPlots, dft, f"Metre 3\\4 filter dft", sampling_frequency)
         return "3\\4", dft
 
     def __five_forth(self, song_tempo: int, n: int, sampling_frequency: int, filter_pulses: int):
@@ -108,8 +101,9 @@ class CombFilterMetreDetector:
             if bit > 5:
                 bit = 1
 
-        plots.draw_plot(settings.drawCombFilterPlots, fil, "5\\4", "Sample/Time", "Amplitude")
+        plots.draw_plot(settings.drawMetreFilterPlots, fil, "5\\4", "Sample/Time", "Amplitude")
         dft = np.fft.fft(fil)
+        plots.draw_comb_filter_fft_plot(settings.drawMetreFftPlots, dft, f"Metre 5\\4 filter dft", sampling_frequency)
         return "5\\4", dft
 
     def __six_eigth(self, song_tempo: int, n: int, sampling_frequency: int, filter_pulses: int):
@@ -125,7 +119,7 @@ class CombFilterMetreDetector:
             index += nstep
             bit += 1
 
-        plots.draw_plot(settings.drawCombFilterPlots, fil, "6\\8", "Sample/Time", "Amplitude")
+        plots.draw_plot(settings.drawMetreFilterPlots, fil, "6\\8", "Sample/Time", "Amplitude")
         dft = np.fft.fft(fil)
-        plots.draw_comb_filter_fft_plot(settings.drawFftPlots, dft, f"Metre 6\\8 filter dft", sampling_frequency)
+        plots.draw_comb_filter_fft_plot(settings.drawMetreFftPlots, dft, f"Metre 6\\8 filter dft", sampling_frequency)
         return "6\\8", dft

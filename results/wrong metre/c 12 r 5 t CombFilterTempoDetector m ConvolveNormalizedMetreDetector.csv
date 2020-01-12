@@ -1,0 +1,42 @@
+Settings:
+Combfilter pulses: 12
+Resample ratio: 5
+Tempo detection method: CombFilterTempoDetector
+Metre detection method: ConvolveNormalizedMetreDetector
+Song;Detected BPM;Real BPM;Detected metre;Real metre;Time
+6-click_full_pussy;80;160;3\4;4\4;72.15971541404724;
+120;60;120;4\4;4\4;104.87608742713928;
+1-blue-tinted_sunglasses;61;123;3\4;4\4;91.72850203514099;
+100;100;100;3\4;3\4;55.29312872886658;
+1-sunset_(endless_night_journey;70;140;3\4;4\4;74.27450561523438;
+7-don't_look_back;178;89;3\4;4\4;33.4008903503418;
+7-northern_lights;70;140;4\4;4\4;75.83761191368103;
+8-i'll_pretend;70;140;4\4;4\4;74.09860730171204;
+9-nibtal_7;70;140;3\4;4\4;71.89486527442932;
+10-at_least_you've_been_told;65;130;3\4;4\4;75.757657289505;
+1-don't_rain_on_my_parade;81;160;3\4;4\4;64.30306649208069;
+4-goodbye_on_a_beautiful_day;60;60;3\4;4\4;79.68341064453125;
+5-apartment_a;60;115;3\4;4\4;81.49537444114685;
+12-rotgut;145;147;3\4;4\4;38.33007049560547;
+4-buffalo_nights;148;147;3\4;8\8;38.495975494384766;
+6-didn't_i;85;85;4\4;4\4;60.9071524143219;
+4-patterns;94;106;3\4;6\8;55.858296394348145;
+1-prospects;116;116;4\4;4\4;55.75410199165344;
+18-slide_boogie;70;120;3\4;4\4;79.02278971672058;
+6-invisible_pants;127;118;3\4;4\4;48.550251722335815;
+7-heavenly_rain;85;126;3\4;4\4;63.1268835067749;
+1-by_mourning;100;202;3\4;4\4;83.12247776985168;
+5-kc_rip_off;70;140;3\4;4\4;75.57775831222534;
+5-code_red_love_is_dead;60;120;3\4;4\4;97.83302736282349;
+7-serenade_for_samantha;60;120;3\4;4\4;99.59102416038513;
+1-sweet_dissonance;75;120;3\4;4\4;79.94126343727112;
+6-life_glides;60;120;3\4;4\4;92.97680568695068;
+1-for_a_good_day_o_host_to_you;183;77;3\4;4\4;38.00025820732117;
+5-bliss;135;68;3\4;4\4;59.62388801574707;
+10-the_last_faery;90;90;3\4;4\4;66.78778958320618;
+1-odysseia;85;93;3\4;4\4;70.6955554485321;
+28-la_victoire_suite_in_d_from_l;70;134;3\4;4\4;84.89742803573608;
+18-handel_oxford_water_music_suit;85;167;3\4;3\4;73.23510122299194;
+22-handel_oxford_water_music_suit;74;150;3\4;4\4;78.64800381660461;
+10-sonata_iii_moderato;75;152;3\4;4\4;87.17412614822388;
+19-sonata_v_allegro;72;140;3\4;4\4;83.20139741897583;
