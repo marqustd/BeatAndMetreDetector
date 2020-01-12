@@ -66,4 +66,10 @@ cases = {
 
     testCase.TestCase(True, 5, 12, combFilterTempoDetector.CombFilterTempoDetector(),
                       correlateNormalizedMetreDetector.CorrelateNormalizedMetreDetector()),
+
+    # best
+    testCase.TestCase(True, 3, 12, combFilterTempoDetector.CombFilterTempoDetector(),
+                      correlateNormalizedMetreDetector.CorrelateNormalizedMetreDetector()),
+    testCase.TestCase(True, 3, 16, combFilterTempoDetector.CombFilterTempoDetector(),
+                      correlateNormalizedMetreDetector.CorrelateNormalizedMetreDetector()),
 }

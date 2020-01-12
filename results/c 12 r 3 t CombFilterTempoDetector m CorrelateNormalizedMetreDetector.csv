@@ -1,0 +1,42 @@
+Settings:
+Combfilter pulses: 12
+Resample ratio: 3
+Tempo detection method: CombFilterTempoDetector
+Metre detection method: CorrelateNormalizedMetreDetector
+Song;Detected BPM;Real BPM;Detected metre;Real metre;Time
+1-by_mourning;100;202;6\8;4\4;118.33824706077576;
+5-kc_rip_off;70;140;6\8;4\4;143.62680673599243;
+5-code_red_love_is_dead;60;120;6\8;4\4;149.49121141433716;
+7-serenade_for_samantha;60;120;6\8;4\4;140.09806323051453;
+1-sweet_dissonance;75;120;6\8;4\4;135.12835669517517;
+6-life_glides;60;120;6\8;4\4;139.33273124694824;
+1-for_a_good_day_o_host_to_you;183;77;6\8;4\4;78.30107259750366;
+5-bliss;135;68;6\8;4\4;115.8809187412262;
+10-the_last_faery;90;90;4\4;4\4;133.01213598251343;
+1-odysseia;85;93;6\8;4\4;131.1240701675415;
+28-la_victoire_suite_in_d_from_l;70;134;6\8;4\4;143.22787952423096;
+18-handel_oxford_water_music_suit;85;167;6\8;3\4;122.66557788848877;
+22-handel_oxford_water_music_suit;74;150;6\8;4\4;127.30413913726807;
+10-sonata_iii_moderato;75;152;4\4;4\4;133.24358081817627;
+19-sonata_v_allegro;72;140;6\8;4\4;129.94832706451416;
+120;60;120;6\8;4\4;132.7278106212616;
+6-click_full_pussy;80;160;6\8;4\4;123.63324403762817;
+100;100;100;4\4;3\4;108.59741497039795;
+1-blue-tinted_sunglasses;61;123;4\4;4\4;132.64748764038086;
+7-don't_look_back;178;89;4\4;4\4;75.737468957901;
+1-sunset_(endless_night_journey;70;140;4\4;4\4;128.49802494049072;
+8-i'll_pretend;70;140;6\8;4\4;128.02929735183716;
+7-northern_lights;70;140;4\4;4\4;127.25715661048889;
+10-at_least_you've_been_told;65;130;6\8;4\4;131.892573595047;
+9-nibtal_7;70;140;6\8;4\4;127.14976024627686;
+1-don't_rain_on_my_parade;80;160;6\8;4\4;120.6841082572937;
+4-goodbye_on_a_beautiful_day;60;60;6\8;4\4;132.67407608032227;
+5-apartment_a;60;115;4\4;4\4;136.29346323013306;
+12-rotgut;145;147;6\8;4\4;93.74026942253113;
+4-buffalo_nights;148;147;6\8;8\8;88.34066653251648;
+6-didn't_i;85;85;6\8;4\4;118.31073045730591;
+4-patterns;94;106;6\8;6\8;112.9704909324646;
+1-prospects;116;116;6\8;4\4;109.62931990623474;
+18-slide_boogie;70;120;6\8;4\4;127.61374735832214;
+6-invisible_pants;127;118;4\4;4\4;98.73291158676147;
+7-heavenly_rain;85;126;6\8;4\4;117.65066933631897;
