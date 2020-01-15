@@ -63,7 +63,7 @@ class TempoMetreDetector:
         plotDictionary = plots.prepare_plot_dictionary(settings.minBpm, settings.maxBpm)
 
         songTempo = self.tempoDetector.detect_tempo(diffrected,
-                                                1,
+                                                5,
                                                 settings.minBpm,
                                                 settings.maxBpm,
                                                 settings.bandLimits,
@@ -71,11 +71,9 @@ class TempoMetreDetector:
                                                 settings.combFilterPulses,
                                                 plotDictionary)
 
-        # print(f'Second attempt...')
-        # songTempo = self.tempoDetector.detect_tempo(songTempo, 1, songTempo - 5, songTempo + 5, settings.bandLimits,
-        #                                             samplingFrequency, settings.combFilterPulses, plotDictionary)
-        plots.draw_plot(settings.drawSongBpmEnergyPlot, list(plotDictionary.keys()), f"Rozkład energii iloczynu widma sygnału z filtrem\n o określonej częstotliwości impulsów w piosence", "BPM",
-                        "Energy", list(plotDictionary.values()))
+        print(f'Second attempt...')
+        songTempo = self.tempoDetector.detect_tempo(diffrected, 1, songTempo - 5, songTempo + 5, settings.bandLimits,
+                                                    samplingFrequency, settings.combFilterPulses, plotDictionary)
 
         print(f"Detecting song's metre {song.name} with method {self.metreDetector}")
         metre = self.metreDetector.detect_metre(diffrected, songTempo, settings.bandLimits, samplingFrequency,
@@ -83,6 +81,8 @@ class TempoMetreDetector:
 
         totalTime = time.time() - startTime
 
+        plots.draw_plot(settings.drawSongBpmEnergyPlot, list(plotDictionary.keys()), f"Rozkład energii iloczynu widma sygnału z filtrem\n o określonej częstotliwości impulsów w piosence", "BPM",
+                        "Energy", list(plotDictionary.values()))
         return songTempo, metre, totalTime
 
     def __center_sample_to_beat(self, signal, required_length):
