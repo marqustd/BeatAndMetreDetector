@@ -34,9 +34,9 @@ class CombFilterTempoDetector:
             for a in range(0, combFilterPulses):
                 fil[a * int(filter_step) + 1] = 1
 
-            plots.draw_plot(settings.drawTempoFilterPlots, fil, f"Timecomb bpm: {bpm}", "Sample/Time", "Amplitude")
+            plots.draw_plot(settings.drawTempoFilterPlots, fil, f"Sygnał filtru grzebieniowego  tempa {bpm}", "Próbki", "Amplituda")
             dftfil = np.fft.fft(fil)
-            plots.draw_comb_filter_fft_plot(settings.drawTempoFftPlots, dftfil, f"Filter's signal DFT {bpm}",
+            plots.draw_comb_filter_fft_plot(settings.drawTempoFftPlots, dftfil, f"Widmo sygnału filtra tempa {bpm}",
                                             samplingFrequency)
 
             for band in range(0, bands_amount):

@@ -61,7 +61,7 @@ class CombFilterMetreDetector:
             index += nstep
             bit += 1
 
-        plots.draw_plot(settings.drawMetreFilterPlots, fil, "4\\4", "Sample/Time", "Amplitude")
+        plots.draw_plot(settings.drawMetreFilterPlots, fil, "Sygnał filtra metrum 4\\4")
         dft = np.fft.fft(fil)
         plots.draw_comb_filter_fft_plot(settings.drawMetreFftPlots, dft, f"Metre 4\\4 filter dft", sampling_frequency)
         return "4\\4", dft
@@ -79,9 +79,9 @@ class CombFilterMetreDetector:
             index += nstep
             bit += 1
 
-        plots.draw_plot(settings.drawMetreFilterPlots, fil, "3\\4", "Sample/Time", "Amplitude")
+        plots.draw_plot(settings.drawMetreFilterPlots, fil, "Sygnał filtra metrum  3\\4")
         dft = np.fft.fft(fil)
-        plots.draw_comb_filter_fft_plot(settings.drawMetreFftPlots, dft, f"Metre 3\\4 filter dft", sampling_frequency)
+        plots.draw_comb_filter_fft_plot(settings.drawMetreFftPlots, dft, f"Filtr metrum 3\\4", sampling_frequency)
         return "3\\4", dft
 
     def __five_forth(self, song_tempo: int, n: int, sampling_frequency: int, filter_pulses: int):
@@ -101,7 +101,7 @@ class CombFilterMetreDetector:
             if bit > 5:
                 bit = 1
 
-        plots.draw_plot(settings.drawMetreFilterPlots, fil, "5\\4", "Sample/Time", "Amplitude")
+        plots.draw_plot(settings.drawMetreFilterPlots, fil, "Sygnał filtra metrum 5\\4")
         dft = np.fft.fft(fil)
         plots.draw_comb_filter_fft_plot(settings.drawMetreFftPlots, dft, f"Metre 5\\4 filter dft", sampling_frequency)
         return "5\\4", dft
@@ -119,7 +119,7 @@ class CombFilterMetreDetector:
             index += nstep
             bit += 1
 
-        plots.draw_plot(settings.drawMetreFilterPlots, fil, "6\\8", "Sample/Time", "Amplitude")
+        plots.draw_plot(settings.drawMetreFilterPlots, fil, "Sygnał filtra metrum  6\\8")
         dft = np.fft.fft(fil)
         plots.draw_comb_filter_fft_plot(settings.drawMetreFftPlots, dft, f"Metre 6\\8 filter dft", sampling_frequency)
         return "6\\8", dft
