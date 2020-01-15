@@ -9,7 +9,7 @@ def prepare_plot_dictionary(minBpm, maxBpm):
     return dictionary
 
 
-def draw_plot(is_draw_plots: bool, yData, title, xAxis, yAxis, xData=0):
+def draw_plot(is_draw_plots: bool, yData, title, xAxis="Próbki", yAxis="Amplituda", xData=0):
     if is_draw_plots:
         if xData is 0:
             plt.plot(yData)

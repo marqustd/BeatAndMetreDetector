@@ -25,7 +25,7 @@ class TempoMetreDetector:
 
         sample_length = settings.combFilterPulses * samplingFrequency
         seconds = sample_length * 4
-        plots.draw_plot(settings.drawPlots, signal, f"Song: {song.name}", "Sample/Time", "Amplitude")
+        plots.draw_plot(settings.drawPlots, signal, f"Oryginalny sygnał piosenki")
         song_length = signal.size
 
         start = int(np.floor(song_length / 2 - seconds / 2))
@@ -36,10 +36,10 @@ class TempoMetreDetector:
             stop = song_length
 
         sample = signal[start:stop]
-        plots.draw_plot(settings.drawPlots, sample, f"Sample of: {song.name}", "Sample/Time", "Amplitude")
+        plots.draw_plot(settings.drawPlots, sample, f"Sygnał fragmenu piosenki")
 
         centred = self.__center_sample_to_beat(sample, sample_length)
-        plots.draw_plot(settings.drawPlots, centred, f"Sample centred to beat: {song.name}", "Sample/Time", "Amplitude")
+        plots.draw_plot(settings.drawPlots, centred, f"Wyrównany fragment piosenki")
 
         if settings.resampleSignal:
             centred = scipy.signal.resample(centred, int(len(centred) / settings.resampleRatio))
@@ -47,23 +47,23 @@ class TempoMetreDetector:
 
         print(f'Preparing filterbank for song {song.name}...')
         filterBanks = self.__prepare_filterbanks(centred, settings.bandLimits, samplingFrequency)
-        plots.draw_fft_plot(settings.drawPlots, filterBanks[1], f"Filterbank[{1}]{song.name}", samplingFrequency)
+        plots.draw_fft_plot(settings.drawPlots, filterBanks[3], f"Sygnał z drugiego filtru piosenki", samplingFrequency)
+        plots.draw_fft_plot(settings.drawPlots, filterBanks[5], f"Sygnał z szóstego filtru piosenki", samplingFrequency)
 
         print(f'Hanning song {song.name}...')
         hanningWindow = self.__hann(filterBanks, 0.2, settings.bandLimits, samplingFrequency)
-        plots.draw_plot(settings.drawPlots, hanningWindow[1], f"Hanning Window: {song.name}", "Sample/Time",
-                        "Amplitude")
+        plots.draw_plot(settings.drawPlots, hanningWindow[1], f"Sygnał drugiego filtru piosenki po wygładzeniu")
 
         print(f'Differentiating song {song.name}...')
         diffrected = self.__diffrect(hanningWindow, len(settings.bandLimits))
-        plots.draw_plot(settings.drawPlots, diffrected[1], f"Diffrected: {song.name}", "Sample/Time", "Amplitude")
+        plots.draw_plot(settings.drawPlots, diffrected[1], f"Pochodna wygładzonego sygnału z drugiego filtru piosenki")
 
         print(f"Detecting song's tempo {song.name} with method {self.tempoDetector}...")
         print(f'First attempt...')
         plotDictionary = plots.prepare_plot_dictionary(settings.minBpm, settings.maxBpm)
 
-        first = self.tempoDetector.detect_tempo(diffrected,
-                                                5,
+        songTempo = self.tempoDetector.detect_tempo(diffrected,
+                                                1,
                                                 settings.minBpm,
                                                 settings.maxBpm,
                                                 settings.bandLimits,
@@ -71,10 +71,10 @@ class TempoMetreDetector:
                                                 settings.combFilterPulses,
                                                 plotDictionary)
 
-        print(f'Second attempt...')
-        songTempo = self.tempoDetector.detect_tempo(diffrected, 1, first - 5, first + 5, settings.bandLimits,
-                                                    samplingFrequency, settings.combFilterPulses, plotDictionary)
-        plots.draw_plot(settings.drawSongBpmEnergyPlot, list(plotDictionary.keys()), f"Tempo: {song.name}", "BPM",
+        # print(f'Second attempt...')
+        # songTempo = self.tempoDetector.detect_tempo(songTempo, 1, songTempo - 5, songTempo + 5, settings.bandLimits,
+        #                                             samplingFrequency, settings.combFilterPulses, plotDictionary)
+        plots.draw_plot(settings.drawSongBpmEnergyPlot, list(plotDictionary.keys()), f"Rozkład energii iloczynu widma sygnału z filtrem\n o określonej częstotliwości impulsów w piosence", "BPM",
                         "Energy", list(plotDictionary.values()))
 
         print(f"Detecting song's metre {song.name} with method {self.metreDetector}")
