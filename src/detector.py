@@ -94,7 +94,7 @@ def parse_show_plots(showPlots):
 
 
 parser = prepare_parser()
-args = parser.parse_args(["..\\songs\\rock\\8-i'll_pretend.wav", "--plots"])
+args = parser.parse_args()
 metreDetector = parse_metre_detector(args.metreDetector)
 if metreDetector is None:
     parser.error("Wrong metreDetector provided")
