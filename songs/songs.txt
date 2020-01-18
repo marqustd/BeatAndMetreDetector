@@ -1,6 +1,10 @@
 120	test	120	4/4
 100	test	100	3/4
 
+Songs below are from:
+P. Cano, E. Gómez, F. Gouyon, P. Herrera, M. Koppenberger, B. Ong,
+X. Serra, S. Streich, N. Wack. Ismir 2004 audio description contest, 2004.
+
 7-don't_look_back		rock	89	4/4
 8-i'll_pretend			rock	140	4/4
 10-at_least_you've_been_told	rock	130	4/4
