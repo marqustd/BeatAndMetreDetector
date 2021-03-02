@@ -1,9 +1,9 @@
 import numpy as np
 import plots
 import settings
+from tempo import BaseTempoDetector
 
-
-class CombFilterTempoDetector:
+class CombFilterTempoDetector(BaseTempoDetector.BaseTempoDetector):
     def __str__(self):
         return "CombFilterTempoDetector"
 

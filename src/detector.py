@@ -12,17 +12,17 @@ from metre import combFilterMetreDetector, convolveNormalizedMetreDetector, comb
 
 def prepare_parser():
     tempoDetectorHelp = "tempo detector method. \n Possible detectors: " \
-                        "\n combFilterTempoDetector, " \
-                        "\n convolveTempoDetector " \
-                        "\n (default: combFilterTempoDetector) "
+                        "\n CombFilterTempoDetector, " \
+                        "\n ConvolveTempoDetector " \
+                        "\n (default: CombFilterTempoDetector) "
 
     metreDetectorHelp = "metre detector method. \n Possible detectors: " \
-                        "\n combFilterMetreDetector, " \
-                        "\n combFilterNormalizedMetreDetector, " \
-                        "\n convolveMetreDetector , " \
-                        "\n convolveNormalizedMetreDetector, " \
-                        "\n correlateNormalizedMetreDetector " \
-                        "\n(default: combFilterMetreDetector)"
+                        "\n CombFilterMetreDetector, " \
+                        "\n CombFilterNormalizedMetreDetector, " \
+                        "\n ConvolveMetreDetector , " \
+                        "\n ConvolveNormalizedMetreDetector, " \
+                        "\n CorrelateNormalizedMetreDetector " \
+                        "\n(default: CombFilterMetreDetector)"
 
     tempoParser = argparse.ArgumentParser(add_help=False)
     tempoParser.add_argument("-t", help=tempoDetectorHelp, dest='tempoDetector', default='combFilterTempoDetector')

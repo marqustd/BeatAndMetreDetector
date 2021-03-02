@@ -1,13 +1,13 @@
-from metre import combFilterMetreDetector
-from tempo import combFilterTempoDetector
+import metre
+import tempo
 
 
 class TestCase:
     resampleSignal: bool
     resampleRatio: int
     combFilterPulses: int
-    tempoDetector = combFilterTempoDetector.CombFilterTempoDetector()
-    metreDetector = combFilterMetreDetector.CombFilterMetreDetector()
+    tempoDetector: tempo.BaseTempoDetector.BaseTempoDetector
+    metreDetector = metre.BaseMetreDetector.BaseMetreDetector
 
     def __init__(self, resample, resampleRatio, combFilterPulses, tempoDetector, metreDetector):
         self.resampleSignal = resample

@@ -2,9 +2,10 @@ import scipy.signal
 import numpy as np
 import plots
 import settings
+from metre import BaseMetreDetector
 
 
-class ConvolveNormalizedMetreDetector:
+class ConvolveNormalizedMetreDetector(BaseMetreDetector.BaseMetreDetector):
     __methods = []
 
     def __str__(self):

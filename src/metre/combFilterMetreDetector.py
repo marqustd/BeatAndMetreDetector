@@ -1,9 +1,9 @@
 import numpy as np
 import plots
 import settings
+from metre import BaseMetreDetector
 
-
-class CombFilterMetreDetector:
+class CombFilterMetreDetector(BaseMetreDetector.BaseMetreDetector):
     __methods = []
 
     def __str__(self):
@@ -61,14 +61,17 @@ class CombFilterMetreDetector:
             index += nstep
             bit += 1
 
-        plots.draw_plot(settings.drawMetreFilterPlots, fil, "Sygnał filtra metrum 4\\4")
+        plots.draw_plot(settings.drawMetreFilterPlots,
+                        fil, "Sygnał filtra metrum 4\\4")
         dft = np.fft.fft(fil)
-        plots.draw_comb_filter_fft_plot(settings.drawMetreFftPlots, dft, f"Metre 4\\4 filter dft", sampling_frequency)
+        plots.draw_comb_filter_fft_plot(
+            settings.drawMetreFftPlots, dft, f"Metre 4\\4 filter dft", sampling_frequency)
         return "4\\4", dft
 
     def __three_forth(self, song_tempo: int, n: int, sampling_frequency: int, filter_pulses: int):
         fil = np.zeros(n)
-        nstep = np.floor(60 / song_tempo * sampling_frequency)  # every third bit
+        # every third bit
+        nstep = np.floor(60 / song_tempo * sampling_frequency)
         index = 0
         bit = 0
         while index < n and bit <= filter_pulses:
@@ -79,9 +82,11 @@ class CombFilterMetreDetector:
             index += nstep
             bit += 1
 
-        plots.draw_plot(settings.drawMetreFilterPlots, fil, "Sygnał filtra metrum  3\\4")
+        plots.draw_plot(settings.drawMetreFilterPlots,
+                        fil, "Sygnał filtra metrum  3\\4")
         dft = np.fft.fft(fil)
-        plots.draw_comb_filter_fft_plot(settings.drawMetreFftPlots, dft, f"Filtr metrum 3\\4", sampling_frequency)
+        plots.draw_comb_filter_fft_plot(
+            settings.drawMetreFftPlots, dft, f"Filtr metrum 3\\4", sampling_frequency)
         return "3\\4", dft
 
     def __five_forth(self, song_tempo: int, n: int, sampling_frequency: int, filter_pulses: int):
@@ -101,9 +106,11 @@ class CombFilterMetreDetector:
             if bit > 5:
                 bit = 1
 
-        plots.draw_plot(settings.drawMetreFilterPlots, fil, "Sygnał filtra metrum 5\\4")
+        plots.draw_plot(settings.drawMetreFilterPlots,
+                        fil, "Sygnał filtra metrum 5\\4")
         dft = np.fft.fft(fil)
-        plots.draw_comb_filter_fft_plot(settings.drawMetreFftPlots, dft, f"Metre 5\\4 filter dft", sampling_frequency)
+        plots.draw_comb_filter_fft_plot(
+            settings.drawMetreFftPlots, dft, f"Metre 5\\4 filter dft", sampling_frequency)
         return "5\\4", dft
 
     def __six_eigth(self, song_tempo: int, n: int, sampling_frequency: int, filter_pulses: int):
@@ -119,7 +126,9 @@ class CombFilterMetreDetector:
             index += nstep
             bit += 1
 
-        plots.draw_plot(settings.drawMetreFilterPlots, fil, "Sygnał filtra metrum  6\\8")
+        plots.draw_plot(settings.drawMetreFilterPlots,
+                        fil, "Sygnał filtra metrum  6\\8")
         dft = np.fft.fft(fil)
-        plots.draw_comb_filter_fft_plot(settings.drawMetreFftPlots, dft, f"Metre 6\\8 filter dft", sampling_frequency)
+        plots.draw_comb_filter_fft_plot(
+            settings.drawMetreFftPlots, dft, f"Metre 6\\8 filter dft", sampling_frequency)
         return "6\\8", dft

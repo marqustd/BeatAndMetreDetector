@@ -2,9 +2,10 @@ import numpy as np
 import plots
 import settings
 import scipy.signal
+from tempo import BaseTempoDetector
 
 
-class ConvolveTempoDetector:
+class ConvolveTempoDetector(BaseTempoDetector.BaseTempoDetector):
     def __str__(self):
         return "ConvolveTempoDetector"
 
