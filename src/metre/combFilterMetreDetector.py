@@ -1,7 +1,7 @@
 import numpy as np
 import plots
 import settings
-from metre import BaseMetreDetector
+from metre import BaseMetreDetector, Metre
 
 class CombFilterMetreDetector(BaseMetreDetector.BaseMetreDetector):
     __methods = []
@@ -9,7 +9,7 @@ class CombFilterMetreDetector(BaseMetreDetector.BaseMetreDetector):
     def __str__(self):
         return "CombFilterMetreDetector"
 
-    def detect_metre(self, signal, tempo: int, bandlimits, maxFreq, npulses):
+    def detect_metre(self, signal, tempo: int, bandlimits, maxFreq, npulses) -> Metre.Metre:
         n = int(npulses * maxFreq * (60 / tempo))
         nbands = len(bandlimits)
         dft = np.zeros([nbands, n], dtype=complex)
