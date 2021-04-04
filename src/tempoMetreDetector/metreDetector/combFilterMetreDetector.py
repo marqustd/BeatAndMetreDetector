@@ -1,9 +1,12 @@
-from tempoMetreDetector.metreDetector.metreEnum import MetreEnum
-from tempoMetreDetector.metreDetector.baseMetreDetector import BaseMetreDetector
-from tempoMetreDetector.metreDetector.metreDetectorData import MetreDetectorData
 import numpy as np
 import plots
 import settings
+from tempoMetreDetector.metreDetector.baseMetreDetector import \
+    BaseMetreDetector
+from tempoMetreDetector.metreDetector.metreDetectorData import \
+    MetreDetectorData
+from tempoMetreDetector.metreDetector.metreEnum import MetreEnum
+
 
 class CombFilterMetreDetector(BaseMetreDetector):
     __methods = []

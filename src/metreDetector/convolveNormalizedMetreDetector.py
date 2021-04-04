@@ -1,10 +1,12 @@
-import scipy.signal
 import numpy as np
 import plots
+import scipy.signal
 import settings
+from tempoMetreDetector.metreDetector.baseMetreDetector import \
+    BaseMetreDetector
+from tempoMetreDetector.metreDetector.metreDetectorData import \
+    MetreDetectorData
 from tempoMetreDetector.metreDetector.metreEnum import MetreEnum
-from tempoMetreDetector.metreDetector.baseMetreDetector import BaseMetreDetector
-from tempoMetreDetector.metreDetector.metreDetectorData import MetreDetectorData
 
 
 class ConvolveNormalizedMetreDetector(BaseMetreDetector.BaseMetreDetector):
