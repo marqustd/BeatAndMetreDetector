@@ -2,7 +2,9 @@ import scipy.signal
 import numpy as np
 import plots
 import settings
-from metre import BaseMetreDetector, Metre
+from metre.baseMetreDetector import BaseMetreDetector
+from metre.metreDetectorData import MetreDetectorData
+from metre.metreEnum import MetreEnum
 
 
 class CorrelateNormalizedMetreDetector(BaseMetreDetector.BaseMetreDetector):
@@ -11,13 +13,13 @@ class CorrelateNormalizedMetreDetector(BaseMetreDetector.BaseMetreDetector):
     def __str__(self):
         return "CorrelateNormalizedMetreDetector"
 
-    def detect_metre(self, signal, tempo: int, bandlimits, maxFreq, npulses) -> Metre.Metre:
-        n = int(npulses * maxFreq * (60 / tempo))
-        nbands = len(bandlimits)
+    def detect_metre(self, data: MetreDetectorData) -> MetreEnum:
+        n = int(data.npulses * data.maxFreq * (60 / data.tempo))
+        nbands = len(data.bandlimits)
 
         for band in range(0, nbands):
             plots.draw_plot(
-                settings.drawPlots, signal[band], f"Band: {band}", "Sample/Time", "Amplitude")
+                settings.drawPlots, data.signal[band], f"Band: {band}", "Sample/Time", "Amplitude")
 
         self.__methods.append(self.__five_forth)
         self.__methods.append(self.__four_forth)
@@ -26,7 +28,8 @@ class CorrelateNormalizedMetreDetector(BaseMetreDetector.BaseMetreDetector):
 
         metres = {}
         for method in self.__methods:
-            metre, metre_dft = method(tempo, n, maxFreq, npulses)
+            metre, metre_dft = method(
+                data.tempo, n, data.maxFreq, data.npulses)
             metres[metre] = metre_dft
 
         maxe = 0
@@ -40,7 +43,7 @@ class CorrelateNormalizedMetreDetector(BaseMetreDetector.BaseMetreDetector):
             e = 0
 
             for band in range(0, nbands):
-                filt = scipy.correlate(signal[band], metres[metrum])
+                filt = scipy.correlate(data.signal[band], metres[metrum])
                 f_filt = abs(np.fft.fft(filt))
                 plots.draw_plot(settings.drawMetreFftPlots,
                                 f_filt, metrum, "Sample/Time", "Amplitude")

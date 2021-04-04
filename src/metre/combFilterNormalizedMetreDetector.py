@@ -1,22 +1,24 @@
+from metre.baseMetreDetector import BaseMetreDetector
+from metre.metreDetectorData import MetreDetectorData
+from metre.metreEnum import MetreEnum
 import numpy as np
 import plots
 import settings
-from metre import BaseMetreDetector, Metre
 
 
-class CombFilterNormalizedMetreDetector(BaseMetreDetector.BaseMetreDetector):
+class CombFilterNormalizedMetreDetector(BaseMetreDetector):
     __methods = []
 
     def __str__(self):
         return "CombFilterNormalizedMetreDetector"
 
-    def detect_metre(self, signal, tempo: int, bandlimits, maxFreq, npulses) -> Metre.Metre:
-        n = int(npulses * maxFreq * (60 / tempo))
-        nbands = len(bandlimits)
+    def detect_metre(self, data: MetreDetectorData) -> MetreEnum:
+        n = int(data.npulses * data.maxFreq * (60 / data.tempo))
+        nbands = len(data.bandlimits)
         dft = np.zeros([nbands, n], dtype=complex)
 
         for band in range(0, nbands):
-            dft[band] = np.fft.fft(signal[band, 0:n])
+            dft[band] = np.fft.fft(data.signal[band, 0:n])
 
         self.__methods.append(self.__five_forth)
         self.__methods.append(self.__four_forth)
@@ -25,7 +27,8 @@ class CombFilterNormalizedMetreDetector(BaseMetreDetector.BaseMetreDetector):
 
         metres = {}
         for method in self.__methods:
-            metre, metre_dft = method(tempo, n, maxFreq, npulses)
+            metre, metre_dft = method(
+                data.tempo, n, data.maxFreq, data.npulses)
             metres[metre] = metre_dft
 
         maxe = 0

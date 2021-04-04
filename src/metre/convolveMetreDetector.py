@@ -1,19 +1,22 @@
+from metre.baseMetreDetector import BaseMetreDetector
+from metre.metreDetectorData import MetreDetectorData
+from metre.metreEnum import MetreEnum
 import scipy.signal
 import numpy as np
 import plots
 import settings
-from metre import BaseMetreDetector, Metre
 
 
-class ConvolveMetreDetector(BaseMetreDetector.BaseMetreDetector):
+class ConvolveMetreDetector(BaseMetreDetector):
     __methods = []
 
     def __str__(self):
         return "ConvolveMetreDetector"
 
-    def detect_metre(self, signal, songTempo: int, bandLimits, samplingFrequency, combFilterPulses) -> Metre.Metre:
-        n = int(combFilterPulses * samplingFrequency * (60 / songTempo))
-        nbands = len(bandLimits)
+    def detect_metre(self, data: MetreDetectorData) -> MetreEnum:
+        n = int(data.combFilterPulses *
+                data.samplingFrequency * (60 / data.songTempo))
+        nbands = len(data.bandLimits)
 
         self.__methods.append(self.__five_forth)
         self.__methods.append(self.__four_forth)
@@ -23,7 +26,7 @@ class ConvolveMetreDetector(BaseMetreDetector.BaseMetreDetector):
         metres = {}
         for method in self.__methods:
             metre, metre_dft = method(
-                songTempo, n, samplingFrequency, combFilterPulses)
+                data.songTempo, n, data.samplingFrequency, data.combFilterPulses)
             metres[metre] = metre_dft
 
         maxe = 0
@@ -37,7 +40,7 @@ class ConvolveMetreDetector(BaseMetreDetector.BaseMetreDetector):
             e = 0
 
             for band in range(0, nbands):
-                filt = scipy.convolve(signal[band], metres[metrum])
+                filt = scipy.convolve(data.signal[band], metres[metrum])
                 f_filt = abs(np.fft.fft(filt))
                 plots.draw_plot(settings.drawMetreFftPlots,
                                 f_filt, metrum, "Sample/Time", "Amplitude")

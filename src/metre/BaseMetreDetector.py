@@ -1,8 +1,9 @@
-from metre import Metre
+from metre.metreEnum import MetreEnum
+from metre.metreDetectorData import MetreDetectorData
 
 class BaseMetreDetector:
     def __str__(self):
         return "BaseMetreDetector"
 
-    def detect_metre(self, signal, tempo: int, bandlimits, maxFreq, npulses) -> Metre.Metre:
-        return Metre.Metre.UNKNOWN
+    def detect_metre(self, data: MetreDetectorData) -> MetreEnum:
+        return MetreEnum.UNKNOWN

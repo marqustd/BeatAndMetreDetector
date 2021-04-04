@@ -1,6 +1,6 @@
 from enum import Enum, auto
 
-class Metre(Enum):
+class MetreEnum(Enum):
     UNKNOWN = auto()
     METRE12 = auto()
     METRE22 = auto()
