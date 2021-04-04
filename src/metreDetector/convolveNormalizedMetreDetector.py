@@ -2,24 +2,20 @@ import scipy.signal
 import numpy as np
 import plots
 import settings
-from metre.baseMetreDetector import BaseMetreDetector
-from metre.metreDetectorData import MetreDetectorData
-from metre.metreEnum import MetreEnum
+from tempoMetreDetector.metreDetector.metreEnum import MetreEnum
+from tempoMetreDetector.metreDetector.baseMetreDetector import BaseMetreDetector
+from tempoMetreDetector.metreDetector.metreDetectorData import MetreDetectorData
 
 
-class CorrelateNormalizedMetreDetector(BaseMetreDetector.BaseMetreDetector):
+class ConvolveNormalizedMetreDetector(BaseMetreDetector.BaseMetreDetector):
     __methods = []
 
     def __str__(self):
-        return "CorrelateNormalizedMetreDetector"
+        return "ConvolveNormalizedMetreDetector"
 
     def detect_metre(self, data: MetreDetectorData) -> MetreEnum:
         n = int(data.npulses * data.maxFreq * (60 / data.tempo))
         nbands = len(data.bandlimits)
-
-        for band in range(0, nbands):
-            plots.draw_plot(
-                settings.drawPlots, data.signal[band], f"Band: {band}", "Sample/Time", "Amplitude")
 
         self.__methods.append(self.__five_forth)
         self.__methods.append(self.__four_forth)
@@ -43,7 +39,7 @@ class CorrelateNormalizedMetreDetector(BaseMetreDetector.BaseMetreDetector):
             e = 0
 
             for band in range(0, nbands):
-                filt = scipy.correlate(data.signal[band], metres[metrum])
+                filt = scipy.convolve(data.signal[band], metres[metrum])
                 f_filt = abs(np.fft.fft(filt))
                 plots.draw_plot(settings.drawMetreFftPlots,
                                 f_filt, metrum, "Sample/Time", "Amplitude")

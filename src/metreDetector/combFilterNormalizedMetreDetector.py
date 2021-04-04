@@ -1,9 +1,9 @@
-from metre.baseMetreDetector import BaseMetreDetector
-from metre.metreDetectorData import MetreDetectorData
-from metre.metreEnum import MetreEnum
 import numpy as np
 import plots
 import settings
+from tempoMetreDetector.metreDetector.metreEnum import MetreEnum
+from tempoMetreDetector.metreDetector.baseMetreDetector import BaseMetreDetector
+from tempoMetreDetector.metreDetector.metreDetectorData import MetreDetectorData
 
 
 class CombFilterNormalizedMetreDetector(BaseMetreDetector):

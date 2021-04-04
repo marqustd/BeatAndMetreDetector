@@ -1,6 +1,6 @@
-from metre.metreEnum import MetreEnum
-from metre.metreDetectorData import MetreDetectorData
-from metre.baseMetreDetector import BaseMetreDetector
+from tempoMetreDetector.metreDetector.metreEnum import MetreEnum
+from tempoMetreDetector.metreDetector.baseMetreDetector import BaseMetreDetector
+from tempoMetreDetector.metreDetector.metreDetectorData import MetreDetectorData
 import numpy as np
 import plots
 import settings
