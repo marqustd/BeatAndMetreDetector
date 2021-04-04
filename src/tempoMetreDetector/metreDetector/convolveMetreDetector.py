@@ -1,7 +1,6 @@
 import numpy as np
 import plots
 import scipy.signal
-import settings
 from tempoMetreDetector.metreDetector.baseMetreDetector import \
     BaseMetreDetector
 from tempoMetreDetector.metreDetector.metreDetectorData import \
@@ -44,8 +43,8 @@ class ConvolveMetreDetector(BaseMetreDetector):
             for band in range(0, nbands):
                 filt = scipy.convolve(data.signal[band], metres[metrum])
                 f_filt = abs(np.fft.fft(filt))
-                plots.draw_plot(settings.drawMetreFftPlots,
-                                f_filt, metrum, "Sample/Time", "Amplitude")
+                plots.draw_plot(
+                    f_filt, metrum, "Sample/Time", "Amplitude")
                 x = abs(f_filt) ** 2
                 e = e + sum(x)
 
@@ -63,7 +62,7 @@ class ConvolveMetreDetector(BaseMetreDetector):
         fil[int(1 * nstep)] = 1 * value
         fil[int(3 * nstep)] = 1 * value
 
-        plots.draw_plot(settings.drawMetreFilterPlots, fil,
+        plots.draw_plot(fil,
                         "4\\4", "Sample/Time", "Amplitude")
         return "4\\4", fil
 
@@ -75,7 +74,7 @@ class ConvolveMetreDetector(BaseMetreDetector):
         fil[int(2 * nstep)] = 1 * value
         fil[int(5 * nstep)] = 1 * value
 
-        plots.draw_plot(settings.drawMetreFilterPlots, fil,
+        plots.draw_plot(fil,
                         "3\\4", "Sample/Time", "Amplitude")
         return "3\\4", fil
 
@@ -88,7 +87,7 @@ class ConvolveMetreDetector(BaseMetreDetector):
         fil[int(3 * nstep)] = 1 * value
         fil[int(4 * nstep)] = 1 * value
 
-        plots.draw_plot(settings.drawMetreFilterPlots, fil,
+        plots.draw_plot(fil,
                         "5\\4", "Sample/Time", "Amplitude")
         return "5\\4", fil
 
@@ -100,6 +99,6 @@ class ConvolveMetreDetector(BaseMetreDetector):
         fil[int(0 * nstep)] = 1 * value
         fil[int(3 * nstep)] = 1 * value
 
-        plots.draw_plot(settings.drawMetreFilterPlots, fil,
+        plots.draw_plot(fil,
                         "6\\8", "Sample/Time", "Amplitude")
         return "6\\8", fil

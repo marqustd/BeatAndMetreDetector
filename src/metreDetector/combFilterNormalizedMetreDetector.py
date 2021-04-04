@@ -73,14 +73,14 @@ class CombFilterNormalizedMetreDetector(BaseMetreDetector):
         plots.draw_plot(settings.drawMetreFilterPlots, fil,
                         "4\\4 filter", "Sample/Time", "Amplitude")
         dft = np.fft.fft(fil)
-        plots.draw_comb_filter_fft_plot(
+        plots.drawCombFilterFftPlot(
             settings.drawMetreFftPlots, dft, f"Metre 4\\4 filter dft", sampling_frequency)
         energy = sum(abs(dft) ** 2)
         print("4\\4 filter energy: ", energy)
         dft = dft / energy
         energy = sum(abs(dft) ** 2)
         print("4\\4 filter energy normalized: ", energy)
-        plots.draw_comb_filter_fft_plot(settings.drawMetreFftPlots, dft, f"Metre 4\\4 filter normalized dft",
+        plots.drawCombFilterFftPlot(settings.drawMetreFftPlots, dft, f"Metre 4\\4 filter normalized dft",
                                         sampling_frequency)
         return "4\\4", dft
 
@@ -106,14 +106,14 @@ class CombFilterNormalizedMetreDetector(BaseMetreDetector):
         plots.draw_plot(settings.drawMetreFilterPlots, fil,
                         "3\\4", "Sample/Time", "Amplitude")
         dft = np.fft.fft(fil)
-        plots.draw_comb_filter_fft_plot(
+        plots.drawCombFilterFftPlot(
             settings.drawMetreFftPlots, dft, f"Metre 3\\4 filter dft", sampling_frequency)
         energy = sum(abs(dft) ** 2)
         print("3\\4 filter energy: ", energy)
         dft = dft / energy
         energy = sum(abs(dft) ** 2)
         print("3\\4 filter energy normalized: ", energy)
-        plots.draw_comb_filter_fft_plot(settings.drawMetreFftPlots, dft, f"Metre 3\\4 filter normalized dft",
+        plots.drawCombFilterFftPlot(settings.drawMetreFftPlots, dft, f"Metre 3\\4 filter normalized dft",
                                         sampling_frequency)
         return "3\\4", dft
 
@@ -144,14 +144,14 @@ class CombFilterNormalizedMetreDetector(BaseMetreDetector):
         plots.draw_plot(settings.drawMetreFilterPlots, fil,
                         "5\\4", "Sample/Time", "Amplitude")
         dft = np.fft.fft(fil)
-        plots.draw_comb_filter_fft_plot(
+        plots.drawCombFilterFftPlot(
             settings.drawMetreFftPlots, dft, f"Metre 5\\4 filter dft", sampling_frequency)
         energy = sum(abs(dft) ** 2)
         print("5\\4 filter energy: ", energy)
         dft = dft / energy
         energy = sum(abs(dft) ** 2)
         print("5\\4 filter energy normalized: ", energy)
-        plots.draw_comb_filter_fft_plot(settings.drawMetreFftPlots, dft, f"Metre 5\\4 filter normalized dft",
+        plots.drawCombFilterFftPlot(settings.drawMetreFftPlots, dft, f"Metre 5\\4 filter normalized dft",
                                         sampling_frequency)
         return "5\\4", dft
 
@@ -184,13 +184,13 @@ class CombFilterNormalizedMetreDetector(BaseMetreDetector):
         plots.draw_plot(settings.drawMetreFilterPlots, fil,
                         "6\\8", "Sample/Time", "Amplitude")
         dft = np.fft.fft(fil)
-        plots.draw_comb_filter_fft_plot(
+        plots.drawCombFilterFftPlot(
             settings.drawMetreFftPlots, dft, f"Metre 6\\8 filter dft", sampling_frequency)
         energy = sum(abs(dft) ** 2)
         print("6\\8 filter energy: ", energy)
         dft = dft / energy
         energy = sum(abs(dft) ** 2)
         print("6\\8 filter energy normalized: ", energy)
-        plots.draw_comb_filter_fft_plot(settings.drawMetreFftPlots, dft, f"Metre 6\\8 filter normalized dft",
+        plots.drawCombFilterFftPlot(settings.drawMetreFftPlots, dft, f"Metre 6\\8 filter normalized dft",
                                         sampling_frequency)
         return "6\\8", dft

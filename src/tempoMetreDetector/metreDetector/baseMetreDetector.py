@@ -1,5 +1,6 @@
-from metre.metreEnum import MetreEnum
-from metre.metreDetectorData import MetreDetectorData
+from tempoMetreDetector.metreDetector.metreDetectorData import MetreDetectorData
+from tempoMetreDetector.metreDetector.metreEnum import MetreEnum
+
 
 class BaseMetreDetector:
     def __str__(self):
