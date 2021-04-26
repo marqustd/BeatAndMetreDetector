@@ -30,11 +30,11 @@ class CombFilterTempoDetector(BaseTempoDetector):
             for a in range(0, data.combFilterPulses):
                 fil[a * int(filter_step) + 1] = 1
 
-            plots.drawPlot(fil,
-                            f"Sygnał filtru grzebieniowego  tempa {bpm}", "Próbki", "Amplituda")
+            # plots.drawPlot(fil,
+            #                 f"Sygnał filtru grzebieniowego  tempa {bpm}", "Próbki", "Amplituda")
             dftfil = np.fft.fft(fil)
-            plots.drawCombFilterFftPlot(dftfil, f"Widmo sygnału filtra tempa {bpm}",
-                                            data.samplingFrequency)
+            # plots.drawCombFilterFftPlot(dftfil, f"Widmo sygnału filtra tempa {bpm}",
+            #                                 data.samplingFrequency)
 
             for band in range(0, bands_amount):
                 x = (abs(dftfil * dft[band])) ** 2

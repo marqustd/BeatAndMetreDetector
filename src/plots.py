@@ -1,7 +1,9 @@
 from typing import Dict
-from matplotlib import pyplot as plt
-import settings
+
+import matplotlib.pyplot as plt
 import numpy as np
+
+import settings
 
 
 def preparePlotDictionary(minBpm, maxBpm) -> Dict[int, int]:
@@ -51,3 +53,9 @@ def drawCombFilterFftPlot(yData, plotTitle, samplingFrequency: int) -> None:
         plt.ylabel("|H(f)|")
         plt.xlim(0, 10)
         plt.show()
+
+
+def drawSpectrogram(signal, samplingFrequency: int):
+    plt.specgram(signal, Fs=samplingFrequency, NFFT=5000, noverlap=400, cmap='jet_r')
+    plt.colorbar()
+    plt.show()

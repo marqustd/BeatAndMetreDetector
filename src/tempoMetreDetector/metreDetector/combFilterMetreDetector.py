@@ -66,7 +66,7 @@ class CombFilterMetreDetector(BaseMetreDetector):
             index += nstep
             bit += 1
 
-        plots.draw_plot(
+        plots.drawPlot(
             fil, "Sygnał filtra metrum 4\\4")
         dft = np.fft.fft(fil)
         plots.drawCombFilterFftPlot(
@@ -87,7 +87,7 @@ class CombFilterMetreDetector(BaseMetreDetector):
             index += nstep
             bit += 1
 
-        plots.draw_plot(
+        plots.drawPlot(
             fil, "Sygnał filtra metrum  3\\4")
         dft = np.fft.fft(fil)
         plots.drawCombFilterFftPlot(
@@ -111,7 +111,7 @@ class CombFilterMetreDetector(BaseMetreDetector):
             if bit > 5:
                 bit = 1
 
-        plots.draw_plot(
+        plots.drawPlot(
             fil, "Sygnał filtra metrum 5\\4")
         dft = np.fft.fft(fil)
         plots.drawCombFilterFftPlot(
@@ -131,7 +131,7 @@ class CombFilterMetreDetector(BaseMetreDetector):
             index += nstep
             bit += 1
 
-        plots.draw_plot(
+        plots.drawPlot(
             fil, "Sygnał filtra metrum  6\\8")
         dft = np.fft.fft(fil)
         plots.drawCombFilterFftPlot(

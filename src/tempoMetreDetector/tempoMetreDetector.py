@@ -1,16 +1,19 @@
 import time
+from typing import Tuple
 
 import numpy as np
+import plots
 import scipy.signal
 import settings
 from songsReader import songReader
 from songsReader.song import Song
-import plots
+import librosa
 
 from tempoMetreDetector.metreDetector.baseMetreDetector import \
     BaseMetreDetector
 from tempoMetreDetector.metreDetector.metreDetectorData import \
     MetreDetectorData
+from tempoMetreDetector.metreDetector.metreEnum import MetreEnum
 from tempoMetreDetector.tempoDetector.baseTempoDetector import \
     BaseTempoDetector
 from tempoMetreDetector.tempoDetector.tempoDetectorData import \
@@ -25,7 +28,7 @@ class TempoMetreDetector:
         self.tempoDetector = tempoDetector
         self.metreDetector = metreDetector
 
-    def detect_tempo_metre(self, song: Song):
+    def detect_tempo_metre(self, song: Song) -> Tuple[int, MetreEnum, float]:
         print(f'Detecting tempo and metre for song {song.name}...')
         startTime = time.time()
         signal, samplingFrequency = songReader.read_song(song.filepath)
@@ -33,9 +36,9 @@ class TempoMetreDetector:
 
         sample_length = settings.combFilterPulses * samplingFrequency
         seconds = sample_length * 4
-        plots.drawPlot(signal,
-                                 f"Oryginalny sygnał piosenki")
+        plots.drawPlot(signal, f"Oryginalny sygnał piosenki")
         song_length = signal.size
+        plots.drawSpectrogram(signal, samplingFrequency)
 
         start = int(np.floor(song_length / 2 - seconds / 2))
         stop = int(np.floor(song_length / 2 + seconds / 2))
@@ -45,13 +48,15 @@ class TempoMetreDetector:
             stop = song_length
 
         sample = signal[start:stop]
-        plots.drawPlot(sample,
-                                 f"Sygnał fragmenu piosenki")
+        melspectrogram = librosa.feature.melspectrogram(sample, sr=samplingFrequency)
+        feature = librosa.feature.mfcc(sample, sr=samplingFrequency)
+        plots.drawSpectrogram(melspectrogram, samplingFrequency)
+        plots.drawPlot(sample, f"Sygnał fragmenu piosenki")
 
         centred = self.__center_sample_to_beat(sample, sample_length)
-        plots.drawPlot(centred,
-                                 f"Wyrównany fragment piosenki")
+        plots.drawPlot(centred, f"Wyrównany fragment piosenki")
 
+        plots.drawSpectrogram(centred, samplingFrequency)
         if settings.resampleSignal:
             centred = scipy.signal.resample(centred, int(
                 len(centred) / settings.resampleRatio))
@@ -117,8 +122,8 @@ class TempoMetreDetector:
 
         totalTime = time.time() - startTime
 
-        plots.drawPlot(settings.drawSongBpmEnergyPlot, list(plotDictionary.keys()), f"Rozkład energii iloczynu widma sygnału z filtrem\n o określonej częstotliwości impulsów w piosence", "BPM",
-                                 "Energy", list(plotDictionary.values()))
+        plots.drawPlot(list(plotDictionary.keys()), f"Rozkład energii iloczynu widma sygnału z filtrem\n o określonej częstotliwości impulsów w piosence", "BPM",
+                       "Energy", list(plotDictionary.values()))
         return songTempo, metre, totalTime
 
     def __center_sample_to_beat(self, signal, required_length):
