@@ -27,13 +27,21 @@ frequencies, times, spectrogram = signal.spectrogram(sample, samplingFrequency)
 beatDurationSec = 60 / songTempo
 beatDurationSec
 
-# %% Divide to beat bins
-
-indexes = [0]
+# %% Calcute time ranges
+timesIndexes = [0]
 for time in np.arange(beatDurationSec, times[-1], beatDurationSec):
-    indexes.append(findLastIndexOfLessOrEqual(times, time))
-    print(f'time={time} {indexes[-2]}:{indexes[-1]}')
+    timesIndexes.append(findLastIndexOfLessOrEqual(times, time))
+
+# %% Divide to beat bins
+beats = np.ndarray((len(timesIndexes), 129))  # todo
+for i in range(len(timesIndexes)-1):
+    timeRange = (spectrogram[:, timesIndexes[i]:timesIndexes[i+1]])
+    beat = np.ndarray(129)
+    transposed = np.transpose(timeRange)
+    for k in range(len(transposed)):
+        beat[k] = sum(transposed[k])
+    beats[i] = beat
+
 
 # %% Calculate AMS
-
 # %% Calculate BMS
