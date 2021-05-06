@@ -30,16 +30,41 @@ frequencies, times, spectrogram = signal.spectrogram(
 
 # %% Calculate AMS
 binsAmount = len(times)
-ams = np.ndarray((binsAmount, binsAmount))
+asm = np.zeros((binsAmount, binsAmount))
+
+
+def euclidianDistance(oneBin, secondBin):
+    return sum(np.square(oneBin-secondBin))
+
+
+def cosineDistance(oneBin, secondBin):
+    return 1 - np.square(sum(oneBin*secondBin))/(np.sqrt(sum(np.square(oneBin)))*np.sqrt(sum(np.square(secondBin))))
+
+
+def kullbackLeibler(oneBin, secondBin):
+    return sum(oneBin*np.log(oneBin/secondBin))
+
 
 for x in range(binsAmount):
-    thisbin = spectrogram[:, x]
+    thisBin = spectrogram[:, x]
+    # for y in range(x, min(binsAmount, x+20)):
     for y in range(binsAmount):
         comparedBin = spectrogram[:, y]
-        ams[y, x] = sum(thisbin-comparedBin)
+        # asm[x, y] = euclidianDistance(thisBin, comparedBin)
+        # asm[x, y] = cosineDistance(thisBin, comparedBin)
+        asm[x, y] = kullbackLeibler(thisBin, comparedBin)
 
-#%%        
-plt.pcolormesh(ams)
+# %% show asm
+plt.pcolormesh(asm)
 plt.show()
 
 # %% Calculate BMS
+bsm = np.zeros((binsAmount, binsAmount))
+for x in range(1, binsAmount):
+    for y in range(1, binsAmount):
+        bsm[x, y] = asm[x, y] + min(bsm[x-1, y-1], bsm[x-1, y], bsm[x, y-1])
+# %% show bsm
+plt.pcolormesh(bsm)
+plt.show()
+
+# %%
