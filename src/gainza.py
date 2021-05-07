@@ -21,7 +21,10 @@ beatDurationSample = int(beatDurationSec * samplingFrequency)
 beatDurationSec
 
 # %% target spectrogram
-plt.specgram(sample, Fs=samplingFrequency, NFFT=beatDurationSample)
+plt.specgram(sample, Fs=samplingFrequency, NFFT=beatDurationSample, noverlap=0)
+plt.title('Spectrogram')
+plt.ylabel("Frequency [Hz]")
+plt.xlabel("Time [s]")
 plt.show()
 
 # %% Calculate spectrogram
@@ -50,9 +53,9 @@ for x in range(binsAmount):
     # for y in range(x, min(binsAmount, x+10)):
     for y in range(binsAmount):
         comparedBin = spectrogram[:, y]
-        asm[x, y], method = euclidianDistance(thisBin, comparedBin)
+        # asm[x, y], method = euclidianDistance(thisBin, comparedBin)
         # asm[x, y], method = cosineDistance(thisBin, comparedBin)
-        # asm[x, y], method = kullbackLeibler(thisBin, comparedBin)
+        asm[x, y], method = kullbackLeibler(thisBin, comparedBin)
 
 plt.pcolormesh(asm)
 plt.title(f'{method} ASM')
