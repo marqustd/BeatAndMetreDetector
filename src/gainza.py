@@ -1,4 +1,5 @@
 # %% Load music sample
+import pandas
 import numpy as np
 from numpy.core.fromnumeric import argmax
 from scipy import signal
@@ -67,8 +68,9 @@ plt.show()
 bsm = np.zeros((binsAmount, binsAmount))
 for x in range(1, binsAmount):
     for y in range(1, binsAmount):
-        bsm[x, y] = asm[x, y] + np.min([bsm[x-1, y-1], bsm[x-1, y], bsm[x, y-1]])
-        
+        bsm[x, y] = asm[x, y] + \
+            np.min([bsm[x-1, y-1], bsm[x-1, y], bsm[x, y-1]])
+
 plt.pcolormesh(bsm)
 plt.title(f'{method} BSM')
 plt.xlabel('Index of frame x')
@@ -77,21 +79,30 @@ plt.show()
 
 # %%
 diagonolasNumber = len(bsm)
-weight =1.5
+weight = 1
 d = np.zeros(diagonolasNumber)
 for i in range(diagonolasNumber):
-    d[i]= -np.average(np.diag(bsm, i)) + np.max(np.abs(d))*weight
-    
+    d[i] = -np.average(np.diag(bsm, i)) + np.max(np.abs(d))*weight
+
 plt.plot(d)
-plt.xticks(range(0,len(d),4))
+plt.xticks(range(0, len(d), 4))
 plt.show()
 
 # %%
-metreCandidates = 12
-metre = np.argmax(d[1:metreCandidates])+1
-metre
+metreCandidates = 11
+lt = int(len(bsm)/metreCandidates)
+t = np.zeros(metreCandidates)
+p = np.arange(1, lt, 1)
+for c in range(2, metreCandidates, 1):
+    t[c] = np.sum((d[p*c])/(1-((p-1)/lt)))
+
+t[0] = None
+t[1] = None
+plt.plot(t)
+plt.xticks(range(0, len(t), 1))
+plt.show()
 # %%
-it = len(bsm)
-candidates = np.zeros(10)
-for metre in range(2, metreCandidates, 1):
-    candidates[metre] = np.sum()
+import pandas
+data = pandas.read_csv('genres_tempos.mf', sep='\t', names=['path', 'tempo', 'metre'])
+data = data[data.metre.notnull()]
+# %%
