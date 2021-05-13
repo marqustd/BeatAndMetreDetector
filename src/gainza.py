@@ -87,18 +87,31 @@ plt.xlabel('Index of frame x')
 plt.ylabel('Index of frame y')
 plt.show()
 
-# %%
+# %% Calculate first function d
+diagonolasNumber = int(len(bsm)/2)
 diagonolasNumber = len(bsm)
-weight = 1
 d = np.zeros(diagonolasNumber)
 for i in range(diagonolasNumber):
-    d[i] = -np.average(np.diag(bsm, i)) + np.max(np.abs(d))*weight
+    d[i] = np.average(np.diag(bsm, i))
 
+plt.title('First function d')
+plt.xlabel("BSM Diagonal")
 plt.plot(d)
 plt.xticks(range(0, len(d), 4))
 plt.show()
 
-# %%
+# %% Calculate second function d
+weight = 1
+for i in range(diagonolasNumber):
+    d[i] = -d[i] + np.max(np.abs(d))*weight
+
+plt.title('Second Function d')
+plt.xlabel("BSM Diagonal")
+plt.plot(d)
+plt.xticks(range(0, len(d), 4))
+plt.show()
+
+# %% Calculate Tc index
 metreCandidates = 11
 lt = int(len(bsm)/metreCandidates)
 t = np.zeros(metreCandidates)
@@ -109,6 +122,9 @@ for c in range(2, metreCandidates, 1):
 t[0] = None
 t[1] = None
 plt.plot(t)
+plt.xlabel('Metre candidate')
+plt.ylabel('Tc index')
+plt.title('Metre prediction')
 plt.xticks(range(0, len(t), 1))
 plt.show()
 
