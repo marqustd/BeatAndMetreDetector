@@ -1,4 +1,5 @@
-# %% Load music sample
+# %% Imports
+import os
 import pandas
 import numpy as np
 from numpy.core.fromnumeric import argmax
@@ -6,14 +7,23 @@ from scipy import signal
 import songsReader.songReader
 import matplotlib.pyplot as plt
 
-song = "song92.wav"
-sample, samplingFrequency = songsReader.songReader.read_song(song)
+# %% Import songs list
+data = pandas.read_csv('../dataset/genres/genres_tempos.mf', sep='\t',
+                       names=['path', 'tempo', 'metre'])
+data = data[data.metre.notnull()]
+
+
+# %% Load song sample
+song = data.iloc[34]
+path = song.path
+path = os.path.relpath('../dataset/genres'+path)
+sample, samplingFrequency = songsReader.songReader.read_song(path)
 plt.plot(sample)
 plt.show()
-sample
+path
 
 # %% Load music tempo
-songTempo = 92
+songTempo = song.tempo
 songTempo
 
 # %% Calculate beat duration
@@ -101,8 +111,5 @@ t[1] = None
 plt.plot(t)
 plt.xticks(range(0, len(t), 1))
 plt.show()
-# %%
-import pandas
-data = pandas.read_csv('genres_tempos.mf', sep='\t', names=['path', 'tempo', 'metre'])
-data = data[data.metre.notnull()]
+
 # %%
