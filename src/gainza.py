@@ -42,6 +42,12 @@ plt.show()
 frequencies, times, spectrogram = signal.spectrogram(
     sample, samplingFrequency, nperseg=beatDurationSample, noverlap=0)
 
+# %% down spectrogram to 5000 Hz
+frequenciesLessThan5000 = np.argwhere(frequencies < 5000)
+lastIndex = frequenciesLessThan5000[-1, 0]
+frequencies = frequencies[0:lastIndex]
+spectrogram = spectrogram[0:lastIndex, :]
+
 # %% Calculate AMS
 binsAmount = len(times)
 asm = np.zeros((binsAmount, binsAmount))
@@ -101,9 +107,8 @@ plt.xticks(range(0, len(d), 4))
 plt.show()
 
 # %% Calculate second function d
-weight = 1
 for i in range(diagonolasNumber):
-    d[i] = -d[i] + np.max(np.abs(d))*weight
+    d[i] = -d[i] + np.max(np.abs(d))
 
 plt.title('Second Function d')
 plt.xlabel("BSM Diagonal")
@@ -112,12 +117,19 @@ plt.xticks(range(0, len(d), 4))
 plt.show()
 
 # %% Calculate Tc index
+# metreCandidates = 11
+# lt = int(len(bsm)/metreCandidates)
+# t = np.zeros(metreCandidates)
+# p = np.arange(1, lt, 1)
+# for c in range(2, metreCandidates, 1):
+#     t[c] = np.sum((d[p*c])/(1-((p-1)/lt)))
+
 metreCandidates = 11
 lt = int(len(bsm)/metreCandidates)
 t = np.zeros(metreCandidates)
-p = np.arange(1, lt, 1)
 for c in range(2, metreCandidates, 1):
-    t[c] = np.sum((d[p*c])/(1-((p-1)/lt)))
+    for p in range(1, lt, 1):
+        t[c] += ((d[p*c])/(1-((p-1)/lt)))
 
 t[0] = None
 t[1] = None
