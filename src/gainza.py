@@ -6,6 +6,8 @@ from numpy.core.fromnumeric import argmax
 from scipy import signal
 import songsReader.songReader
 import matplotlib.pyplot as plt
+import librosa
+import python_speech_features
 
 # %% Import songs list
 data = pandas.read_csv('../dataset/genres/genres_tempos.mf', sep='\t',
@@ -37,6 +39,15 @@ plt.title('Spectrogram')
 plt.ylabel("Frequency [Hz]")
 plt.xlabel("Time [s]")
 plt.show()
+
+# %% mfcc
+mfcc = python_speech_features.mfcc(sample, samplerate=samplingFrequency, nfft=beatDurationSample, winstep=beatDurationSec)
+plt.pcolormesh(np.transpose(mfcc))
+plt.title(f'{method} ASM')
+plt.xlabel('Index of frame x')
+plt.ylabel('Index of frame y')
+plt.show()
+
 
 # %% Calculate spectrogram
 frequencies, times, spectrogram = signal.spectrogram(
