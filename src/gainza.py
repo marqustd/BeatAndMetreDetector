@@ -6,6 +6,7 @@ from numpy.core.fromnumeric import argmax
 from scipy import signal
 import songsReader.songReader
 import matplotlib.pyplot as plt
+import gainzaFunction
 
 # %% Import songs list
 data = pandas.read_csv('../dataset/genres/genres_tempos.mf', sep='\t',
@@ -13,25 +14,57 @@ data = pandas.read_csv('../dataset/genres/genres_tempos.mf', sep='\t',
 data = data[data.metre.notnull()]
 
 
+# %% Check for all
+good = 0
+bad = 0
+allSongs = len(data)
+for song in data.iloc:
+    path = song.path
+    path = os.path.relpath('../dataset/genres'+path)
+    resultMetre = gainzaFunction.gainzaFunction(path, song.tempo, 4)
+
+    expectedMetre = 0
+
+    if(song.metre == '4/4'):
+        expectedMetre = 4
+    elif (song.metre == '8/8'):
+        expectedMetre = 8
+    elif (song.metre == '5/4'):
+        expectedMetre = 5
+
+    if resultMetre == expectedMetre or (expectedMetre == 4 and (resultMetre == 2 or resultMetre == 8)):
+        print(f'Good detection! {expectedMetre}')
+        good += 1
+    else:
+        print(f'Exptected {expectedMetre} but detect {resultMetre}')
+        bad += 1
+
+print(f'All: {allSongs}')
+print(f'Good: {good}')
+print(f'Bad: {bad}')
+print(f'Accuracy: {good/allSongs}')
+
+
 # %% Load song sample
-song = data.iloc[42]
+song = data.iloc[34]
 path = song.path
 path = os.path.relpath('../dataset/genres'+path)
 sample, samplingFrequency = songsReader.songReader.read_song(path)
 
 if(len(sample)/samplingFrequency > 30):
     durationLimit = 30*samplingFrequency
-    sample = sample[0:durationLimit]    
+    sample = sample[0:durationLimit]
 
 e_time = np.arange(len(sample))/samplingFrequency
 
 
-plt.plot(e_time,sample)
+plt.plot(e_time, sample)
 plt.title('Audio signal')
 plt.ylabel("Waveform")
 plt.xlabel("Time [s]")
 plt.show()
 path
+
 
 # %% Load music tempo
 songTempo = song.tempo
@@ -43,7 +76,8 @@ beatDurationSample = int(beatDurationSec * samplingFrequency)
 beatDurationSec
 
 # %% target spectrogram
-plt.specgram(sample, Fs=samplingFrequency, NFFT=int(beatDurationSample/2), noverlap=0)
+plt.specgram(sample, Fs=samplingFrequency,
+             NFFT=int(beatDurationSample/2), noverlap=0)
 plt.title('Spectrogram')
 plt.ylabel("Frequency [Hz]")
 plt.xlabel("Time [s]")
