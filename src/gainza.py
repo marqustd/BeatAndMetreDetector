@@ -6,8 +6,6 @@ from numpy.core.fromnumeric import argmax
 from scipy import signal
 import songsReader.songReader
 import matplotlib.pyplot as plt
-import librosa
-import python_speech_features
 
 # %% Import songs list
 data = pandas.read_csv('../dataset/genres/genres_tempos.mf', sep='\t',
@@ -16,11 +14,22 @@ data = data[data.metre.notnull()]
 
 
 # %% Load song sample
-song = data.iloc[34]
+song = data.iloc[42]
 path = song.path
 path = os.path.relpath('../dataset/genres'+path)
 sample, samplingFrequency = songsReader.songReader.read_song(path)
-plt.plot(sample)
+
+if(len(sample)/samplingFrequency > 30):
+    durationLimit = 30*samplingFrequency
+    sample = sample[0:durationLimit]    
+
+e_time = np.arange(len(sample))/samplingFrequency
+
+
+plt.plot(e_time,sample)
+plt.title('Audio signal')
+plt.ylabel("Waveform")
+plt.xlabel("Time [s]")
 plt.show()
 path
 
@@ -34,30 +43,33 @@ beatDurationSample = int(beatDurationSec * samplingFrequency)
 beatDurationSec
 
 # %% target spectrogram
-plt.specgram(sample, Fs=samplingFrequency, NFFT=beatDurationSample, noverlap=0)
+plt.specgram(sample, Fs=samplingFrequency, NFFT=int(beatDurationSample/2), noverlap=0)
 plt.title('Spectrogram')
 plt.ylabel("Frequency [Hz]")
 plt.xlabel("Time [s]")
 plt.show()
 
-# %% mfcc
-mfcc = python_speech_features.mfcc(sample, samplerate=samplingFrequency, nfft=beatDurationSample, winstep=beatDurationSec)
-plt.pcolormesh(np.transpose(mfcc))
-plt.title(f'{method} ASM')
-plt.xlabel('Index of frame x')
-plt.ylabel('Index of frame y')
-plt.show()
+# # %% mfcc librosa
+# audio, samplingFrequency = librosa.load(path=path)
+# librosaMfcc = librosa.feature.mfcc(y=audio, sr=samplingFrequency, dct_type=3)
 
+# img = librosa.display.specshow(librosaMfcc, x_axis='time')
+# plt.colorbar(img)
+# plt.title('MFCC')
+# plt.xlabel('Beat')
+# plt.ylabel('Feature')
+# plt.show()
 
 # %% Calculate spectrogram
 frequencies, times, spectrogram = signal.spectrogram(
-    sample, samplingFrequency, nperseg=beatDurationSample, noverlap=0)
+    sample, samplingFrequency, nperseg=int(beatDurationSample), noverlap=0,)
 
 # %% down spectrogram to 5000 Hz
-frequenciesLessThan5000 = np.argwhere(frequencies < 5000)
-lastIndex = frequenciesLessThan5000[-1, 0]
+frequenciesLessThan = np.argwhere(frequencies < 8000)
+lastIndex = frequenciesLessThan[-1, 0]
 frequencies = frequencies[0:lastIndex]
 spectrogram = spectrogram[0:lastIndex, :]
+
 
 # %% Calculate AMS
 binsAmount = len(times)
@@ -105,11 +117,11 @@ plt.ylabel('Index of frame y')
 plt.show()
 
 # %% Calculate first function d
-diagonolasNumber = int(len(bsm)/2)
-diagonolasNumber = len(bsm)
+diagonolasNumber = int(len(asm)/2)
+diagonolasNumber = len(asm)
 d = np.zeros(diagonolasNumber)
 for i in range(diagonolasNumber):
-    d[i] = np.average(np.diag(bsm, i))
+    d[i] = np.average(np.diag(asm, i))
 
 plt.title('First function d')
 plt.xlabel("BSM Diagonal")
