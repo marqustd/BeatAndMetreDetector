@@ -7,6 +7,8 @@ from scipy import signal
 import songsReader.songReader
 import matplotlib.pyplot as plt
 import gainzaFunction
+import librosa
+import audio2numpy
 
 # %% Import songs list
 data = pandas.read_csv('../dataset/genres/genres_tempos.mf', sep='\t',
@@ -14,46 +16,48 @@ data = pandas.read_csv('../dataset/genres/genres_tempos.mf', sep='\t',
 data = data[data.metre.notnull()]
 
 
-# %% Check for all
-good = 0
-bad = 0
-allSongs = len(data)
-for song in data.iloc:
-    path = song.path
-    path = os.path.relpath('../dataset/genres'+path)
-    resultMetre = gainzaFunction.gainzaFunction(path, song.tempo, 4)
+# # %% Check for all
+# good = 0
+# bad = 0
+# allSongs = len(data)
+# for song in data.iloc:
+#     path = song.path
+#     path = os.path.relpath('../dataset/genres'+path)
+#     resultMetre = gainzaFunction.gainzaFunction(path, song.tempo, 4)
 
-    expectedMetre = 0
+#     expectedMetre = 0
 
-    if(song.metre == '4/4'):
-        expectedMetre = 4
-    elif (song.metre == '8/8'):
-        expectedMetre = 8
-    elif (song.metre == '5/4'):
-        expectedMetre = 5
+#     if(song.metre == '4/4'):
+#         expectedMetre = 4
+#     elif (song.metre == '8/8'):
+#         expectedMetre = 8
+#     elif (song.metre == '5/4'):
+#         expectedMetre = 5
 
-    if resultMetre == expectedMetre or (expectedMetre == 4 and (resultMetre == 2 or resultMetre == 8)):
-        print(f'Good detection! {expectedMetre}')
-        good += 1
-    else:
-        print(f'Exptected {expectedMetre} but detect {resultMetre}')
-        bad += 1
+#     if resultMetre == expectedMetre or (expectedMetre == 4 and (resultMetre == 2 or resultMetre == 8)):
+#         print(f'Good detection! {expectedMetre}')
+#         good += 1
+#     else:
+#         print(f'Exptected {expectedMetre} but detect {resultMetre}')
+#         bad += 1
 
-print(f'All: {allSongs}')
-print(f'Good: {good}')
-print(f'Bad: {bad}')
-print(f'Accuracy: {good/allSongs}')
+# print(f'All: {allSongs}')
+# print(f'Good: {good}')
+# print(f'Bad: {bad}')
+# print(f'Accuracy: {good/allSongs}')
 
 
 # %% Load song sample
-song = data.iloc[34]
+song = data.iloc[57]
 path = song.path
 path = os.path.relpath('../dataset/genres'+path)
-sample, samplingFrequency = songsReader.songReader.read_song(path)
+# sample, samplingFrequency = songsReader.songReader.read_song(path)
+sample, samplingFrequency = audio2numpy.open_audio(path)
+sample = sample.sum(axis=1)/2
 
 if(len(sample)/samplingFrequency > 30):
     durationLimit = 30*samplingFrequency
-    sample = sample[0:durationLimit]
+    sample = sample[70*samplingFrequency:100*samplingFrequency]
 
 e_time = np.arange(len(sample))/samplingFrequency
 
@@ -77,7 +81,7 @@ beatDurationSec
 
 # %% target spectrogram
 plt.specgram(sample, Fs=samplingFrequency,
-             NFFT=int(beatDurationSample/2), noverlap=0)
+             NFFT=int(beatDurationSample), noverlap=0)
 plt.title('Spectrogram')
 plt.ylabel("Frequency [Hz]")
 plt.xlabel("Time [s]")
@@ -98,8 +102,8 @@ plt.show()
 frequencies, times, spectrogram = signal.spectrogram(
     sample, samplingFrequency, nperseg=int(beatDurationSample), noverlap=0,)
 
-# %% down spectrogram to 5000 Hz
-frequenciesLessThan = np.argwhere(frequencies < 8000)
+# %% down spectrogram to 6000 Hz
+frequenciesLessThan = np.argwhere(frequencies < 6000)
 lastIndex = frequenciesLessThan[-1, 0]
 frequencies = frequencies[0:lastIndex]
 spectrogram = spectrogram[0:lastIndex, :]
@@ -157,8 +161,8 @@ d = np.zeros(diagonolasNumber)
 for i in range(diagonolasNumber):
     d[i] = np.average(np.diag(asm, i))
 
-plt.title('First function d')
-plt.xlabel("BSM Diagonal")
+plt.title('Average value')
+plt.xlabel("ASM Diagonal")
 plt.plot(d)
 plt.xticks(range(0, len(d), 4))
 plt.show()
@@ -167,8 +171,8 @@ plt.show()
 for i in range(diagonolasNumber):
     d[i] = -d[i] + np.max(np.abs(d))
 
-plt.title('Second Function d')
-plt.xlabel("BSM Diagonal")
+plt.title('Diagonal function')
+plt.xlabel("ASM Diagonal")
 plt.plot(d)
 plt.xticks(range(0, len(d), 4))
 plt.show()
@@ -181,20 +185,24 @@ plt.show()
 # for c in range(2, metreCandidates, 1):
 #     t[c] = np.sum((d[p*c])/(1-((p-1)/lt)))
 
-metreCandidates = 11
+metreCandidates = 16
 lt = int(len(bsm)/metreCandidates)
 t = np.zeros(metreCandidates)
 for c in range(2, metreCandidates, 1):
     for p in range(1, lt, 1):
         t[c] += ((d[p*c])/(1-((p-1)/lt)))
 
-t[0] = None
-t[1] = None
+t[0] = 0
+t[1] = 0
 plt.plot(t)
 plt.xlabel('Metre candidate')
 plt.ylabel('Tc index')
-plt.title('Metre prediction')
+plt.title(f"Metre prediction for {song.path.split('/')[2]}. Expected: {song.metre}")
 plt.xticks(range(0, len(t), 1))
 plt.show()
+
+# %% detect metre
+metre = np.argmax(t)
+metre
 
 # %%

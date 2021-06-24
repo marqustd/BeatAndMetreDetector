@@ -1,5 +1,6 @@
 appdirs==1.4.4
 astroid==2.5.2
+audio2numpy==0.1.2
 audioread==2.1.9
 autopep8==1.5.6
 backcall==0.2.0
@@ -13,6 +14,7 @@ dnspython==1.16.0
 docopt==0.6.2
 docutils==0.16
 fett==0.3.2
+ffmpeg==1.4
 idna==2.10
 ipykernel==5.5.3
 ipython==7.22.0
