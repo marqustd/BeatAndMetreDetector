@@ -42,6 +42,32 @@ class Tests(unittest.TestCase):
         self.assertEqual(result[1,1], 17)
         self.assertEqual(result[2,2], 54)
         self.assertEqual(result[3,3], 54)
+        
+    def test_median_filter_horizontal(self):
+        spectrogram = np.array([
+            [13, 15, 17, 18],
+            [123, 5466, 1, 51],
+            [456, 12, 54, 54],
+            [1, 235, 54, 34]])
+        result = median_filter(spectrogram, 0, 3)
+
+        self.assertEqual(result[0,0], 14)
+        self.assertEqual(result[1,1], 123)
+        self.assertEqual(result[2,2], 54)
+        self.assertEqual(result[3,3], 44)
+        
+    def test_median_filter_vertical(self):
+        spectrogram = np.array([
+            [13, 15, 17, 18],
+            [123, 5466, 1, 51],
+            [456, 12, 54, 54],
+            [1, 235, 54, 34]])
+        result = median_filter(spectrogram, 3, 0)
+
+        self.assertEqual(result[0,0], 68)
+        self.assertEqual(result[1,1], 15)
+        self.assertEqual(result[2,2], 54)
+        self.assertEqual(result[3,3], 44)
 
 
 if __name__ == '__main__':
