@@ -2,12 +2,15 @@ import numpy as np
 
 
 def median_filter(array, xrange: int, yrange: int):
+    result = np.copy(array)
     for x in range(len(array)):
         for y in range(len(array[0])):
-            median_filter_step(array, x, y, xrange, yrange)
+            result[x,y] = median_filter_step(array, x, y, xrange, yrange)
+            
+    return result
 
 
-def median_filter_step(array, x: int, y: int, xrange: int, yrange: int):
+def median_filter_step(array, x: int, y: int, xrange: int, yrange: int) -> np.number:
     xstep = int((xrange-1)/2)
     ystep = int((yrange-1)/2)
 
@@ -29,7 +32,8 @@ def median_filter_step(array, x: int, y: int, xrange: int, yrange: int):
 
     slice = array[xleft:xright+1, yleft:yright+1]
     median = np.median(slice)
-    array[x, y] = median
+    
+    return median
 
 
 if __name__ == '__main__':
@@ -39,5 +43,5 @@ if __name__ == '__main__':
         [4, 5, 206, 728],
         [7, 8, 9, 1]])
     x = y = 1
-    median_filter(spcetrogram, 3, 3)
-    print(spcetrogram)
+    result = median_filter(spcetrogram, 3, 3)
+    print(result)
