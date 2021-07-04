@@ -1,5 +1,6 @@
 # %% Imports
 import os
+from numpy import lib
 import pandas
 import numpy as np
 from numpy.core.fromnumeric import argmax
@@ -8,7 +9,6 @@ import songsReader.songReader
 import matplotlib.pyplot as plt
 import gainzaFunction
 import librosa
-import audio2numpy
 
 # %% Import songs list
 data = pandas.read_csv('../dataset/genres/genres_tempos.mf', sep='\t',
@@ -48,16 +48,11 @@ data = data[data.metre.notnull()]
 
 
 # %% Load song sample
-song = data.iloc[57]
+song = data.iloc[55]
 path = song.path
 path = os.path.relpath('../dataset/genres'+path)
 # sample, samplingFrequency = songsReader.songReader.read_song(path)
-sample, samplingFrequency = audio2numpy.open_audio(path)
-sample = sample.sum(axis=1)/2
-
-if(len(sample)/samplingFrequency > 30):
-    durationLimit = 30*samplingFrequency
-    sample = sample[70*samplingFrequency:100*samplingFrequency]
+sample, samplingFrequency = songsReader.songReader.read_song_fragment(path, 30)
 
 e_time = np.arange(len(sample))/samplingFrequency
 
@@ -141,18 +136,18 @@ plt.xlabel('Index of frame x')
 plt.ylabel('Index of frame y')
 plt.show()
 
-# %% Calculate BMS
-bsm = np.zeros((binsAmount, binsAmount))
-for x in range(1, binsAmount):
-    for y in range(1, binsAmount):
-        bsm[x, y] = asm[x, y] + \
-            np.min([bsm[x-1, y-1], bsm[x-1, y], bsm[x, y-1]])
+# # %% Calculate BMS
+# bsm = np.zeros((binsAmount, binsAmount))
+# for x in range(1, binsAmount):
+#     for y in range(1, binsAmount):
+#         bsm[x, y] = asm[x, y] + \
+#             np.min([bsm[x-1, y-1], bsm[x-1, y], bsm[x, y-1]])
 
-plt.pcolormesh(bsm)
-plt.title(f'{method} BSM')
-plt.xlabel('Index of frame x')
-plt.ylabel('Index of frame y')
-plt.show()
+# plt.pcolormesh(bsm)
+# plt.title(f'{method} BSM')
+# plt.xlabel('Index of frame x')
+# plt.ylabel('Index of frame y')
+# plt.show()
 
 # %% Calculate first function d
 diagonolasNumber = int(len(asm)/2)
@@ -186,7 +181,7 @@ plt.show()
 #     t[c] = np.sum((d[p*c])/(1-((p-1)/lt)))
 
 metreCandidates = 16
-lt = int(len(bsm)/metreCandidates)
+lt = int(len(asm)/metreCandidates)
 t = np.zeros(metreCandidates)
 for c in range(2, metreCandidates, 1):
     for p in range(1, lt, 1):
@@ -197,7 +192,8 @@ t[1] = 0
 plt.plot(t)
 plt.xlabel('Metre candidate')
 plt.ylabel('Tc index')
-plt.title(f"Metre prediction for {song.path.split('/')[2]}. Expected: {song.metre}")
+plt.title(
+    f"Metre prediction for {song.path.split('/')[2]}. Expected: {song.metre}")
 plt.xticks(range(0, len(t), 1))
 plt.show()
 
