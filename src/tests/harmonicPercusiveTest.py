@@ -1,4 +1,4 @@
-from harmonicPercusive import median_filter
+from harmonicPercusive import median_filter_step
 import unittest
 
 import numpy as np
@@ -10,7 +10,7 @@ class Tests(unittest.TestCase):
             [1, 101, 3],
             [4, 5, 206],
             [7, 8, 9]])
-        median_filter(spectrogram, 1,1,3,3)
+        median_filter_step(spectrogram, 1,1,3,3)
         self.assertEqual(spectrogram[1,1],7)
         
     def test_median_filter_vertical(self):
@@ -18,7 +18,7 @@ class Tests(unittest.TestCase):
         [1, 9, 3],
         [19, 8, 3],
         [7, 206, 1]])
-        median_filter(spectrogram, 1,1,3,0)
+        median_filter_step(spectrogram, 1,1,3,0)
         self.assertEqual(spectrogram[1,1],9)
 
     def test_median_filter_horizontal(self):
@@ -26,7 +26,7 @@ class Tests(unittest.TestCase):
         [1, 101, 3],
         [17, 8, 206],
         [7, 8, 9]])
-        median_filter(spectrogram, 1,1,0,3)
+        median_filter_step(spectrogram, 1,1,0,3)
         self.assertEqual(spectrogram[1,1],17)
 
 
