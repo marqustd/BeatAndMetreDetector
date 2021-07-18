@@ -1,4 +1,5 @@
 # %% Imports
+from harmonicPercusive import median_filter
 import os
 from numpy import lib
 import pandas
@@ -75,7 +76,7 @@ beatDurationSample = int(beatDurationSec * samplingFrequency)
 beatDurationSec
 
 # %% target spectrogram
-plt.specgram(sample, Fs=samplingFrequency,
+spectrogram, frequencies, times, im = plt.specgram(sample, Fs=samplingFrequency,
              NFFT=int(beatDurationSample), noverlap=0)
 plt.title('Spectrogram')
 plt.ylabel("Frequency [Hz]")
@@ -93,16 +94,20 @@ plt.show()
 # plt.ylabel('Feature')
 # plt.show()
 
-# %% Calculate spectrogram
-frequencies, times, spectrogram = signal.spectrogram(
-    sample, samplingFrequency, nperseg=int(beatDurationSample), noverlap=0,)
+# # %% Calculate spectrogram
+# frequencies, times, spectrogram = signal.spectrogram(
+#     sample, samplingFrequency, nperseg=int(beatDurationSample), noverlap=0,)
 
 # %% down spectrogram to 6000 Hz
-frequenciesLessThan = np.argwhere(frequencies < 6000)
+limitFrequency = 6000
+frequenciesLessThan = np.argwhere(frequencies < limitFrequency)
 lastIndex = frequenciesLessThan[-1, 0]
 frequencies = frequencies[0:lastIndex]
 spectrogram = spectrogram[0:lastIndex, :]
 
+# %% calculate harmonic and percusive
+percusive = median_filter(spectrogram, 201, 0)
+plt.pcolormesh(percusive)
 
 # %% Calculate AMS
 binsAmount = len(times)
