@@ -1,4 +1,4 @@
-from tempometredetector.tempodetector import TempoDetectorData
+from .tempo_detector_data import TempoDetectorData
 
 
 class BaseTempoDetector:

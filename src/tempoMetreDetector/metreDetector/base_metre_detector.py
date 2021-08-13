@@ -1,4 +1,5 @@
-from tempometredetector.metredetector import MetreEnum, MetreDetectorData
+from tempometredetector.metredetector.metre_enum import MetreEnum
+from tempometredetector.metredetector.metre_detector_data import MetreDetectorData
 
 
 class BaseMetreDetector:

@@ -1,10 +1,8 @@
 import numpy as np
 import plots
 import scipy.signal
-from tempoMetreDetector.tempoDetector.baseTempoDetector import \
-    BaseTempoDetector
-from tempoMetreDetector.tempoDetector.tempoDetectorData import \
-    TempoDetectorData
+from .base_tempo_detector import BaseTempoDetector
+from .tempo_detector_data import TempoDetectorData
 
 
 class ConvolveTempoDetector(BaseTempoDetector):
@@ -21,8 +19,7 @@ class ConvolveTempoDetector(BaseTempoDetector):
 
             filterLength = 2
             nstep = np.floor(60 / bpm * data.samplingFrequency)
-            percent_done = 100 * (bpm - data.minBpm) / \
-                (data.maxBpm - data.minBpm)
+            percent_done = 100 * (bpm - data.minBpm) / (data.maxBpm - data.minBpm)
             fil = np.zeros(int(filterLength * nstep))
 
             print("%.2f" % percent_done, "%")
@@ -30,18 +27,19 @@ class ConvolveTempoDetector(BaseTempoDetector):
             for a in range(0, filterLength):
                 fil[a * int(nstep)] = 1
 
-            plots.draw_plot(fil,
-                            f"Timecomb bpm: {bpm}", "Sample/Time", "Amplitude")
+            plots.draw_plot(fil, f"Timecomb bpm: {bpm}", "Sample/Time", "Amplitude")
 
             dftfil = np.fft.fft(fil)
 
-            plots.drawCombFilterFftPlot(dftfil, f"Filter DFT {bpm}",
-                                        data.samplingFrequency)
+            plots.drawCombFilterFftPlot(
+                dftfil, f"Filter DFT {bpm}", data.samplingFrequency
+            )
             for band in range(0, nbands - 1):
                 filt = scipy.convolve(data.signal[band], fil)
                 f_filt = abs(np.fft.fft(filt))
                 plots.draw_fft_plot(
-                    f_filt, f"Convolve DFT {bpm}", data.samplingFrequency)
+                    f_filt, f"Convolve DFT {bpm}", data.samplingFrequency
+                )
 
                 x = abs(f_filt) ** 2
                 e = e + sum(x)

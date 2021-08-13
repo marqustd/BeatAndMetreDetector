@@ -1,6 +1,6 @@
+from .median_filter import *
+from .asm_calculator import *
 from songreader.song_reader import read_song_fragment
-from songreader.song import Song
-from spectrogram import asm_calculator, median_filter
 import os
 import pandas
 import numpy as np
@@ -21,19 +21,17 @@ class SpectrogramMetreDetector:
         spectrogram = self.__down_sample_spectrogram(
             spectrogram, frequencies, times, settings.spectrogramLimitFrequency
         )
-        spectrogram = self.__calculate_percusive_component(
-            spectrogram, settings.medianFilterWindowSize
-        )
-        asm = asm_calculator.calculate_asm(
-            spectrogram, frequencies, asm_calculator.euclidian_distance
-        )
+        # spectrogram = self.__calculate_percusive_component(
+        #     spectrogram, settings.medianFilterWindowSize
+        # )
+        asm = calculate_asm(spectrogram, frequencies, euclidian_distance)
         d = self.__calculate_diagonal_function(asm)
         return self.__detect_metre(asm, d)
 
     def read_data(self):
         data = pandas.read_csv(
-            "../dataset/genres/genres_tempos.mf",
-            sep="\t",
+            "../dataset/genres/genres_tempos.csv",
+            sep=",",
             names=["path", "tempo", "metre"],
         )
         data = data[data.metre.notnull()]
@@ -44,8 +42,7 @@ class SpectrogramMetreDetector:
         good = 0
         bad = 0
         all_songs = len(data)
-        for row in data.iloc:
-            song = Song(row)
+        for song in data.iloc:
             path = song.path
             path = os.path.relpath("../dataset/genres" + path)
             resul_metre = self.detect_metre(path, song.tempo, song.metre)

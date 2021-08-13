@@ -1,9 +1,7 @@
 import numpy as np
 import plots
-from tempoMetreDetector.tempoDetector.baseTempoDetector import \
-    BaseTempoDetector
-from tempoMetreDetector.tempoDetector.tempoDetectorData import \
-    TempoDetectorData
+from .base_tempo_detector import BaseTempoDetector
+from .tempo_detector_data import TempoDetectorData
 
 
 class CombFilterTempoDetector(BaseTempoDetector):

@@ -1,11 +1,9 @@
 import numpy as np
 import plots
 import settings
-from tempoMetreDetector.metreDetector.baseMetreDetector import \
-    BaseMetreDetector
-from tempoMetreDetector.metreDetector.metreDetectorData import \
-    MetreDetectorData
-from tempoMetreDetector.metreDetector.metreEnum import MetreEnum
+from tempometredetector.metredetector.metre_enum import MetreEnum
+from tempometredetector.metredetector.metre_detector_data import MetreDetectorData
+from tempometredetector.metredetector.base_metre_detector import BaseMetreDetector
 
 
 class CombFilterNormalizedMetreDetector(BaseMetreDetector):
@@ -29,8 +27,7 @@ class CombFilterNormalizedMetreDetector(BaseMetreDetector):
 
         metres = {}
         for method in self.__methods:
-            metre, metre_dft = method(
-                data.tempo, n, data.maxFreq, data.npulses)
+            metre, metre_dft = method(data.tempo, n, data.maxFreq, data.npulses)
             metres[metre] = metre_dft
 
         maxe = 0
@@ -70,21 +67,36 @@ class CombFilterNormalizedMetreDetector(BaseMetreDetector):
 
         filterSum = sum(abs(fil))
         print("Sum 4\\4 filter: ", filterSum)
-        plots.draw_plot(settings.drawMetreFilterPlots, fil,
-                        "4\\4 filter", "Sample/Time", "Amplitude")
+        plots.draw_plot(
+            settings.drawMetreFilterPlots,
+            fil,
+            "4\\4 filter",
+            "Sample/Time",
+            "Amplitude",
+        )
         dft = np.fft.fft(fil)
         plots.drawCombFilterFftPlot(
-            settings.drawMetreFftPlots, dft, f"Metre 4\\4 filter dft", sampling_frequency)
+            settings.drawMetreFftPlots,
+            dft,
+            f"Metre 4\\4 filter dft",
+            sampling_frequency,
+        )
         energy = sum(abs(dft) ** 2)
         print("4\\4 filter energy: ", energy)
         dft = dft / energy
         energy = sum(abs(dft) ** 2)
         print("4\\4 filter energy normalized: ", energy)
-        plots.drawCombFilterFftPlot(settings.drawMetreFftPlots, dft, f"Metre 4\\4 filter normalized dft",
-                                        sampling_frequency)
+        plots.drawCombFilterFftPlot(
+            settings.drawMetreFftPlots,
+            dft,
+            f"Metre 4\\4 filter normalized dft",
+            sampling_frequency,
+        )
         return "4\\4", dft
 
-    def __three_forth(self, song_tempo: int, n: int, sampling_frequency: int, filter_pulses: int):
+    def __three_forth(
+        self, song_tempo: int, n: int, sampling_frequency: int, filter_pulses: int
+    ):
         fil = np.zeros(n)
         # every third bit
         nstep = np.floor(60 / song_tempo * sampling_frequency)
@@ -103,21 +115,32 @@ class CombFilterNormalizedMetreDetector(BaseMetreDetector):
 
         filterSum = sum(abs(fil))
         print("Sum 3\\4 filter: ", filterSum)
-        plots.draw_plot(settings.drawMetreFilterPlots, fil,
-                        "3\\4", "Sample/Time", "Amplitude")
+        plots.draw_plot(
+            settings.drawMetreFilterPlots, fil, "3\\4", "Sample/Time", "Amplitude"
+        )
         dft = np.fft.fft(fil)
         plots.drawCombFilterFftPlot(
-            settings.drawMetreFftPlots, dft, f"Metre 3\\4 filter dft", sampling_frequency)
+            settings.drawMetreFftPlots,
+            dft,
+            f"Metre 3\\4 filter dft",
+            sampling_frequency,
+        )
         energy = sum(abs(dft) ** 2)
         print("3\\4 filter energy: ", energy)
         dft = dft / energy
         energy = sum(abs(dft) ** 2)
         print("3\\4 filter energy normalized: ", energy)
-        plots.drawCombFilterFftPlot(settings.drawMetreFftPlots, dft, f"Metre 3\\4 filter normalized dft",
-                                        sampling_frequency)
+        plots.drawCombFilterFftPlot(
+            settings.drawMetreFftPlots,
+            dft,
+            f"Metre 3\\4 filter normalized dft",
+            sampling_frequency,
+        )
         return "3\\4", dft
 
-    def __five_forth(self, song_tempo: int, n: int, sampling_frequency: int, filter_pulses: int):
+    def __five_forth(
+        self, song_tempo: int, n: int, sampling_frequency: int, filter_pulses: int
+    ):
         fil = np.zeros(n)
         # every third bit
         nstep = np.floor(60 / song_tempo * sampling_frequency)
@@ -125,8 +148,9 @@ class CombFilterNormalizedMetreDetector(BaseMetreDetector):
         bits = 0
         bit = 1
 
-        pulse = 1 / (np.floor(filter_pulses / 5) * 3 +
-                     self.__rest_pulses(filter_pulses))
+        pulse = 1 / (
+            np.floor(filter_pulses / 5) * 3 + self.__rest_pulses(filter_pulses)
+        )
 
         while index < n and bits < filter_pulses:
             value = 0
@@ -141,18 +165,27 @@ class CombFilterNormalizedMetreDetector(BaseMetreDetector):
 
         filterSum = sum(abs(fil))
         print("Sum 5\\4 filter: ", filterSum)
-        plots.draw_plot(settings.drawMetreFilterPlots, fil,
-                        "5\\4", "Sample/Time", "Amplitude")
+        plots.draw_plot(
+            settings.drawMetreFilterPlots, fil, "5\\4", "Sample/Time", "Amplitude"
+        )
         dft = np.fft.fft(fil)
         plots.drawCombFilterFftPlot(
-            settings.drawMetreFftPlots, dft, f"Metre 5\\4 filter dft", sampling_frequency)
+            settings.drawMetreFftPlots,
+            dft,
+            f"Metre 5\\4 filter dft",
+            sampling_frequency,
+        )
         energy = sum(abs(dft) ** 2)
         print("5\\4 filter energy: ", energy)
         dft = dft / energy
         energy = sum(abs(dft) ** 2)
         print("5\\4 filter energy normalized: ", energy)
-        plots.drawCombFilterFftPlot(settings.drawMetreFftPlots, dft, f"Metre 5\\4 filter normalized dft",
-                                        sampling_frequency)
+        plots.drawCombFilterFftPlot(
+            settings.drawMetreFftPlots,
+            dft,
+            f"Metre 5\\4 filter normalized dft",
+            sampling_frequency,
+        )
         return "5\\4", dft
 
     def __rest_pulses(self, filter_pulses):
@@ -163,7 +196,9 @@ class CombFilterNormalizedMetreDetector(BaseMetreDetector):
             return 1
         return 2
 
-    def __six_eigth(self, song_tempo: int, n: int, sampling_frequency: int, filter_pulses: int):
+    def __six_eigth(
+        self, song_tempo: int, n: int, sampling_frequency: int, filter_pulses: int
+    ):
         fil = np.zeros(n)
         pulses = (filter_pulses * 2 - 1) / 3
         nstep = np.floor((60 / song_tempo * sampling_frequency) / 2)
@@ -171,7 +206,7 @@ class CombFilterNormalizedMetreDetector(BaseMetreDetector):
         bit = 0
         index = 0
 
-        while index < n and bit < (filter_pulses * 2)-1:
+        while index < n and bit < (filter_pulses * 2) - 1:
             value = pulse
             if bit % 3 > 0:
                 value = 0
@@ -181,16 +216,25 @@ class CombFilterNormalizedMetreDetector(BaseMetreDetector):
 
         filterSum = sum(abs(fil))
         print("Sum 6\\8 filter: ", filterSum)
-        plots.draw_plot(settings.drawMetreFilterPlots, fil,
-                        "6\\8", "Sample/Time", "Amplitude")
+        plots.draw_plot(
+            settings.drawMetreFilterPlots, fil, "6\\8", "Sample/Time", "Amplitude"
+        )
         dft = np.fft.fft(fil)
         plots.drawCombFilterFftPlot(
-            settings.drawMetreFftPlots, dft, f"Metre 6\\8 filter dft", sampling_frequency)
+            settings.drawMetreFftPlots,
+            dft,
+            f"Metre 6\\8 filter dft",
+            sampling_frequency,
+        )
         energy = sum(abs(dft) ** 2)
         print("6\\8 filter energy: ", energy)
         dft = dft / energy
         energy = sum(abs(dft) ** 2)
         print("6\\8 filter energy normalized: ", energy)
-        plots.drawCombFilterFftPlot(settings.drawMetreFftPlots, dft, f"Metre 6\\8 filter normalized dft",
-                                        sampling_frequency)
+        plots.drawCombFilterFftPlot(
+            settings.drawMetreFftPlots,
+            dft,
+            f"Metre 6\\8 filter normalized dft",
+            sampling_frequency,
+        )
         return "6\\8", dft

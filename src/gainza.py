@@ -1,19 +1,14 @@
 # %% Imports
-import numpy
-import scipy
-from harmonicPercusive import median_filter
 import os
-from numpy import lib
 import pandas
 import numpy as np
-from numpy.core.fromnumeric import argmax
-from scipy import signal
-import songsReader.songReader
 import matplotlib.pyplot as plt
+from songreader import read_song_fragment
 
 # %% Import songs list
-data = pandas.read_csv('../dataset/genres/genres_tempos.mf', sep='\t',
-                       names=['path', 'tempo', 'metre'])
+data = pandas.read_csv(
+    "../dataset/genres/genres_tempos.csv", sep=",", names=["path", "tempo", "metre"]
+)
 data = data[data.metre.notnull()]
 
 
@@ -51,17 +46,16 @@ data = data[data.metre.notnull()]
 # %% Load song sample
 song = data.iloc[57]
 path = song.path
-path = os.path.relpath('../dataset/genres'+path)
+path = os.path.relpath("../dataset/genres" + path)
 # sample, samplingFrequency = songsReader.songReader.read_song(path)
 fragmentLength = 30
-sample, samplingFrequency = songsReader.songReader.read_song_fragment(
-    path, fragmentLength)
+sample, samplingFrequency = read_song_fragment(path, fragmentLength)
 
-e_time = np.arange(len(sample))/samplingFrequency
+e_time = np.arange(len(sample)) / samplingFrequency
 
 
 plt.plot(e_time, sample)
-plt.title('Audio signal')
+plt.title("Audio signal")
 plt.ylabel("Waveform")
 plt.xlabel("Time [s]")
 plt.show()
@@ -78,9 +72,14 @@ beatDurationSample = int(beatDurationSec * samplingFrequency)
 beatDurationSec
 
 # %% target spectrogram
-spectrogram, frequencies, times, im = plt.specgram(sample, Fs=samplingFrequency,
-                                                   NFFT=int(beatDurationSample/2), noverlap=int(beatDurationSample/32), mode='magnitude')
-plt.title('Spectrogram')
+spectrogram, frequencies, times, im = plt.specgram(
+    sample,
+    Fs=samplingFrequency,
+    NFFT=int(beatDurationSample / 2),
+    noverlap=int(beatDurationSample / 32),
+    mode="magnitude",
+)
+plt.title("Spectrogram")
 plt.ylabel("Frequency [Hz]")
 plt.xlabel("Time [s]")
 plt.show()
@@ -121,15 +120,20 @@ asm = np.zeros((binsAmount, binsAmount))
 
 
 def euclidianDistance(oneBin, secondBin):
-    return np.sum(np.square(oneBin-secondBin)), 'Euclidian Distance'
+    return np.sum(np.square(oneBin - secondBin)), "Euclidian Distance"
 
 
 def cosineDistance(oneBin, secondBin):
-    return 1 - np.sum(np.square(oneBin*secondBin))/(np.sqrt(np.sum(np.square(oneBin)))*np.sqrt(sum(np.square(secondBin)))), 'Cosine Distance'
+    return (
+        1
+        - np.sum(np.square(oneBin * secondBin))
+        / (np.sqrt(np.sum(np.square(oneBin))) * np.sqrt(sum(np.square(secondBin)))),
+        "Cosine Distance",
+    )
 
 
 def kullbackLeibler(oneBin, secondBin):
-    return np.sum(oneBin*np.log(oneBin/secondBin)), 'Kullback-Leiber'
+    return np.sum(oneBin * np.log(oneBin / secondBin)), "Kullback-Leiber"
 
 
 for x in range(binsAmount):
@@ -137,14 +141,15 @@ for x in range(binsAmount):
     # for y in range(x, np.min([binsAmount, x+20])):
     for y in range(binsAmount):
         comparedBin = spectrogram[:, y]
+        haha = euclidianDistance(thisBin, comparedBin)
         asm[x, y], method = euclidianDistance(thisBin, comparedBin)
         # asm[x, y], method = cosineDistance(thisBin, comparedBin)
         # asm[x, y], method = kullbackLeibler(thisBin, comparedBin)
 
 plt.pcolormesh(asm)
-plt.title(f'{method} ASM')
-plt.xlabel('Index of frame x')
-plt.ylabel('Index of frame y')
+plt.title(f"{method} ASM")
+plt.xlabel("Index of frame x")
+plt.ylabel("Index of frame y")
 plt.show()
 
 # # %% Calculate BMS
@@ -161,13 +166,13 @@ plt.show()
 # plt.show()
 
 # %% Calculate first function d
-diagonolasNumber = int(len(asm)/2)
+diagonolasNumber = int(len(asm) / 2)
 diagonolasNumber = len(asm)
 d = np.zeros(diagonolasNumber)
 for i in range(diagonolasNumber):
     d[i] = np.average(np.diag(asm, i))
 
-plt.title('Average value')
+plt.title("Average value")
 plt.xlabel("ASM Diagonal")
 plt.plot(d)
 plt.xticks(range(0, len(d), 4))
@@ -177,7 +182,7 @@ plt.show()
 for i in range(diagonolasNumber):
     d[i] = -d[i] + np.max(np.abs(d))
 
-plt.title('Diagonal function')
+plt.title("Diagonal function")
 plt.xlabel("ASM Diagonal")
 plt.plot(d)
 plt.xticks(range(0, len(d), 4))
@@ -192,19 +197,18 @@ plt.show()
 #     t[c] = np.sum((d[p*c])/(1-((p-1)/lt)))
 
 metreCandidates = 16
-lt = int(len(asm)/metreCandidates)
+lt = int(len(asm) / metreCandidates)
 t = np.zeros(metreCandidates)
 for c in range(2, metreCandidates, 1):
     for p in range(1, lt, 1):
-        t[c] += ((d[p*c])/(1-((p-1)/lt)))
+        t[c] += (d[p * c]) / (1 - ((p - 1) / lt))
 
 t[0] = 0
 t[1] = 0
 plt.plot(t)
-plt.xlabel('Metre candidate')
-plt.ylabel('Tc index')
-plt.title(
-    f"Metre prediction for {song.path.split('/')[2]}. Expected: {song.metre}")
+plt.xlabel("Metre candidate")
+plt.ylabel("Tc index")
+plt.title(f"Metre prediction for {song.path.split('/')[2]}. Expected: {song.metre}")
 plt.xticks(range(0, len(t), 1))
 plt.show()
 

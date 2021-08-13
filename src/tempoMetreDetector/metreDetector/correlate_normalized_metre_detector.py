@@ -1,7 +1,9 @@
 import numpy as np
 import plots
 import scipy.signal
-from metredetector import MetreDetectorData, BaseMetreDetector, MetreEnum
+from tempometredetector.metredetector.metre_enum import MetreEnum
+from tempometredetector.metredetector.metre_detector_data import MetreDetectorData
+from tempometredetector.metredetector.base_metre_detector import BaseMetreDetector
 
 
 class CorrelateNormalizedMetreDetector(BaseMetreDetector):

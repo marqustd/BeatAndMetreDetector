@@ -16,8 +16,8 @@ def read_song(filename: str):
     """
     sample, samplingFrequency = audio2numpy.open_audio(filename)
     shape = sample.shape
-    if(len(shape) > 1):
-        sample = sample.sum(axis=1)/2
+    if len(shape) > 1:
+        sample = sample.sum(axis=1) / 2
 
     return sample, samplingFrequency
 
@@ -31,16 +31,16 @@ def read_song_fragment(filename: str, maxDuration: int):
 
 
 def __trim_sample(maxDuration, sample, samplingFrequency):
-    if(len(sample)/samplingFrequency > maxDuration):
+    if len(sample) / samplingFrequency > maxDuration:
         maximum = np.max(sample)
         threshold = 0.90 * maximum
-        half = np.floor(len(sample)/2)
-        indexes = np.where(sample >= threshold*maximum)[0]
+        half = np.floor(len(sample) / 2)
+        indexes = np.where(sample >= threshold * maximum)[0]
         index = __find_nearest(indexes, half)
-        durationLimit = maxDuration*samplingFrequency
-        trimmedSample = sample[index:index+durationLimit]
+        durationLimit = maxDuration * samplingFrequency
+        trimmedSample = sample[index : index + durationLimit]
 
-        if(len(trimmedSample)/samplingFrequency >= maxDuration):
+        if len(trimmedSample) / samplingFrequency >= maxDuration:
             sample = trimmedSample
     return sample
 
@@ -51,6 +51,6 @@ def __find_nearest(array, value):
     return array[idx]
 
 
-if __name__ == '__main__':
-    path = '..\\dataset\\genres\\own\\OutKast-Hey-Ya.mp3'
+if __name__ == "__main__":
+    path = "..\\dataset\\genres\\own\\OutKast-Hey-Ya.mp3"
     read_song_fragment(path, 30)
