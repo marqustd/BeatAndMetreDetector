@@ -10,4 +10,5 @@
   "python.formatting.provider": "black",
   "editor.formatOnSave": true,
   "python.linting.flake8Enabled": true,
+  "files.eol": "\n"
 }

@@ -1,5 +1,6 @@
 from enum import Enum, auto
 
+
 class MetreEnum(Enum):
     UNKNOWN = auto()
     METRE12 = auto()
@@ -12,4 +13,3 @@ class MetreEnum(Enum):
     METRE68 = auto()
     METRE78 = auto()
     METRE88 = auto()
-

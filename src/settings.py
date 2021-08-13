@@ -15,3 +15,7 @@ drawMetreFftPlots = True
 drawTempoFilterPlots = True
 drawMetreFilterPlots = True
 drawSongBpmEnergyPlot = True
+
+# metre
+spectrogramLimitFrequency = 6000
+medianFilterWindowSize = 201

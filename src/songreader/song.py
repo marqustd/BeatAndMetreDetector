@@ -1,11 +1,11 @@
 class Song:
     name = "name"
-    bpm: int = 0
+    tempo: int = 0
     metre = "metre"
-    filepath = "test"
+    path = "test"
 
-    def __init__(self, filepath, name='name', bpm=0, metre='metre'):
+    def __init__(self, path, name="name", tempo=0, metre="metre"):
         self.name = name
-        self.bpm = bpm
+        self.tempo = tempo
         self.metre = metre
-        self.filepath = filepath
+        self.path = path
