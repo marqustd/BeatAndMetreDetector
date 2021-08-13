@@ -50,6 +50,7 @@ def __find_nearest(array, value):
     idx = (np.abs(array - value)).argmin()
     return array[idx]
 
+
 if __name__ == '__main__':
     path = '..\\dataset\\genres\\own\\OutKast-Hey-Ya.mp3'
     read_song_fragment(path, 30)

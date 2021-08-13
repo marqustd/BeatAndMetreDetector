@@ -1,8 +1,10 @@
-from tempoMetreDetector.metreDetector.metreDetectorData import MetreDetectorData
-from tempoMetreDetector.metreDetector.metreEnum import MetreEnum
+from tempometredetector.metredetector import MetreEnum, MetreDetectorData
 
 
 class BaseMetreDetector:
+    def __repr__(self) -> str:
+        return self.__str__()
+
     def __str__(self):
         return "BaseMetreDetector"
 

@@ -1,9 +1,9 @@
-from songsReader.song import Song
-from tempoMetreDetector.metreDetector.combFilterMetreDetector import \
-    CombFilterMetreDetector
-from tempoMetreDetector.tempoDetector.combFilterTempoDetector import \
-    CombFilterTempoDetector
-from tempoMetreDetector.tempoMetreDetector import TempoMetreDetector
+from songsreader import Song
+from tempometredetector import (
+    CombFilterMetreDetector,
+    CombFilterTempoDetector,
+    TempoMetreDetector,
+)
 
 song = Song("song.wav", bpm=120, metre="4//4")
 tempoDetector = CombFilterTempoDetector()

@@ -5,19 +5,10 @@ import numpy as np
 import plots
 import scipy.signal
 import settings
-from songsReader import songReader
-from songsReader.song import Song
+from songsreader import song_reader, Song
 import librosa
 
-from tempoMetreDetector.metreDetector.baseMetreDetector import \
-    BaseMetreDetector
-from tempoMetreDetector.metreDetector.metreDetectorData import \
-    MetreDetectorData
-from tempoMetreDetector.metreDetector.metreEnum import MetreEnum
-from tempoMetreDetector.tempoDetector.baseTempoDetector import \
-    BaseTempoDetector
-from tempoMetreDetector.tempoDetector.tempoDetectorData import \
-    TempoDetectorData
+from tempometredetector import BaseMetreDetector, MetreDetectorData, MetreEnum, BaseTempoDetector, TempoDetectorData
 
 
 class TempoMetreDetector:
@@ -31,7 +22,7 @@ class TempoMetreDetector:
     def detect_tempo_metre(self, song: Song) -> Tuple[int, MetreEnum, float]:
         print(f'Detecting tempo and metre for song {song.name}...')
         startTime = time.time()
-        signal, samplingFrequency = songReader.read_song(song.filepath)
+        signal, samplingFrequency = song_reader.read_song(song.filepath)
         print(f'Signal read...')
 
         sample_length = settings.combFilterPulses * samplingFrequency
@@ -48,7 +39,8 @@ class TempoMetreDetector:
             stop = song_length
 
         sample = signal[start:stop]
-        melspectrogram = librosa.feature.melspectrogram(sample, sr=samplingFrequency)
+        melspectrogram = librosa.feature.melspectrogram(
+            sample, sr=samplingFrequency)
         feature = librosa.feature.mfcc(sample, sr=samplingFrequency)
         plots.drawSpectrogram(melspectrogram, samplingFrequency)
         plots.drawPlot(sample, f"Sygnał fragmenu piosenki")

@@ -1,7 +1,7 @@
 import numpy as np
 import plots
 import scipy.signal
-from tempoMetreDetector.metreDetector.baseMetreDetector import \
+from tempoMetreDetector import \
     BaseMetreDetector
 from tempoMetreDetector.metreDetector.metreDetectorData import \
     MetreDetectorData
