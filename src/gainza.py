@@ -1,4 +1,5 @@
 # %% Imports
+import numpy
 import scipy
 from harmonicPercusive import median_filter
 import os
@@ -9,9 +10,6 @@ from numpy.core.fromnumeric import argmax
 from scipy import signal
 import songsReader.songReader
 import matplotlib.pyplot as plt
-import gainzaFunction
-import librosa
-import inverse_spectrogram
 
 # %% Import songs list
 data = pandas.read_csv('../dataset/genres/genres_tempos.mf', sep='\t',
@@ -51,11 +49,11 @@ data = data[data.metre.notnull()]
 
 
 # %% Load song sample
-song = data.iloc[54]
+song = data.iloc[57]
 path = song.path
 path = os.path.relpath('../dataset/genres'+path)
 # sample, samplingFrequency = songsReader.songReader.read_song(path)
-fragmentLength = 5
+fragmentLength = 30
 sample, samplingFrequency = songsReader.songReader.read_song_fragment(
     path, fragmentLength)
 
@@ -71,7 +69,7 @@ path
 
 
 # %% Load music tempo
-songTempo = song.tempo
+songTempo = int(song.tempo)
 songTempo
 
 # %% Calculate beat duration
@@ -81,7 +79,7 @@ beatDurationSec
 
 # %% target spectrogram
 spectrogram, frequencies, times, im = plt.specgram(sample, Fs=samplingFrequency,
-                                                   NFFT=int(beatDurationSample), noverlap=0)
+                                                   NFFT=int(beatDurationSample/2), noverlap=int(beatDurationSample/32), mode='magnitude')
 plt.title('Spectrogram')
 plt.ylabel("Frequency [Hz]")
 plt.xlabel("Time [s]")
@@ -113,9 +111,9 @@ timesLen = len(times)
 frequenciesLen = len(frequencies)
 
 # %% calculate percusive component
-windowSize = 201
-percusive = median_filter(spectrogram, windowSize, 0)
-spectrogram = percusive
+# windowSize = 201
+# percusive = median_filter(spectrogram, windowSize, 0)
+# spectrogram = percusive
 
 # %% Calculate AMS
 binsAmount = len(times)

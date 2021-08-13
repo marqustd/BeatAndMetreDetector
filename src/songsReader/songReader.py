@@ -33,7 +33,7 @@ def read_song_fragment(filename: str, maxDuration: int):
 def __trim_sample(maxDuration, sample, samplingFrequency):
     if(len(sample)/samplingFrequency > maxDuration):
         maximum = np.max(sample)
-        threshold = 0.95
+        threshold = 0.90 * maximum
         half = np.floor(len(sample)/2)
         indexes = np.where(sample >= threshold*maximum)[0]
         index = __find_nearest(indexes, half)
