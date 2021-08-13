@@ -137,9 +137,6 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 
-# vs code
-.vscode/
-
 # songs
 songs/
 dataset/
