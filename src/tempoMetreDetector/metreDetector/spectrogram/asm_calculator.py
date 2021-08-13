@@ -2,7 +2,7 @@ import numpy as np
 
 
 def euclidian_distance(oneBin, secondBin):
-    return (np.sum(np.square(oneBin - secondBin)),)
+    return np.sum(np.square(oneBin - secondBin))
 
 
 def cosine_distance(oneBin, secondBin):
@@ -23,6 +23,5 @@ def calculate_asm(spectrogram, times, method):
         thisBin = spectrogram[:, x]
         for y in range(binsAmount):
             comparedBin = spectrogram[:, y]
-            asm_value = method(thisBin, comparedBin)
-            asm[x, y] = asm_value
+            asm[x, y] = method(thisBin, comparedBin)
     return asm
