@@ -1,3 +1,12 @@
+from enum import Enum, auto
+
+
+class MedianFilterEnum(Enum):
+    NONE = auto()
+    PERCUSIVE = auto()
+    HARMONIC = auto()
+
+
 # comb filters
 bandLimits = [0, 200, 400, 800, 1600, 3200, 6400]
 combFilterPulses = 8
@@ -19,3 +28,5 @@ drawSongBpmEnergyPlot = True
 # metre
 spectrogramLimitFrequency = 6000
 medianFilterWindowSize = 201
+noverlapRatio = 32
+medianFilter = MedianFilterEnum.NONE

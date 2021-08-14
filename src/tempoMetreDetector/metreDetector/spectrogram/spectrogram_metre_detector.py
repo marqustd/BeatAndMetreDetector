@@ -18,15 +18,28 @@ class SpectrogramMetreDetector:
         spectrogram, frequencies, times = self.__prepare_spectrogram_signal(
             sample, sampling_frequency, beatDurationSample
         )
-        spectrogram = self.__down_sample_spectrogram(
-            spectrogram, frequencies, times, settings.spectrogramLimitFrequency
+        spectrogram, frequencies = self.__down_sample_spectrogram(
+            spectrogram, frequencies, settings.spectrogramLimitFrequency
         )
-        # spectrogram = self.__calculate_percusive_component(
-        #     spectrogram, settings.medianFilterWindowSize
-        # )
-        asm = calculate_asm(spectrogram, frequencies, euclidian_distance)
+
+        spectrogram = self.__apply_median_filter(spectrogram)
+
+        asm = calculate_asm(spectrogram, times, euclidian_distance)
         d = self.__calculate_diagonal_function(asm)
         return self.__detect_metre(asm, d)
+
+    def __apply_median_filter(self, spectrogram):
+        if settings.medianFilter == settings.MedianFilterEnum.PERCUSIVE:
+            spectrogram = self.__calculate_percusive_component(
+                spectrogram, settings.medianFilterWindowSize
+            )
+
+        elif settings.medianFilter == settings.MedianFilterEnum.HARMONIC:
+            spectrogram = self.__calculate_harmonic_component(
+                spectrogram, settings.medianFilterWindowSize
+            )
+
+        return spectrogram
 
     def read_data(self):
         data = pandas.read_csv(
@@ -47,22 +60,17 @@ class SpectrogramMetreDetector:
             path = os.path.relpath("../dataset/genres" + path)
             resul_metre = self.detect_metre(path, song.tempo, song.metre)
 
-            expectedMetre = 0
-
-            if song.metre == "4/4":
-                expectedMetre = 4
-            elif song.metre == "8/8":
-                expectedMetre = 8
-            elif song.metre == "5/4":
-                expectedMetre = 5
+            expectedMetre = int(song.metre.split("/")[0])
 
             if resul_metre == expectedMetre or (
                 expectedMetre == 4 and (resul_metre == 2 or resul_metre == 8)
             ):
-                print(f"Good detection! {expectedMetre}")
+                print(f"Good detection! {expectedMetre} - {song.path}")
                 good += 1
             else:
-                print(f"Exptected {expectedMetre} but detect {resul_metre}")
+                print(
+                    f"Exptected {expectedMetre} but detect {resul_metre} - {song.path}"
+                )
                 bad += 1
 
         print(f"All: {all_songs}")
@@ -97,23 +105,26 @@ class SpectrogramMetreDetector:
             sample,
             samplingFrequency,
             nperseg=int(beatDurationSample),
-            noverlap=int(beatDurationSample / 32),
+            noverlap=int(beatDurationSample / settings.noverlapRatio),
             mode="magnitude",
         )
         return spectrogram, frequencies, times
 
-    def __down_sample_spectrogram(
-        self, spectrogram, frequencies, times, limitFrequency
-    ):
+    def __down_sample_spectrogram(self, spectrogram, frequencies, limitFrequency):
         frequenciesLessThan = np.argwhere(frequencies < limitFrequency)
         lastIndex = frequenciesLessThan[-1, 0]
         frequencies = frequencies[0:lastIndex]
         spectrogram = spectrogram[0:lastIndex, :]
-        return spectrogram
+        return spectrogram, frequencies
 
     def __calculate_percusive_component(self, spectrogram, windowSize):
         percusive = median_filter(spectrogram, windowSize, 0)
         spectrogram = percusive
+        return spectrogram
+
+    def __calculate_harmonic_component(self, spectrogram, windowSize):
+        harmonic = median_filter(spectrogram, 0, windowSize)
+        spectrogram = harmonic
         return spectrogram
 
     def __calculate_diagonal_function(self, asm):

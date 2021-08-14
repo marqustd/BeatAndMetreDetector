@@ -106,9 +106,6 @@ lastIndex = frequenciesLessThan[-1, 0]
 frequencies = frequencies[0:lastIndex]
 spectrogram = spectrogram[0:lastIndex, :]
 
-timesLen = len(times)
-frequenciesLen = len(frequencies)
-
 # %% calculate percusive component
 # windowSize = 201
 # percusive = median_filter(spectrogram, windowSize, 0)
