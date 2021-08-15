@@ -24,9 +24,9 @@ class SpectrogramMetreDetector:
 
         spectrogram = self.__apply_median_filter(spectrogram)
 
-        asm = calculate_asm(spectrogram, times, euclidian_distance)
-        d = self.__calculate_diagonal_function(asm)
-        return self.__detect_metre(asm, d)
+        bsm = calculate_bsm(spectrogram, times, euclidian_distance)
+        d = self.__calculate_diagonal_function(bsm)
+        return self.__detect_metre(bsm, d)
 
     def __apply_median_filter(self, spectrogram):
         if settings.medianFilter == settings.MedianFilterEnum.PERCUSIVE:

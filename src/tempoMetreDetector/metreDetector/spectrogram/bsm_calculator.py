@@ -15,7 +15,7 @@ def kullback_leibler(oneBin, secondBin):
     return np.sum(oneBin * np.log(oneBin / secondBin))
 
 
-def calculate_asm(spectrogram, times, method):
+def calculate_bsm(spectrogram, times, method):
     binsAmount = len(times)
     asm = np.zeros((binsAmount, binsAmount))
 

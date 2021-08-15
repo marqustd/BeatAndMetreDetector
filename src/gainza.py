@@ -118,37 +118,37 @@ window_size = int(beatDurationSample / 4)
     percussive_filter,
 ) = harmonic_percussive_separator.separate_components(spectrogram, window_size)
 
-# %%
-plt.pcolormesh(times, frequencies, 20 * np.log10(percussive_filter))
-plt.title("Percussive median filter")
-plt.ylabel("Frequency [Hz]")
-plt.xlabel("Time [s]")
-plt.show()
+# # %%
+# plt.pcolormesh(times, frequencies, 20 * np.log10(percussive_filter))
+# plt.title("Percussive median filter")
+# plt.ylabel("Frequency [Hz]")
+# plt.xlabel("Time [s]")
+# plt.show()
+
+# # %%
+# plt.pcolormesh(times, frequencies, 20 * np.log10(harmonic))
+# plt.title("Harmonic")
+# plt.ylabel("Frequency [Hz]")
+# plt.xlabel("Time [s]")
+# plt.show()
+
+# # %%
+# plt.pcolormesh(times, frequencies, 20 * np.log10(percussive))
+# plt.title("Percussive")
+# plt.ylabel("Frequency [Hz]")
+# plt.xlabel("Time [s]")
+# plt.show()
+
+# # %%
+# plt.pcolormesh(times, frequencies, 20 * np.log10(harmonic_filter))
+# plt.title("Harmonic median filter")
+# plt.ylabel("Frequency [Hz]")
+# plt.xlabel("Time [s]")
+# plt.show()
+
 
 # %%
-plt.pcolormesh(times, frequencies, 20 * np.log10(harmonic))
-plt.title("Harmonic")
-plt.ylabel("Frequency [Hz]")
-plt.xlabel("Time [s]")
-plt.show()
-
-# %%
-plt.pcolormesh(times, frequencies, 20 * np.log10(percussive))
-plt.title("Percussive")
-plt.ylabel("Frequency [Hz]")
-plt.xlabel("Time [s]")
-plt.show()
-
-# %%
-plt.pcolormesh(times, frequencies, 20 * np.log10(harmonic_filter))
-plt.title("Harmonic median filter")
-plt.ylabel("Frequency [Hz]")
-plt.xlabel("Time [s]")
-plt.show()
-
-
-# %%
-spectrogram = spectrogram
+spectrogram = percussive
 
 # %% Calculate AMS
 binsAmount = len(times)

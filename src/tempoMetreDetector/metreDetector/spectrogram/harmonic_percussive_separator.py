@@ -5,7 +5,6 @@ import numpy as np
 def separate_components(spectrogram, window_size: np.number):
     percussive_filter = median_filter(spectrogram, window_size, 0)
     harmonic_filter = median_filter(spectrogram, 0, window_size)
-    #   return harmonic_filter, percussive_filter
 
     harmonic = np.zeros(spectrogram.shape)
     percussive = np.zeros(spectrogram.shape)
