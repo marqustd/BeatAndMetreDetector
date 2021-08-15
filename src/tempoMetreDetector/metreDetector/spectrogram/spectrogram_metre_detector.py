@@ -9,13 +9,13 @@ import settings
 
 
 class SpectrogramMetreDetector:
-    def detect_metre(self, path: str, tempo: int, metre: int):
-        sample, sampling_frequency = self.__read_song(path)
-        if tempo == 0:
-            tempo = self.__get_song_tempo(sample)
-        beatDurationSample = self.__calculate_beat_duration(sampling_frequency, tempo)
+    def detect_metre(self, song):
+        sample, sampling_frequency = self.__read_song(song.path)
+        beatDurationSample = self.__calculate_beat_duration(
+            sampling_frequency, song.tempo
+        )
 
-        spectrogram, frequencies, times = self.__prepare_spectrogram_signal(
+        spectrogram, frequencies, times = self.__prepare_spectrogram(
             sample, sampling_frequency, beatDurationSample
         )
         spectrogram, frequencies = self.__down_sample_spectrogram(
@@ -58,7 +58,7 @@ class SpectrogramMetreDetector:
         for song in data.iloc:
             path = song.path
             path = os.path.relpath("../dataset/genres" + path)
-            resul_metre = self.detect_metre(path, song.tempo, song.metre)
+            resul_metre = self.detect_metre(song)
 
             expectedMetre = int(song.metre.split("/")[0])
 
@@ -98,12 +98,10 @@ class SpectrogramMetreDetector:
         beatDurationSample = int(beatDurationSec * samplingFrequency)
         return beatDurationSample
 
-    def __prepare_spectrogram_signal(
-        self, sample, samplingFrequency, beatDurationSample
-    ):
+    def __prepare_spectrogram(self, sample, samplingFrequency, beatDurationSample):
         frequencies, times, spectrogram = signal.spectrogram(
-            sample,
-            samplingFrequency,
+            x=sample,
+            fs=samplingFrequency,
             nperseg=int(beatDurationSample),
             noverlap=int(beatDurationSample / settings.noverlapRatio),
             mode="magnitude",

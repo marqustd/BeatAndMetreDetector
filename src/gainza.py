@@ -1,5 +1,8 @@
 # %% Imports
 import os
+from tempometredetector.metredetector.spectrogram import (
+    harmonic_percussive_separator,
+)
 import pandas
 import numpy as np
 import matplotlib.pyplot as plt
@@ -48,7 +51,7 @@ song = data.iloc[57]
 path = song.path
 path = os.path.relpath("../dataset/genres" + path)
 # sample, samplingFrequency = songsReader.songReader.read_song(path)
-fragmentLength = 30
+fragmentLength = 10
 sample, samplingFrequency = read_song_fragment(path, fragmentLength)
 
 e_time = np.arange(len(sample)) / samplingFrequency
@@ -75,7 +78,7 @@ beatDurationSec
 spectrogram, frequencies, times, im = plt.specgram(
     sample,
     Fs=samplingFrequency,
-    NFFT=int(beatDurationSample / 2),
+    NFFT=int(beatDurationSample / 16),
     noverlap=int(beatDurationSample / 32),
     mode="magnitude",
 )
@@ -107,9 +110,45 @@ frequencies = frequencies[0:lastIndex]
 spectrogram = spectrogram[0:lastIndex, :]
 
 # %% calculate percusive component
-# windowSize = 201
-# percusive = median_filter(spectrogram, windowSize, 0)
-# spectrogram = percusive
+window_size = int(beatDurationSample / 4)
+(
+    harmonic,
+    percussive,
+    harmonic_filter,
+    percussive_filter,
+) = harmonic_percussive_separator.separate_components(spectrogram, window_size)
+
+# %%
+plt.pcolormesh(times, frequencies, 20 * np.log10(percussive_filter))
+plt.title("Percussive median filter")
+plt.ylabel("Frequency [Hz]")
+plt.xlabel("Time [s]")
+plt.show()
+
+# %%
+plt.pcolormesh(times, frequencies, 20 * np.log10(harmonic))
+plt.title("Harmonic")
+plt.ylabel("Frequency [Hz]")
+plt.xlabel("Time [s]")
+plt.show()
+
+# %%
+plt.pcolormesh(times, frequencies, 20 * np.log10(percussive))
+plt.title("Percussive")
+plt.ylabel("Frequency [Hz]")
+plt.xlabel("Time [s]")
+plt.show()
+
+# %%
+plt.pcolormesh(times, frequencies, 20 * np.log10(harmonic_filter))
+plt.title("Harmonic median filter")
+plt.ylabel("Frequency [Hz]")
+plt.xlabel("Time [s]")
+plt.show()
+
+
+# %%
+spectrogram = spectrogram
 
 # %% Calculate AMS
 binsAmount = len(times)

@@ -26,7 +26,7 @@ drawMetreFilterPlots = True
 drawSongBpmEnergyPlot = True
 
 # metre
-spectrogramLimitFrequency = 6000
+spectrogramLimitFrequency = bandLimits[-1]
 medianFilterWindowSize = 201
 noverlapRatio = 32
 medianFilter = MedianFilterEnum.NONE
