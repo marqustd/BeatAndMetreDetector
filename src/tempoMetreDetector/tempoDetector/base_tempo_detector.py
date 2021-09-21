@@ -10,5 +10,5 @@ class BaseTempoDetector:
     def __repr__(self) -> str:
         return self.__str__()
 
-    def detectTempo(self, data: TempoDetectorData) -> int:
+    def detect_tempo(self, data: TempoDetectorData) -> int:
         return 0

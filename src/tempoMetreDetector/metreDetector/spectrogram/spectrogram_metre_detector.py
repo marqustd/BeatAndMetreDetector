@@ -1,5 +1,5 @@
 from .median_filter import *
-from .asm_calculator import *
+from .bsm_calculator import *
 from songreader.song_reader import read_song_fragment
 import os
 import pandas
