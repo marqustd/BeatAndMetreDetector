@@ -9,31 +9,46 @@ class CombFilterTempoDetector(BaseTempoDetector):
         return "CombFilterTempoDetector"
 
     def detect_tempo(self, detect_data: TempoDetectorData) -> int:
-        n = len(detect_data.signal[0])
-        bands_amount = len(detect_data.bandsLimits)
-        dft = self.__calculate_fft_of_filters(detect_data, n, bands_amount)
+        sample_length = len(detect_data.filters_signals[0])
+        bands_amount = len(detect_data.bands_number)
+        comb_filter_ffts = self.__calculate_fft_of_filters(
+            detect_data, sample_length, bands_amount
+        )
 
-        maxEnergy = 0
-        for bpm in range(detect_data.minBpm, detect_data.maxBpm, detect_data.accuracy):
+        max_energy = 0
+        for bpm in range(
+            detect_data.min_bpm, detect_data.max_bpm, detect_data.accuracy
+        ):
             this_bpm_energy = 0
-            comb_filter_signal = np.zeros(n)
+            comb_filter_signal = np.zeros(sample_length)
 
             self.__prepare_comb_filter_signal(detect_data, bpm, comb_filter_signal)
             self.__write_progress(detect_data, bpm)
 
             this_bpm_energy = self.__calculate_this_bmp_energy(
-                bands_amount, dft, this_bpm_energy, comb_filter_signal, bpm, detect_data
+                bands_amount,
+                comb_filter_ffts,
+                this_bpm_energy,
+                comb_filter_signal,
+                bpm,
+                detect_data,
             )
 
-            detect_data.plotDictionary[bpm] = this_bpm_energy
-            if this_bpm_energy > maxEnergy:
-                songBpm = bpm
-                maxEnergy = this_bpm_energy
+            detect_data.plot_dictionary[bpm] = this_bpm_energy
+            if this_bpm_energy > max_energy:
+                song_bpm = bpm
+                max_energy = this_bpm_energy
 
-        return songBpm
+        return song_bpm
 
     def __calculate_this_bmp_energy(
-        self, bands_amount, dft, this_bpm_energy, comb_filter_signal, bpm, detect_data
+        self,
+        bands_amount,
+        comb_filter_ffts,
+        this_bpm_energy,
+        comb_filter_signal,
+        bpm,
+        detect_data,
     ):
         plots.drawPlot(
             comb_filter_signal,
@@ -41,15 +56,15 @@ class CombFilterTempoDetector(BaseTempoDetector):
             "Próbki",
             "Amplituda",
         )
-        dftfilter = np.fft.fft(comb_filter_signal)
+        filter_signal_fft = np.fft.fft(comb_filter_signal)
         plots.drawCombFilterFftPlot(
-            dftfilter,
+            filter_signal_fft,
             f"Widmo sygnału filtra tempa {bpm}",
             detect_data.samplingFrequency,
         )
 
         for band in range(0, bands_amount):
-            x = (abs(dftfilter * dft[band])) ** 2
+            x = (abs(filter_signal_fft * comb_filter_ffts[band])) ** 2
             this_bpm_energy = this_bpm_energy + sum(x)
         return this_bpm_energy
 
@@ -59,14 +74,14 @@ class CombFilterTempoDetector(BaseTempoDetector):
         )
         print("%.2f" % percent_done, "%")
 
-    def __prepare_comb_filter_signal(self, detect_data, bpm, fil):
+    def __prepare_comb_filter_signal(self, detect_data, bpm, filter_signal):
         filter_step = np.floor(60 / bpm * detect_data.samplingFrequency)
         for a in range(0, detect_data.combFilterPulses):
-            fil[a * int(filter_step) + 1] = 1
+            filter_signal[a * int(filter_step) + 1] = 1
 
-    def __calculate_fft_of_filters(self, detect_data, n, bands_amount):
-        dft = np.zeros([bands_amount, n], dtype=complex)
+    def __calculate_fft_of_filters(self, detect_data, sample_length, bands_amount):
+        comb_filter_ffts = np.zeros([bands_amount, sample_length], dtype=complex)
 
         for band in range(0, bands_amount):
-            dft[band] = np.fft.fft(detect_data.signal[band])
-        return dft
+            comb_filter_ffts[band] = np.fft.fft(detect_data.signal[band])
+        return comb_filter_ffts

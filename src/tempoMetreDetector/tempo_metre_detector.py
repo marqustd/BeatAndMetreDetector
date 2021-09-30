@@ -93,7 +93,7 @@ class TempoMetreDetector:
             plotDictionary,
         )
 
-        songTempo = self.tempoDetector.detectTempo(firstAttemptTempoDetectorData)
+        songTempo = self.tempoDetector.detect_tempo(firstAttemptTempoDetectorData)
 
         print(f"Second attempt...")
         secondAttemptTempoDetectorData = TempoDetectorData(
@@ -106,7 +106,7 @@ class TempoMetreDetector:
             settings.combFilterPulses,
             plotDictionary,
         )
-        songTempo = self.tempoDetector.detectTempo(secondAttemptTempoDetectorData)
+        songTempo = self.tempoDetector.detect_tempo(secondAttemptTempoDetectorData)
 
         print(f"Detecting song's metre {song.name} with method {self.metreDetector}")
         metreDeteCtorData = MetreDetectorData(

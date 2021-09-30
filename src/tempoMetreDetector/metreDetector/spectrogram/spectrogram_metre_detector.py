@@ -58,6 +58,7 @@ class SpectrogramMetreDetector:
         for song in data.iloc:
             path = song.path
             path = os.path.relpath("../dataset/genres" + path)
+            song.path = path
             resul_metre = self.detect_metre(song)
 
             expectedMetre = int(song.metre.split("/")[0])

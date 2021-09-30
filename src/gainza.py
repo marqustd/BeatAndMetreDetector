@@ -1,8 +1,5 @@
 # %% Imports
 import os
-from tempometredetector.metredetector.spectrogram import (
-    harmonic_percussive_separator,
-)
 import pandas
 import numpy as np
 import matplotlib.pyplot as plt
@@ -14,44 +11,12 @@ data = pandas.read_csv(
 )
 data = data[data.metre.notnull()]
 
-
-# # %% Check for all
-# good = 0
-# bad = 0
-# allSongs = len(data)
-# for song in data.iloc:
-#     path = song.path
-#     path = os.path.relpath('../dataset/genres'+path)
-#     resultMetre = gainzaFunction.gainzaFunction(path, song.tempo, 4)
-
-#     expectedMetre = 0
-
-#     if(song.metre == '4/4'):
-#         expectedMetre = 4
-#     elif (song.metre == '8/8'):
-#         expectedMetre = 8
-#     elif (song.metre == '5/4'):
-#         expectedMetre = 5
-
-#     if resultMetre == expectedMetre or (expectedMetre == 4 and (resultMetre == 2 or resultMetre == 8)):
-#         print(f'Good detection! {expectedMetre}')
-#         good += 1
-#     else:
-#         print(f'Exptected {expectedMetre} but detect {resultMetre}')
-#         bad += 1
-
-# print(f'All: {allSongs}')
-# print(f'Good: {good}')
-# print(f'Bad: {bad}')
-# print(f'Accuracy: {good/allSongs}')
-
-
 # %% Load song sample
 song = data.iloc[57]
 path = song.path
 path = os.path.relpath("../dataset/genres" + path)
 # sample, samplingFrequency = songsReader.songReader.read_song(path)
-fragmentLength = 10
+fragmentLength = 30
 sample, samplingFrequency = read_song_fragment(path, fragmentLength)
 
 e_time = np.arange(len(sample)) / samplingFrequency
@@ -78,7 +43,7 @@ beatDurationSec
 spectrogram, frequencies, times, im = plt.specgram(
     sample,
     Fs=samplingFrequency,
-    NFFT=int(beatDurationSample / 16),
+    NFFT=int(beatDurationSample),
     noverlap=int(beatDurationSample / 32),
     mode="magnitude",
 )
@@ -110,13 +75,13 @@ frequencies = frequencies[0:lastIndex]
 spectrogram = spectrogram[0:lastIndex, :]
 
 # %% calculate percusive component
-window_size = int(beatDurationSample / 4)
-(
-    harmonic,
-    percussive,
-    harmonic_filter,
-    percussive_filter,
-) = harmonic_percussive_separator.separate_components(spectrogram, window_size)
+# window_size = int(beatDurationSample / 4)
+# (
+#     harmonic,
+#     percussive,
+#     harmonic_filter,
+#     percussive_filter,
+# ) = harmonic_percussive_separator.separate_components(spectrogram, window_size)
 
 # # %%
 # plt.pcolormesh(times, frequencies, 20 * np.log10(percussive_filter))
@@ -148,7 +113,7 @@ window_size = int(beatDurationSample / 4)
 
 
 # %%
-spectrogram = percussive
+# spectrogram = percussive
 
 # %% Calculate AMS
 binsAmount = len(times)
