@@ -1,5 +1,5 @@
 import numpy as np
-import plots
+from utilities import plots
 import scipy.signal
 from .base_tempo_detector import BaseTempoDetector
 from .tempo_detector_data import TempoDetectorData

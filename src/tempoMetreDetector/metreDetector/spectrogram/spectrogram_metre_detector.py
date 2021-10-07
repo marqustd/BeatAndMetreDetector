@@ -1,3 +1,4 @@
+from tempometredetector.metredetector.base_metre_detector import BaseMetreDetector
 from tempometredetector.metredetector.metre_detector_data import MetreDetectorData
 from .median_filter import *
 from .bsm_calculator import *
@@ -6,7 +7,7 @@ from scipy import signal
 import settings
 
 
-class SpectrogramMetreDetector:
+class SpectrogramMetreDetector(BaseMetreDetector):
     def detect_metre(self, data: MetreDetectorData):
         signal = data.signal
         sampling_frequency = data.sampling_frequency

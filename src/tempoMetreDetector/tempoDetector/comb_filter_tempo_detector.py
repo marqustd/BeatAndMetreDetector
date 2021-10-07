@@ -1,5 +1,5 @@
 import numpy as np
-import plots
+from utilities import plots
 from .base_tempo_detector import BaseTempoDetector
 from .tempo_detector_data import TempoDetectorData
 
@@ -50,7 +50,7 @@ class CombFilterTempoDetector(BaseTempoDetector):
         bpm,
         detect_data,
     ):
-        plots.drawPlot(
+        plots.draw_plot(
             comb_filter_signal,
             f"Sygnał filtru grzebieniowego  tempa {bpm}",
             "Próbki",

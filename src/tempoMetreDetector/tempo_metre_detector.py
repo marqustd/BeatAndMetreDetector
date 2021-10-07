@@ -1,14 +1,13 @@
-from tempometredetector.metredetector import base_metre_detector, metre_enum
 import time
-from typing import Tuple
 
 import numpy as np
-import plots
 import scipy.signal
 import settings
-from songreader import song_reader, Song
+from songreader import song_reader
+from tempometredetector.metredetector.base_metre_detector import BaseMetreDetector
 from tempometredetector.metredetector.metre_detector_data import MetreDetectorData
 import logging
+from utilities import plots
 
 from tempometredetector.tempodetector import (
     BaseTempoDetector,
@@ -18,41 +17,44 @@ from tempometredetector.tempodetector import (
 
 class TempoMetreDetector:
     __tempo_detector: BaseTempoDetector
-    __metre_detector: base_metre_detector
+    __metre_detector = BaseMetreDetector
 
     def __init__(self, tempo_detector, metre_detector):
         self.__tempo_detector = tempo_detector
         self.__metre_detector = metre_detector
 
-    def detect_tempo_metre(self, song: Song):
-        song_tempo = song.tempo
-        song_metre = song.metre
+    def detect(self, tempo: int, metre: int, path: str):
+        song_tempo = tempo
+        song_metre = metre
         startTime = time.time()
 
-        logging.debug(f"Detecting tempo and metre for song {song.name}...")
+        logging.debug(f"Detecting tempo and metre for song {path}...")
 
-        signal, samplingFrequency = song_reader.read_song_fragment(song.filepath)
+        signal, samplingFrequency = song_reader.read_song_fragment(
+            path, settings.fragment_length
+        )
 
         if self.__tempo_detector is not None:
             song_tempo = self.detect_tempo(samplingFrequency, signal)
 
-        if self.__tempo_detector is not None:
+        if self.__metre_detector is not None:
             song_metre = self.detect_metre(song_tempo, samplingFrequency, signal)
 
         totalTime = time.time() - startTime
 
         return song_tempo, song_metre, totalTime
 
-    def detect_metre(self, song_tempo, samplingFrequency, resampled):
-        logging.debug(f"Detecting song's metre with method {self.__metre_detector}")
+    def detect_metre(self, song_tempo, samplingFrequency, signal):
+        detector = self.__metre_detector()
+        logging.debug(f"Detecting song's metre with method {detector}")
 
-        metreDeteCtorData = MetreDetectorData(
-            resampled,
-            samplingFrequency,
-            song_tempo,
+        metre_detector_data = MetreDetectorData(
+            sampling_frequency=samplingFrequency,
+            signal=signal,
+            song_tempo=song_tempo,
         )
 
-        metre = self.__metre_detector.detect_metre(metreDeteCtorData)
+        metre = detector.detect_metre(metre_detector_data)
         return metre
 
     def detect_tempo(self, samplingFrequency, signal):
@@ -62,6 +64,7 @@ class TempoMetreDetector:
         filterBanks = self.__prepare_filterbanks(
             resampled, settings.band_limits, samplingFrequency
         )
+
         plots.drawFftPlot(
             filterBanks[3], f"Sygnał z drugiego filtru piosenki", samplingFrequency
         )
@@ -73,13 +76,13 @@ class TempoMetreDetector:
         hanningWindow = self.__hann(
             filterBanks, 0.2, settings.band_limits, samplingFrequency
         )
-        plots.drawPlot(
+        plots.draw_plot(
             hanningWindow[1], f"Sygnał drugiego filtru piosenki po wygładzeniu"
         )
 
         logging.debug(f"Differentiating song...")
         diffrected = self.__diffrect(hanningWindow, len(settings.band_limits))
-        plots.drawPlot(
+        plots.draw_plot(
             diffrected[1], "Pochodna wygładzonego sygnału z drugiego filtru piosenki"
         )
 
