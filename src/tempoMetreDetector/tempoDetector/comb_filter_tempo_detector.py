@@ -72,7 +72,7 @@ class CombFilterTempoDetector(BaseTempoDetector):
         percent_done = (
             100 * (bpm - detect_data.minBpm) / (detect_data.maxBpm - detect_data.minBpm)
         )
-        print("%.2f" % percent_done, "%")
+        logging.debug("%.2f" % percent_done, "%")
 
     def __prepare_comb_filter_signal(self, detect_data, bpm, filter_signal):
         filter_step = np.floor(60 / bpm * detect_data.samplingFrequency)

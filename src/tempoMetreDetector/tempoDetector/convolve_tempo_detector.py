@@ -22,7 +22,7 @@ class ConvolveTempoDetector(BaseTempoDetector):
             percent_done = 100 * (bpm - data.min_bpm) / (data.max_bpm - data.min_bpm)
             fil = np.zeros(int(filterLength * nstep))
 
-            print("%.2f" % percent_done, "%")
+            logging.debug("%.2f" % percent_done, "%")
 
             for a in range(0, filterLength):
                 fil[a * int(nstep)] = 1

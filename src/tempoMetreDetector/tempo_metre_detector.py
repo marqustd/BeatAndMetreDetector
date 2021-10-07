@@ -8,6 +8,7 @@ import scipy.signal
 import settings
 from songreader import song_reader, Song
 from tempometredetector.metredetector.metre_detector_data import MetreDetectorData
+import logging
 
 from tempometredetector.tempodetector import (
     BaseTempoDetector,
@@ -16,45 +17,48 @@ from tempometredetector.tempodetector import (
 
 
 class TempoMetreDetector:
-    tempoDetector: BaseTempoDetector
-    metreDetector: base_metre_detector
+    __tempo_detector: BaseTempoDetector
+    __metre_detector: base_metre_detector
 
-    def __init__(self, tempoDetector, metreDetector):
-        self.tempoDetector = tempoDetector
-        self.metreDetector = metreDetector
+    def __init__(self, tempo_detector, metre_detector):
+        self.__tempo_detector = tempo_detector
+        self.__metre_detector = metre_detector
 
     def detect_tempo_metre(self, song: Song):
-        print(f"Detecting tempo and metre for song {song.name}...")
+        song_tempo = song.tempo
+        song_metre = song.metre
         startTime = time.time()
+
+        logging.debug(f"Detecting tempo and metre for song {song.name}...")
+
         signal, samplingFrequency = song_reader.read_song_fragment(song.filepath)
 
-        resampled, samplingFrequency = self.__resample_signal(signal, samplingFrequency)
+        if self.__tempo_detector is not None:
+            song_tempo = self.detect_tempo(samplingFrequency, signal)
 
-        songTempo = self.detect_tempo(song, samplingFrequency, resampled)
-
-        print(f"Detecting song's metre {song.name} with method {self.metreDetector}")
-        metreDeteCtorData = MetreDetectorData(
-            diffrected,
-            songTempo,
-            settings.band_limits,
-            samplingFrequency,
-            settings.comb_filter_pulses,
-        )
-
-        metre = self.metreDetector.detect_metre(metreDeteCtorData)
+        if self.__tempo_detector is not None:
+            song_metre = self.detect_metre(song_tempo, samplingFrequency, signal)
 
         totalTime = time.time() - startTime
 
-        plots.drawPlot(
-            list(plotDictionary.keys()),
-            f"Rozkład energii iloczynu widma sygnału z filtrem\n o określonej częstotliwości impulsów w piosence",
-            "BPM",
-            "Energy",
-            list(plotDictionary.values()),
-        )
-        return songTempo, metre, totalTime
+        return song_tempo, song_metre, totalTime
 
-    def detect_tempo(self, song, samplingFrequency, resampled):
+    def detect_metre(self, song_tempo, samplingFrequency, resampled):
+        logging.debug(f"Detecting song's metre with method {self.__metre_detector}")
+
+        metreDeteCtorData = MetreDetectorData(
+            resampled,
+            samplingFrequency,
+            song_tempo,
+        )
+
+        metre = self.__metre_detector.detect_metre(metreDeteCtorData)
+        return metre
+
+    def detect_tempo(self, samplingFrequency, signal):
+        logging.debug(f"Detecting song's tempo with method {self.__tempo_detector}")
+        resampled, samplingFrequency = self.__resample_signal(signal, samplingFrequency)
+
         filterBanks = self.__prepare_filterbanks(
             resampled, settings.band_limits, samplingFrequency
         )
@@ -65,7 +69,7 @@ class TempoMetreDetector:
             filterBanks[5], f"Sygnał z szóstego filtru piosenki", samplingFrequency
         )
 
-        print(f"Hanning song {song.name}...")
+        logging.debug(f"Hanning song...")
         hanningWindow = self.__hann(
             filterBanks, 0.2, settings.band_limits, samplingFrequency
         )
@@ -73,14 +77,14 @@ class TempoMetreDetector:
             hanningWindow[1], f"Sygnał drugiego filtru piosenki po wygładzeniu"
         )
 
-        print(f"Differentiating song {song.name}...")
+        logging.debug(f"Differentiating song...")
         diffrected = self.__diffrect(hanningWindow, len(settings.band_limits))
         plots.drawPlot(
             diffrected[1], "Pochodna wygładzonego sygnału z drugiego filtru piosenki"
         )
 
-        print(f"Detecting song's tempo {song.name} with method {self.tempoDetector}...")
-        print(f"First attempt...")
+        logging.debug(f"Detecting song's tempo with method {self.__tempo_detector}...")
+        logging.debug(f"First attempt...")
         plotDictionary = plots.preparePlotDictionary(settings.min_bpm, settings.max_bpm)
 
         firstAttemptTempoDetectorData = TempoDetectorData(
@@ -94,9 +98,9 @@ class TempoMetreDetector:
             plotDictionary,
         )
 
-        songTempo = self.tempoDetector.detect_tempo(firstAttemptTempoDetectorData)
+        songTempo = self.__tempo_detector.detect_tempo(firstAttemptTempoDetectorData)
 
-        print(f"Second attempt...")
+        logging.debug(f"Second attempt...")
         secondAttemptTempoDetectorData = TempoDetectorData(
             diffrected,
             1,
@@ -107,7 +111,7 @@ class TempoMetreDetector:
             settings.comb_filter_pulses,
             plotDictionary,
         )
-        songTempo = self.tempoDetector.detect_tempo(secondAttemptTempoDetectorData)
+        songTempo = self.__tempo_detector.detect_tempo(secondAttemptTempoDetectorData)
         return songTempo
 
     def __resample_signal(self, signal, samplingFrequency):

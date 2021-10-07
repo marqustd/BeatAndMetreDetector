@@ -6,7 +6,7 @@ from scipy import signal
 import settings
 
 
-class SpectrogramTimeSignatureDetector:
+class SpectrogramMetreDetector:
     def detect_metre(self, data: MetreDetectorData):
         signal = data.signal
         sampling_frequency = data.sampling_frequency
@@ -100,5 +100,5 @@ class SpectrogramTimeSignatureDetector:
 
 
 if __name__ == "__main__":
-    detector = SpectrogramTimeSignatureDetector()
+    detector = SpectrogramMetreDetector()
     detector.test_data_songs()

@@ -42,4 +42,4 @@ if __name__ == "__main__":
     )
     x = y = 1
     result = median_filter(spcetrogram, 3, 3)
-    print(result)
+    logging.debug(result)

@@ -1,18 +1,11 @@
-from songreader.song import Song
-
-# from tempometredetector.tempodetector import (
-#     CombFilterMetreDetector,
-#     CombFilterTempoDetector,
-#     TempoMetreDetector,
-# )
+from tempometredetector import tempo_metre_detector
 from tempometredetector.metredetector.spectrogram.spectrogram_metre_detector import (
     SpectrogramMetreDetector,
 )
 
-spec = SpectrogramMetreDetector()
-spec.test_data_songs()
-# song = Song("song.wav", bpm=120, metre="4//4")
-# tempoDetector = CombFilterTempoDetector()
-# metreDetector = CombFilterMetreDetector()
-# tempoMetreDetector = TempoMetreDetector(tempoDetector, metreDetector)
-# result = tempoMetreDetector.detect_tempo_metre(song)
+
+tempo_metre_detector = tempo_metre_detector.TempoMetreDetector(
+    tempo_detector=None, metre_detector=SpectrogramMetreDetector
+)
+
+tempo_metre_detector.detect_tempo
