@@ -1,3 +1,4 @@
+import logging
 import numpy as np
 from utilities import plots
 from .base_tempo_detector import BaseTempoDetector
