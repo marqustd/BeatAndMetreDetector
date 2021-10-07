@@ -3,21 +3,10 @@ import numpy as np
 
 class MetreDetectorData:
     signal: np.array
-    tempo: int
-    bandlimits: int
-    maxFreq: int
-    npulses: int
+    sampling_frequency: int
+    song_tempo: int
 
-    def __init__(
-        self,
-        signal: np.array,
-        tempo: int,
-        band_limits: int,
-        max_freq: int,
-        npulses: int,
-    ):
+    def __init__(self, signal: np.array, song_tempo: int, sampling_frequency: int):
         self.signal = signal
-        self.tempo = tempo
-        self.bandlimits = band_limits
-        self.maxFreq = max_freq
-        self.npulses = npulses
+        self.song_tempo = song_tempo
+        self.sampling_frequency = sampling_frequency

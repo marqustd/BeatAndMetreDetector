@@ -28,34 +28,35 @@ class TempoMetreDetector:
         startTime = time.time()
         signal, samplingFrequency = song_reader.read_song_fragment(song.filepath)
 
-        sample_length = settings.comb_filter_pulses * samplingFrequency
-        seconds = sample_length * 4
-        plots.drawPlot(signal, f"Oryginalny sygnał piosenki")
-        song_length = signal.size
-        plots.drawSpectrogram(signal, samplingFrequency)
+        resampled, samplingFrequency = self.__resample_signal(signal, samplingFrequency)
 
-        start = int(np.floor(song_length / 2 - seconds / 2))
-        stop = int(np.floor(song_length / 2 + seconds / 2))
-        if start < 0:
-            start = 0
-        if stop > song_length:
-            stop = song_length
+        songTempo = self.detect_tempo(song, samplingFrequency, resampled)
 
-        sample = signal[start:stop]
-        plots.drawPlot(sample, f"Sygnał fragmenu piosenki")
+        print(f"Detecting song's metre {song.name} with method {self.metreDetector}")
+        metreDeteCtorData = MetreDetectorData(
+            diffrected,
+            songTempo,
+            settings.band_limits,
+            samplingFrequency,
+            settings.comb_filter_pulses,
+        )
 
-        centred = self.__center_sample_to_beat(sample, sample_length)
-        plots.drawPlot(centred, f"Wyrównany fragment piosenki")
+        metre = self.metreDetector.detect_metre(metreDeteCtorData)
 
-        if settings.resample_signal:
-            centred = scipy.signal.resample(
-                centred, int(len(centred) / settings.resample_ratio)
-            )
-            samplingFrequency /= settings.resample_ratio
+        totalTime = time.time() - startTime
 
-        print(f"Preparing filterbank for song {song.name}...")
+        plots.drawPlot(
+            list(plotDictionary.keys()),
+            f"Rozkład energii iloczynu widma sygnału z filtrem\n o określonej częstotliwości impulsów w piosence",
+            "BPM",
+            "Energy",
+            list(plotDictionary.values()),
+        )
+        return songTempo, metre, totalTime
+
+    def detect_tempo(self, song, samplingFrequency, resampled):
         filterBanks = self.__prepare_filterbanks(
-            centred, settings.band_limits, samplingFrequency
+            resampled, settings.band_limits, samplingFrequency
         )
         plots.drawFftPlot(
             filterBanks[3], f"Sygnał z drugiego filtru piosenki", samplingFrequency
@@ -107,48 +108,15 @@ class TempoMetreDetector:
             plotDictionary,
         )
         songTempo = self.tempoDetector.detect_tempo(secondAttemptTempoDetectorData)
+        return songTempo
 
-        print(f"Detecting song's metre {song.name} with method {self.metreDetector}")
-        metreDeteCtorData = MetreDetectorData(
-            diffrected,
-            songTempo,
-            settings.band_limits,
-            samplingFrequency,
-            settings.comb_filter_pulses,
-        )
-
-        metre = self.metreDetector.detect_metre(metreDeteCtorData)
-
-        totalTime = time.time() - startTime
-
-        plots.drawPlot(
-            list(plotDictionary.keys()),
-            f"Rozkład energii iloczynu widma sygnału z filtrem\n o określonej częstotliwości impulsów w piosence",
-            "BPM",
-            "Energy",
-            list(plotDictionary.values()),
-        )
-        return songTempo, metre, totalTime
-
-    def __center_sample_to_beat(self, signal, required_length):
-        n = len(signal)
-        index = 0
-
-        max = np.max(abs(signal))
-
-        for i in range(0, n):
-            if abs(signal[i]) > max * 0.9:
-                index = i
-                break
-
-        lastindex = required_length
-        lastindex += index
-        if lastindex > n:
-            lastindex = n
-        if lastindex - index < required_length:
-            index = index - (required_length - (lastindex - index))
-
-        return signal[index : int(lastindex)]
+    def __resample_signal(self, signal, samplingFrequency):
+        if settings.resample_signal:
+            resampled = scipy.signal.resample(
+                signal, int(len(signal) / settings.resample_ratio)
+            )
+            samplingFrequency /= settings.resample_ratio
+        return resampled, samplingFrequency
 
     def __prepare_filterbanks(self, signal, bandlimits, samplingFrequency):
         dft = np.fft.fft(signal)

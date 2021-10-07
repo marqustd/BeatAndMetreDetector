@@ -6,14 +6,14 @@ import numpy as np
 import settings
 
 
-def prepare_plot_dictionary(minBpm, maxBpm) -> Dict[int, int]:
+def prepare_plot_dictionary(minBpm, maxBpm):
     dictionary = {}
     for bpm in range(minBpm, maxBpm):
         dictionary[bpm] = 0
     return dictionary
 
 
-def draw_plot(yData, title, xAxis="Próbki", yAxis="Amplituda", xData=0) -> None:
+def draw_plot(yData, title, xAxis="Próbki", yAxis="Amplituda", xData=0):
     if settings.draw_plots:
         if xData is 0:
             plt.plot(yData)
@@ -25,7 +25,7 @@ def draw_plot(yData, title, xAxis="Próbki", yAxis="Amplituda", xData=0) -> None
         plt.show()
 
 
-def draw_fft_plot(yData, plotTitle, samplingFrequency: int) -> None:
+def draw_fft_plot(yData, plotTitle, samplingFrequency: int):
     if settings.draw_plots:
         length = len(yData)
         h = abs(yData / length)
@@ -40,7 +40,7 @@ def draw_fft_plot(yData, plotTitle, samplingFrequency: int) -> None:
         plt.show()
 
 
-def draw_comb_filter_fft_plot(yData, plotTitle, samplingFrequency: int) -> None:
+def draw_comb_filter_fft_plot(yData, plotTitle, samplingFrequency: int):
     if settings.draw_plots:
         length = len(yData)
         h = abs(yData / length)

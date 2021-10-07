@@ -1,22 +1,22 @@
+from tempometredetector.metredetector.metre_detector_data import MetreDetectorData
 from .median_filter import *
 from .bsm_calculator import *
-from songreader.song_reader import read_song_fragment
-import os
-import pandas
 import numpy as np
 from scipy import signal
 import settings
 
 
-class SpectrogramMetreDetector:
-    def detect_metre(self, song):
-        sample, sampling_frequency = self.__read_song(song.path)
+class SpectrogramTimeSignatureDetector:
+    def detect_metre(self, data: MetreDetectorData):
+        signal = data.signal
+        sampling_frequency = data.sampling_frequency
+        song_tempo = data.song_tempo
         beatDurationSample = self.__calculate_beat_duration(
-            sampling_frequency, song.tempo
+            sampling_frequency, song_tempo
         )
 
         spectrogram, frequencies, times = self.__prepare_spectrogram(
-            sample, sampling_frequency, beatDurationSample
+            signal, sampling_frequency, beatDurationSample
         )
         spectrogram, frequencies = self.__down_sample_spectrogram(
             spectrogram, frequencies, settings.spectrogram_limit_frequency
@@ -40,59 +40,6 @@ class SpectrogramMetreDetector:
             )
 
         return spectrogram
-
-    def read_data(self):
-        data = pandas.read_csv(
-            "../dataset/genres/genres_tempos.csv",
-            sep=",",
-            names=["path", "tempo", "metre"],
-        )
-        data = data[data.metre.notnull()]
-        return data
-
-    def test_data_songs(self):
-        data = self.read_data()
-        good = 0
-        bad = 0
-        all_songs = len(data)
-        for song in data.iloc:
-            path = song.path
-            path = os.path.relpath("../dataset/genres" + path)
-            song.path = path
-            resul_metre = self.detect_metre(song)
-
-            expectedMetre = int(song.metre.split("/")[0])
-
-            if resul_metre == expectedMetre or (
-                expectedMetre == 4 and (resul_metre == 2 or resul_metre == 8)
-            ):
-                print(f"Good detection! {expectedMetre} - {song.path}")
-                good += 1
-            else:
-                print(
-                    f"Exptected {expectedMetre} but detect {resul_metre} - {song.path}"
-                )
-                bad += 1
-
-        print(f"All: {all_songs}")
-        print(f"Good: {good}")
-        print(f"Bad: {bad}")
-        print(f"Accuracy: {good/all_songs}")
-
-    def __get_song_path(self, data: pandas.DataFrame, song_id: int):
-        song = data.iloc[song_id]
-        path = song.path
-        path = os.path.relpath("../dataset/genres" + path)
-        return song, path
-
-    def __read_song(self, path):
-        fragment_length = 30
-        sample, samplingFrequency = read_song_fragment(path, fragment_length)
-        return sample, samplingFrequency
-
-    def __get_song_tempo(self, song):
-        songTempo = int(song.tempo)
-        return songTempo
 
     def __calculate_beat_duration(self, samplingFrequency, songTempo):
         beatDurationSec = 60 / songTempo
@@ -153,5 +100,5 @@ class SpectrogramMetreDetector:
 
 
 if __name__ == "__main__":
-    detector = SpectrogramMetreDetector()
+    detector = SpectrogramTimeSignatureDetector()
     detector.test_data_songs()
