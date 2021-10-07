@@ -68,7 +68,7 @@ class CombFilterNormalizedMetreDetector(BaseMetreDetector):
         filterSum = sum(abs(fil))
         print("Sum 4\\4 filter: ", filterSum)
         plots.draw_plot(
-            settings.drawMetreFilterPlots,
+            settings.draw_metre_filter_plots,
             fil,
             "4\\4 filter",
             "Sample/Time",
@@ -76,7 +76,7 @@ class CombFilterNormalizedMetreDetector(BaseMetreDetector):
         )
         dft = np.fft.fft(fil)
         plots.drawCombFilterFftPlot(
-            settings.drawMetreFftPlots,
+            settings.draw_metre_fft_plots,
             dft,
             f"Metre 4\\4 filter dft",
             sampling_frequency,
@@ -87,7 +87,7 @@ class CombFilterNormalizedMetreDetector(BaseMetreDetector):
         energy = sum(abs(dft) ** 2)
         print("4\\4 filter energy normalized: ", energy)
         plots.drawCombFilterFftPlot(
-            settings.drawMetreFftPlots,
+            settings.draw_metre_fft_plots,
             dft,
             f"Metre 4\\4 filter normalized dft",
             sampling_frequency,
@@ -116,11 +116,11 @@ class CombFilterNormalizedMetreDetector(BaseMetreDetector):
         filterSum = sum(abs(fil))
         print("Sum 3\\4 filter: ", filterSum)
         plots.draw_plot(
-            settings.drawMetreFilterPlots, fil, "3\\4", "Sample/Time", "Amplitude"
+            settings.draw_metre_filter_plots, fil, "3\\4", "Sample/Time", "Amplitude"
         )
         dft = np.fft.fft(fil)
         plots.drawCombFilterFftPlot(
-            settings.drawMetreFftPlots,
+            settings.draw_metre_fft_plots,
             dft,
             f"Metre 3\\4 filter dft",
             sampling_frequency,
@@ -131,7 +131,7 @@ class CombFilterNormalizedMetreDetector(BaseMetreDetector):
         energy = sum(abs(dft) ** 2)
         print("3\\4 filter energy normalized: ", energy)
         plots.drawCombFilterFftPlot(
-            settings.drawMetreFftPlots,
+            settings.draw_metre_fft_plots,
             dft,
             f"Metre 3\\4 filter normalized dft",
             sampling_frequency,
@@ -166,11 +166,11 @@ class CombFilterNormalizedMetreDetector(BaseMetreDetector):
         filterSum = sum(abs(fil))
         print("Sum 5\\4 filter: ", filterSum)
         plots.draw_plot(
-            settings.drawMetreFilterPlots, fil, "5\\4", "Sample/Time", "Amplitude"
+            settings.draw_metre_filter_plots, fil, "5\\4", "Sample/Time", "Amplitude"
         )
         dft = np.fft.fft(fil)
         plots.drawCombFilterFftPlot(
-            settings.drawMetreFftPlots,
+            settings.draw_metre_fft_plots,
             dft,
             f"Metre 5\\4 filter dft",
             sampling_frequency,
@@ -181,7 +181,7 @@ class CombFilterNormalizedMetreDetector(BaseMetreDetector):
         energy = sum(abs(dft) ** 2)
         print("5\\4 filter energy normalized: ", energy)
         plots.drawCombFilterFftPlot(
-            settings.drawMetreFftPlots,
+            settings.draw_metre_fft_plots,
             dft,
             f"Metre 5\\4 filter normalized dft",
             sampling_frequency,
@@ -217,11 +217,11 @@ class CombFilterNormalizedMetreDetector(BaseMetreDetector):
         filterSum = sum(abs(fil))
         print("Sum 6\\8 filter: ", filterSum)
         plots.draw_plot(
-            settings.drawMetreFilterPlots, fil, "6\\8", "Sample/Time", "Amplitude"
+            settings.draw_metre_filter_plots, fil, "6\\8", "Sample/Time", "Amplitude"
         )
         dft = np.fft.fft(fil)
         plots.drawCombFilterFftPlot(
-            settings.drawMetreFftPlots,
+            settings.draw_metre_fft_plots,
             dft,
             f"Metre 6\\8 filter dft",
             sampling_frequency,
@@ -232,7 +232,7 @@ class CombFilterNormalizedMetreDetector(BaseMetreDetector):
         energy = sum(abs(dft) ** 2)
         print("6\\8 filter energy normalized: ", energy)
         plots.drawCombFilterFftPlot(
-            settings.drawMetreFftPlots,
+            settings.draw_metre_fft_plots,
             dft,
             f"Metre 6\\8 filter normalized dft",
             sampling_frequency,

@@ -23,13 +23,12 @@ class TempoMetreDetector:
         self.tempoDetector = tempoDetector
         self.metreDetector = metreDetector
 
-    def detect_tempo_metre(self, song: Song) -> Tuple[int, metre_enum.MetreEnum, float]:
+    def detect_tempo_metre(self, song: Song):
         print(f"Detecting tempo and metre for song {song.name}...")
         startTime = time.time()
-        signal, samplingFrequency = song_reader.read_song(song.filepath)
-        print(f"Signal read...")
+        signal, samplingFrequency = song_reader.read_song_fragment(song.filepath)
 
-        sample_length = settings.combFilterPulses * samplingFrequency
+        sample_length = settings.comb_filter_pulses * samplingFrequency
         seconds = sample_length * 4
         plots.drawPlot(signal, f"Oryginalny sygnał piosenki")
         song_length = signal.size
@@ -48,15 +47,15 @@ class TempoMetreDetector:
         centred = self.__center_sample_to_beat(sample, sample_length)
         plots.drawPlot(centred, f"Wyrównany fragment piosenki")
 
-        if settings.resampleSignal:
+        if settings.resample_signal:
             centred = scipy.signal.resample(
-                centred, int(len(centred) / settings.resampleRatio)
+                centred, int(len(centred) / settings.resample_ratio)
             )
-            samplingFrequency /= settings.resampleRatio
+            samplingFrequency /= settings.resample_ratio
 
         print(f"Preparing filterbank for song {song.name}...")
         filterBanks = self.__prepare_filterbanks(
-            centred, settings.bandLimits, samplingFrequency
+            centred, settings.band_limits, samplingFrequency
         )
         plots.drawFftPlot(
             filterBanks[3], f"Sygnał z drugiego filtru piosenki", samplingFrequency
@@ -67,30 +66,30 @@ class TempoMetreDetector:
 
         print(f"Hanning song {song.name}...")
         hanningWindow = self.__hann(
-            filterBanks, 0.2, settings.bandLimits, samplingFrequency
+            filterBanks, 0.2, settings.band_limits, samplingFrequency
         )
         plots.drawPlot(
             hanningWindow[1], f"Sygnał drugiego filtru piosenki po wygładzeniu"
         )
 
         print(f"Differentiating song {song.name}...")
-        diffrected = self.__diffrect(hanningWindow, len(settings.bandLimits))
+        diffrected = self.__diffrect(hanningWindow, len(settings.band_limits))
         plots.drawPlot(
             diffrected[1], "Pochodna wygładzonego sygnału z drugiego filtru piosenki"
         )
 
         print(f"Detecting song's tempo {song.name} with method {self.tempoDetector}...")
         print(f"First attempt...")
-        plotDictionary = plots.preparePlotDictionary(settings.minBpm, settings.maxBpm)
+        plotDictionary = plots.preparePlotDictionary(settings.min_bpm, settings.max_bpm)
 
         firstAttemptTempoDetectorData = TempoDetectorData(
             diffrected,
             5,
-            settings.minBpm,
-            settings.maxBpm,
-            settings.bandLimits,
+            settings.min_bpm,
+            settings.max_bpm,
+            settings.band_limits,
             samplingFrequency,
-            settings.combFilterPulses,
+            settings.comb_filter_pulses,
             plotDictionary,
         )
 
@@ -102,9 +101,9 @@ class TempoMetreDetector:
             1,
             songTempo - 5,
             songTempo + 5,
-            settings.bandLimits,
+            settings.band_limits,
             samplingFrequency,
-            settings.combFilterPulses,
+            settings.comb_filter_pulses,
             plotDictionary,
         )
         songTempo = self.tempoDetector.detect_tempo(secondAttemptTempoDetectorData)
@@ -113,9 +112,9 @@ class TempoMetreDetector:
         metreDeteCtorData = MetreDetectorData(
             diffrected,
             songTempo,
-            settings.bandLimits,
+            settings.band_limits,
             samplingFrequency,
-            settings.combFilterPulses,
+            settings.comb_filter_pulses,
         )
 
         metre = self.metreDetector.detect_metre(metreDeteCtorData)

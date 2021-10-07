@@ -19,7 +19,7 @@ class SpectrogramMetreDetector:
             sample, sampling_frequency, beatDurationSample
         )
         spectrogram, frequencies = self.__down_sample_spectrogram(
-            spectrogram, frequencies, settings.spectrogramLimitFrequency
+            spectrogram, frequencies, settings.spectrogram_limit_frequency
         )
 
         spectrogram = self.__apply_median_filter(spectrogram)
@@ -29,14 +29,14 @@ class SpectrogramMetreDetector:
         return self.__detect_metre(bsm, d)
 
     def __apply_median_filter(self, spectrogram):
-        if settings.medianFilter == settings.MedianFilterEnum.PERCUSIVE:
+        if settings.median_filter == settings.MedianFilterEnum.PERCUSIVE:
             spectrogram = self.__calculate_percusive_component(
-                spectrogram, settings.medianFilterWindowSize
+                spectrogram, settings.median_filter_window_size
             )
 
-        elif settings.medianFilter == settings.MedianFilterEnum.HARMONIC:
+        elif settings.median_filter == settings.MedianFilterEnum.HARMONIC:
             spectrogram = self.__calculate_harmonic_component(
-                spectrogram, settings.medianFilterWindowSize
+                spectrogram, settings.median_filter_window_size
             )
 
         return spectrogram

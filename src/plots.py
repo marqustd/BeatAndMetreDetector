@@ -14,7 +14,7 @@ def prepare_plot_dictionary(minBpm, maxBpm) -> Dict[int, int]:
 
 
 def draw_plot(yData, title, xAxis="Próbki", yAxis="Amplituda", xData=0) -> None:
-    if settings.drawPlots:
+    if settings.draw_plots:
         if xData is 0:
             plt.plot(yData)
         else:
@@ -26,10 +26,10 @@ def draw_plot(yData, title, xAxis="Próbki", yAxis="Amplituda", xData=0) -> None
 
 
 def draw_fft_plot(yData, plotTitle, samplingFrequency: int) -> None:
-    if settings.drawPlots:
+    if settings.draw_plots:
         length = len(yData)
         h = abs(yData / length)
-        h = h[1:int(length / 2 + 1)]
+        h = h[1 : int(length / 2 + 1)]
         f = samplingFrequency * ((np.arange(0, int(length / 2))) / length)
 
         plt.plot(f, h)
@@ -41,10 +41,10 @@ def draw_fft_plot(yData, plotTitle, samplingFrequency: int) -> None:
 
 
 def draw_comb_filter_fft_plot(yData, plotTitle, samplingFrequency: int) -> None:
-    if settings.drawPlots:
+    if settings.draw_plots:
         length = len(yData)
         h = abs(yData / length)
-        h = h[1:int(length / 2 + 1)]
+        h = h[1 : int(length / 2 + 1)]
         f = samplingFrequency * ((np.arange(0, int(length / 2))) / length)
 
         plt.plot(f, h)
@@ -56,7 +56,6 @@ def draw_comb_filter_fft_plot(yData, plotTitle, samplingFrequency: int) -> None:
 
 
 def draw_spectrogram(signal, samplingFrequency: int):
-    plt.specgram(signal, Fs=samplingFrequency,
-                 NFFT=5000, noverlap=400, cmap='jet_r')
+    plt.specgram(signal, Fs=samplingFrequency, NFFT=5000, noverlap=400, cmap="jet_r")
     plt.colorbar()
     plt.show()

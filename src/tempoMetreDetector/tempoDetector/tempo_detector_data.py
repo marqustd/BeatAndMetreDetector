@@ -35,8 +35,8 @@ class TempoDetectorData:
         self.__checkTempoBandwidths()
 
     def __checkTempoBandwidths(self):
-        if self.min_bpm < settings.minBpm:
-            self.min_bpm = settings.minBpm
+        if self.min_bpm < settings.min_bpm:
+            self.min_bpm = settings.min_bpm
 
-        if self.max_bpm > settings.maxBpm:
-            self.max_bpm = settings.maxBpm
+        if self.max_bpm > settings.max_bpm:
+            self.max_bpm = settings.max_bpm
