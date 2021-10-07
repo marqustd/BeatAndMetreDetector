@@ -4,6 +4,7 @@ import pandas
 import numpy as np
 import matplotlib.pyplot as plt
 from songreader import read_song_fragment
+import librosa
 
 # %% Import songs list
 data = pandas.read_csv(
@@ -52,7 +53,7 @@ plt.ylabel("Frequency [Hz]")
 plt.xlabel("Time [s]")
 plt.show()
 
-# # %% mfcc librosa
+# %% mfcc librosa
 # audio, samplingFrequency = librosa.load(path=path)
 # librosaMfcc = librosa.feature.mfcc(y=audio, sr=samplingFrequency, dct_type=3)
 
@@ -142,10 +143,9 @@ for x in range(binsAmount):
     # for y in range(x, np.min([binsAmount, x+20])):
     for y in range(binsAmount):
         comparedBin = spectrogram[:, y]
-        haha = euclidianDistance(thisBin, comparedBin)
-        asm[x, y], method = euclidianDistance(thisBin, comparedBin)
+        # asm[x, y], method = euclidianDistance(thisBin, comparedBin)
         # asm[x, y], method = cosineDistance(thisBin, comparedBin)
-        # asm[x, y], method = kullbackLeibler(thisBin, comparedBin)
+        asm[x, y], method = kullbackLeibler(thisBin, comparedBin)
 
 plt.pcolormesh(asm)
 plt.title(f"{method} ASM")

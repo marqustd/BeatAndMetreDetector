@@ -7,6 +7,7 @@ import plots
 import scipy.signal
 import settings
 from songreader import song_reader, Song
+from tempometredetector.metredetector.metre_detector_data import MetreDetectorData
 
 from tempometredetector.tempodetector import (
     BaseTempoDetector,
@@ -22,7 +23,7 @@ class TempoMetreDetector:
         self.tempoDetector = tempoDetector
         self.metreDetector = metreDetector
 
-    def detect_tempo_metre(self, song: Song) -> Tuple[int, metre_enum, float]:
+    def detect_tempo_metre(self, song: Song) -> Tuple[int, metre_enum.MetreEnum, float]:
         print(f"Detecting tempo and metre for song {song.name}...")
         startTime = time.time()
         signal, samplingFrequency = song_reader.read_song(song.filepath)
@@ -75,7 +76,7 @@ class TempoMetreDetector:
         print(f"Differentiating song {song.name}...")
         diffrected = self.__diffrect(hanningWindow, len(settings.bandLimits))
         plots.drawPlot(
-            diffrected[1], f"Pochodna wygładzonego sygnału z drugiego filtru piosenki"
+            diffrected[1], "Pochodna wygładzonego sygnału z drugiego filtru piosenki"
         )
 
         print(f"Detecting song's tempo {song.name} with method {self.tempoDetector}...")
