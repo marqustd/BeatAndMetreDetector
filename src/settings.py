@@ -1,5 +1,11 @@
 from enum import Enum, auto
 
+from tempometredetector.metredetector.spectrogram.bsm_calculator import (
+    euclidian_distance,
+    cosine_distance,
+    kullback_leibler,
+)
+
 
 class MedianFilterEnum(Enum):
     NONE = auto()
@@ -8,7 +14,7 @@ class MedianFilterEnum(Enum):
 
 
 # comb filters
-band_limits = [0, 200, 400, 800, 1600, 3200, 6400]
+band_limits = [0, 200, 400, 800, 1600, 3200, 11000]
 comb_filter_pulses = 8
 min_bpm = 60
 max_bpm = 240
@@ -29,5 +35,6 @@ draw_song_bpm_energy_plots = True
 # metre
 spectrogram_limit_frequency = band_limits[-1]
 median_filter_window_size = 201
-noverlapRatio = 32
+noverlapRatio = 64
 median_filter = MedianFilterEnum.NONE
+method = euclidian_distance

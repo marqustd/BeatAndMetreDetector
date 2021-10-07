@@ -12,12 +12,12 @@ class SpectrogramMetreDetector(BaseMetreDetector):
         signal = data.signal
         sampling_frequency = data.sampling_frequency
         song_tempo = data.song_tempo
-        beatDurationSample = self.__calculate_beat_duration(
+        beat_duration_samples = self.__calculate_beat_duration(
             sampling_frequency, song_tempo
         )
 
         spectrogram, frequencies, times = self.__prepare_spectrogram(
-            signal, sampling_frequency, beatDurationSample
+            signal, sampling_frequency, beat_duration_samples
         )
         spectrogram, frequencies = self.__down_sample_spectrogram(
             spectrogram, frequencies, settings.spectrogram_limit_frequency
@@ -25,7 +25,7 @@ class SpectrogramMetreDetector(BaseMetreDetector):
 
         spectrogram = self.__apply_median_filter(spectrogram)
 
-        bsm = calculate_bsm(spectrogram, times, euclidian_distance)
+        bsm = calculate_bsm(spectrogram, times, settings.method)
         d = self.__calculate_diagonal_function(bsm)
         return self.__detect_metre(bsm, d)
 
@@ -42,54 +42,53 @@ class SpectrogramMetreDetector(BaseMetreDetector):
 
         return spectrogram
 
-    def __calculate_beat_duration(self, samplingFrequency, songTempo):
-        beatDurationSec = 60 / songTempo
-        beatDurationSample = int(beatDurationSec * samplingFrequency)
-        return beatDurationSample
+    def __calculate_beat_duration(self, sampling_frequency, songTempo):
+        beat_duration_seconds = 60 / songTempo
+        beat_duration_samples = int(beat_duration_seconds * sampling_frequency)
+        return beat_duration_samples
 
-    def __prepare_spectrogram(self, sample, samplingFrequency, beatDurationSample):
+    def __prepare_spectrogram(self, sample, sampling_frequency, beat_duration_samples):
         frequencies, times, spectrogram = signal.spectrogram(
             x=sample,
-            fs=samplingFrequency,
-            nperseg=int(beatDurationSample),
-            noverlap=int(beatDurationSample / settings.noverlapRatio),
+            fs=sampling_frequency,
+            nperseg=int(beat_duration_samples),
+            noverlap=int(beat_duration_samples / settings.noverlapRatio),
             mode="magnitude",
         )
         return spectrogram, frequencies, times
 
-    def __down_sample_spectrogram(self, spectrogram, frequencies, limitFrequency):
-        frequenciesLessThan = np.argwhere(frequencies < limitFrequency)
-        lastIndex = frequenciesLessThan[-1, 0]
-        frequencies = frequencies[0:lastIndex]
-        spectrogram = spectrogram[0:lastIndex, :]
+    def __down_sample_spectrogram(self, spectrogram, frequencies, limit_frequency):
+        frequencies_less_than_limit = np.argwhere(frequencies < limit_frequency)
+        last_index = frequencies_less_than_limit[-1, 0]
+        frequencies = frequencies[0:last_index]
+        spectrogram = spectrogram[0:last_index, :]
         return spectrogram, frequencies
 
-    def __calculate_percusive_component(self, spectrogram, windowSize):
-        percusive = median_filter(spectrogram, windowSize, 0)
+    def __calculate_percusive_component(self, spectrogram, window_size):
+        percusive = median_filter(spectrogram, window_size, 0)
         spectrogram = percusive
         return spectrogram
 
-    def __calculate_harmonic_component(self, spectrogram, windowSize):
-        harmonic = median_filter(spectrogram, 0, windowSize)
+    def __calculate_harmonic_component(self, spectrogram, window_size):
+        harmonic = median_filter(spectrogram, 0, window_size)
         spectrogram = harmonic
         return spectrogram
 
     def __calculate_diagonal_function(self, asm):
-        diagonolasNumber = int(len(asm) / 2)
-        diagonolasNumber = len(asm)
-        d = np.zeros(diagonolasNumber)
-        for i in range(diagonolasNumber):
+        diagonals_number = len(asm)
+        d = np.zeros(diagonals_number)
+        for i in range(diagonals_number):
             d[i] = np.average(np.diag(asm, i))
 
-        for i in range(diagonolasNumber):
+        for i in range(diagonals_number):
             d[i] = -d[i] + np.max(np.abs(d))
         return d
 
     def __detect_metre(self, asm, d):
-        metreCandidates = 16
-        lt = int(len(asm) / metreCandidates)
-        t = np.zeros(metreCandidates)
-        for c in range(2, metreCandidates, 1):
+        metre_candidates = 16
+        lt = int(len(asm) / metre_candidates)
+        t = np.zeros(metre_candidates)
+        for c in range(2, metre_candidates, 1):
             for p in range(1, lt, 1):
                 t[c] += (d[p * c]) / (1 - ((p - 1) / lt))
 
