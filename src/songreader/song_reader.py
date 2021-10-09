@@ -2,6 +2,7 @@ from os import name
 import audio2numpy
 from numpy.core.fromnumeric import shape
 import numpy as np
+import settings
 
 
 def read_song(filename: str):
@@ -30,18 +31,38 @@ def read_song_fragment(filename: str, maxDuration: int):
     return sample, samplingFrequency
 
 
-def __trim_sample(maxDuration, sample, samplingFrequency):
-    if len(sample) / samplingFrequency > maxDuration:
+def __trim_sample(maxDuration, sample, sampling_frequency):
+    if len(sample) / sampling_frequency > maxDuration:
         maximum = np.max(sample)
-        threshold = 0.90 * maximum
+        threshold = settings.beat_treshold * maximum
         half = np.floor(len(sample) / 2)
-        indexes = np.where(sample >= threshold * maximum)[0]
-        index = __find_nearest(indexes, half)
-        durationLimit = maxDuration * samplingFrequency
-        trimmedSample = sample[index : index + durationLimit]
+        sample = __cut_to_the_nearest_beat_in_half(
+            maxDuration, sample, sampling_frequency, half, threshold
+        )
+    return sample
 
-        if len(trimmedSample) / samplingFrequency >= maxDuration:
-            sample = trimmedSample
+
+def __cut_to_the_nearest_beat_in_half(
+    max_duration, sample, sampling_frequency, half, threshold
+):
+    if half < 0:
+        raise ValueError("start index is negative")
+
+    indexes = np.where(sample >= threshold)[0]
+    index = __find_nearest(indexes, half)
+    durationLimit = max_duration * sampling_frequency
+    trimmedSample = sample[index : index + durationLimit]
+
+    if len(trimmedSample) / sampling_frequency >= max_duration:
+        sample = trimmedSample
+    else:
+        return __cut_to_the_nearest_beat_in_half(
+            max_duration,
+            sample,
+            sampling_frequency,
+            half - sampling_frequency * 0.1,
+            threshold,
+        )
     return sample
 
 

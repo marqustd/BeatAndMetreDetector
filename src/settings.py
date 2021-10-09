@@ -13,12 +13,15 @@ class MedianFilterEnum(Enum):
     HARMONIC = auto()
 
 
+# fragment
+beat_treshold = 0.80
+
 # comb filters
 band_limits = [0, 200, 400, 800, 1600, 3200, 11000]
 comb_filter_pulses = 8
 min_bpm = 60
 max_bpm = 240
-fragment_length = 30
+fragment_length = 25
 
 # resampling
 resample_signal = True
@@ -35,6 +38,7 @@ draw_song_bpm_energy_plots = True
 # metre
 spectrogram_limit_frequency = band_limits[-1]
 median_filter_window_size = 201
-noverlapRatio = 64
+noverlap_ratio = 64
 median_filter = MedianFilterEnum.NONE
 method = euclidian_distance
+metre_candidates = 12
