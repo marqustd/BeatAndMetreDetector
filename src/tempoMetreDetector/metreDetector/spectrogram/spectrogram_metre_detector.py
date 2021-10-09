@@ -52,7 +52,7 @@ class SpectrogramMetreDetector(BaseMetreDetector):
             x=sample,
             fs=sampling_frequency,
             nperseg=int(beat_duration_samples),
-            noverlap=int(beat_duration_samples / settings.noverlapRatio),
+            noverlap=int(beat_duration_samples / settings.noverlap_ratio),
             mode="magnitude",
         )
         return spectrogram, frequencies, times
@@ -85,7 +85,7 @@ class SpectrogramMetreDetector(BaseMetreDetector):
         return d
 
     def __detect_metre(self, asm, d):
-        metre_candidates = 16
+        metre_candidates = settings.metre_candidates
         lt = int(len(asm) / metre_candidates)
         t = np.zeros(metre_candidates)
         for c in range(2, metre_candidates, 1):

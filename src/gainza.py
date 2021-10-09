@@ -3,22 +3,23 @@ import os
 import pandas
 import numpy as np
 import matplotlib.pyplot as plt
+import settings
 from songreader import read_song_fragment
-import librosa
 
 # %% Import songs list
 data = pandas.read_csv(
     "../dataset/genres/genres_tempos.csv", sep=",", names=["path", "tempo", "metre"]
 )
 data = data[data.metre.notnull()]
+data
 
 # %% Load song sample
-song = data.iloc[57]
+song = data.iloc[0]
 path = song.path
 path = os.path.relpath("../dataset/genres" + path)
+
 # sample, samplingFrequency = songsReader.songReader.read_song(path)
-fragmentLength = 30
-sample, samplingFrequency = read_song_fragment(path, fragmentLength)
+sample, samplingFrequency = read_song_fragment(path, settings.fragment_length)
 
 e_time = np.arange(len(sample)) / samplingFrequency
 
@@ -29,7 +30,6 @@ plt.ylabel("Waveform")
 plt.xlabel("Time [s]")
 plt.show()
 path
-
 
 # %% Load music tempo
 songTempo = int(song.tempo)
@@ -44,8 +44,8 @@ beatDurationSec
 spectrogram, frequencies, times, im = plt.specgram(
     sample,
     Fs=samplingFrequency,
-    NFFT=int(beatDurationSample),
-    noverlap=int(beatDurationSample / 32),
+    NFFT=int(beatDurationSample / 2),
+    noverlap=int(beatDurationSample / settings.noverlap_ratio),
     mode="magnitude",
 )
 plt.title("Spectrogram")
@@ -68,9 +68,8 @@ plt.show()
 # frequencies, times, spectrogram = signal.spectrogram(
 #     sample, samplingFrequency, nperseg=int(beatDurationSample), noverlap=0,)
 
-# %% down spectrogram to 6000 Hz
-limitFrequency = 6000
-frequenciesLessThan = np.argwhere(frequencies < limitFrequency)
+# %% down spectrogram to limit Hz
+frequenciesLessThan = np.argwhere(frequencies < settings.spectrogram_limit_frequency)
 lastIndex = frequenciesLessThan[-1, 0]
 frequencies = frequencies[0:lastIndex]
 spectrogram = spectrogram[0:lastIndex, :]
@@ -120,35 +119,15 @@ spectrogram = spectrogram[0:lastIndex, :]
 binsAmount = len(times)
 asm = np.zeros((binsAmount, binsAmount))
 
-
-def euclidianDistance(oneBin, secondBin):
-    return np.sum(np.square(oneBin - secondBin)), "Euclidian Distance"
-
-
-def cosineDistance(oneBin, secondBin):
-    return (
-        1
-        - np.sum(np.square(oneBin * secondBin))
-        / (np.sqrt(np.sum(np.square(oneBin))) * np.sqrt(sum(np.square(secondBin)))),
-        "Cosine Distance",
-    )
-
-
-def kullbackLeibler(oneBin, secondBin):
-    return np.sum(oneBin * np.log(oneBin / secondBin)), "Kullback-Leiber"
-
-
 for x in range(binsAmount):
     thisBin = spectrogram[:, x]
     # for y in range(x, np.min([binsAmount, x+20])):
     for y in range(binsAmount):
         comparedBin = spectrogram[:, y]
-        # asm[x, y], method = euclidianDistance(thisBin, comparedBin)
-        # asm[x, y], method = cosineDistance(thisBin, comparedBin)
-        asm[x, y], method = kullbackLeibler(thisBin, comparedBin)
+        asm[x, y] = settings.method(thisBin, comparedBin)
 
 plt.pcolormesh(asm)
-plt.title(f"{method} ASM")
+plt.title(f"{settings.method} ASM")
 plt.xlabel("Index of frame x")
 plt.ylabel("Index of frame y")
 plt.show()
@@ -197,7 +176,7 @@ plt.show()
 # for c in range(2, metreCandidates, 1):
 #     t[c] = np.sum((d[p*c])/(1-((p-1)/lt)))
 
-metreCandidates = 16
+metreCandidates = settings.metre_candidates
 lt = int(len(asm) / metreCandidates)
 t = np.zeros(metreCandidates)
 for c in range(2, metreCandidates, 1):
