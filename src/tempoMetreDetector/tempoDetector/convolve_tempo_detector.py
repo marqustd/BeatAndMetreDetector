@@ -4,50 +4,47 @@ from utilities import plots
 import scipy.signal
 from .base_tempo_detector import BaseTempoDetector
 from .tempo_detector_data import TempoDetectorData
+from tempometredetector.tempodetector import common
 
 
 class ConvolveTempoDetector(BaseTempoDetector):
     def __str__(self):
         return "ConvolveTempoDetector"
 
-    def detect_tempo(self, data: TempoDetectorData) -> int:
-        n = len(data.filters_signals[0])
-        nbands = len(data.bands_number)
+    def detect_tempo(self, detect_data: TempoDetectorData):
+        sample_length = len(detect_data.filters_signals[0])
+        bands_amount = len(detect_data.bands_number)
 
-        maxe = 0
-        for bpm in range(data.min_bpm, data.max_bpm, data.accuracy):
-            e = 0
-
-            filterLength = 2
-            nstep = np.floor(60 / bpm * data.sampling_frequency)
-            percent_done = 100 * (bpm - data.min_bpm) / (data.max_bpm - data.min_bpm)
-            fil = np.zeros(int(filterLength * nstep))
-
-            logging.debug("%.2f" % percent_done, "%")
-
-            for a in range(0, filterLength):
-                fil[a * int(nstep)] = 1
-
-            plots.draw_plot(fil, f"Timecomb bpm: {bpm}", "Sample/Time", "Amplitude")
-
-            dftfil = np.fft.fft(fil)
-
-            plots.drawCombFilterFftPlot(
-                dftfil, f"Filter DFT {bpm}", data.sampling_frequency
+        max_energy = 0
+        for current_bpm in range(
+            detect_data.min_bpm, detect_data.max_bpm, detect_data.accuracy
+        ):
+            this_bpm_energy = 0
+            comb_filter_signal = common.prepare_comb_filter_signal(
+                detect_data.sampling_frequency,
+                detect_data.comb_filter_pulses,
+                current_bpm,
+                sample_length,
             )
-            for band in range(0, nbands - 1):
-                filt = scipy.convolve(data.filters_signals[band], fil)
-                f_filt = abs(np.fft.fft(filt))
+            common.write_progress(detect_data.min_bpm, detect_data.max_bpm, current_bpm)
+
+            for band in range(0, bands_amount - 1):
+                convoled = scipy.convolve(
+                    detect_data.filters_signals[band], comb_filter_signal
+                )
+                convoled_fft = abs(np.fft.fft(convoled))
                 plots.draw_fft_plot(
-                    f_filt, f"Convolve DFT {bpm}", data.sampling_frequency
+                    convoled_fft,
+                    f"Convolve DFT {current_bpm}",
+                    detect_data.sampling_frequency,
                 )
 
-                x = abs(f_filt) ** 2
-                e = e + sum(x)
+                x = abs(convoled_fft) ** 2
+                this_bpm_energy = this_bpm_energy + sum(x)
 
-            data.plot_dictionary[bpm] = e
-            if e > maxe:
-                sbpm = bpm
-                maxe = e
+            detect_data.plot_dictionary[current_bpm] = this_bpm_energy
+            if this_bpm_energy > max_energy:
+                sbpm = current_bpm
+                max_energy = this_bpm_energy
 
         return sbpm
