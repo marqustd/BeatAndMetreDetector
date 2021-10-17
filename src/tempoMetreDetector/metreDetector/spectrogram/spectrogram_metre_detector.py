@@ -8,6 +8,12 @@ import settings
 
 
 class SpectrogramMetreDetector(BaseMetreDetector):
+    def __repr__(self):
+        return self.__str__()
+
+    def __str__(self):
+        return "SpectrogramMetreDetector"
+
     def detect_metre(self, data: MetreDetectorData):
         signal = data.signal
         sampling_frequency = data.sampling_frequency

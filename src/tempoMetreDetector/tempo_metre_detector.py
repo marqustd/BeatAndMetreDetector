@@ -46,7 +46,7 @@ class TempoMetreDetector:
 
     def detect_metre(self, song_tempo, samplingFrequency, signal):
         detector = self.__metre_detector()
-        logging.debug(f"Detecting song's metre with method {detector}")
+        logging.info(f"Detecting song's metre with method {detector}")
 
         metre_detector_data = MetreDetectorData(
             sampling_frequency=samplingFrequency,
