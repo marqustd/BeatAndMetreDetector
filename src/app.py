@@ -1,13 +1,24 @@
 import logging
 import os
+import settings
 import pandas
 from tempometredetector import tempo_metre_detector
+from tempometredetector.metredetector.base_metre_detector import BaseMetreDetector
 from tempometredetector.metredetector.spectrogram.spectrogram_metre_detector import (
     SpectrogramMetreDetector,
 )
+from tempometredetector.tempodetector.base_tempo_detector import BaseTempoDetector
 from tempometredetector.tempodetector.comb_filter_tempo_detector import (
     CombFilterTempoDetector,
 )
+from tempometredetector.tempodetector.convolve_tempo_detector import (
+    ConvolveTempoDetector,
+)
+
+
+def write_settings():
+    for property, value in vars(settings).items():
+        logging.info(f"{property} : {value}")
 
 
 def read_dataset():
@@ -16,19 +27,18 @@ def read_dataset():
         sep=",",
         names=["path", "tempo", "metre"],
     )
-    return data[:100]
+    return data
 
 
 def read_dataset_only_metre():
     data = read_dataset()
-    # data = data[1000:]  # todo remove
     data = data[data.metre.notnull()]
     return data
 
 
 def check_metre_accuracy_1(song, result_metre, expected_metre):
     if result_metre == expected_metre:
-        print(f"Good metre detection - acc1! {expected_metre} - {song.path}")
+        logging.info(f"Good metre detection - acc1! {expected_metre} - {song.path}")
         return True
     return False
 
@@ -38,7 +48,7 @@ def check_metre_accuracy_2(song, result_metre, expected_metre, denumerator):
         expected_metre = expected_metre / 2
 
     if result_metre == expected_metre or result_metre == 2 * expected_metre:
-        print(f"Good metre detection - acc2! {expected_metre} - {song.path}")
+        logging.info(f"Good metre detection - acc2! {expected_metre} - {song.path}")
         return True
     return False
 
@@ -46,15 +56,15 @@ def check_metre_accuracy_2(song, result_metre, expected_metre, denumerator):
 def register_bad_metre_detection(
     song, result_metre, expected_metre_numerator, denumerator
 ):
-    print(
+    logging.info(
         f"Exptected {expected_metre_numerator}/{denumerator} but detect {result_metre} - {song.path}"
     )
     return False
 
 
-def test_data_songs_metre():
+def test_data_songs_metre(metre_detector: BaseMetreDetector):
     detector = tempo_metre_detector.TempoMetreDetector(
-        tempo_detector=None, metre_detector=SpectrogramMetreDetector
+        tempo_detector=None, metre_detector=metre_detector
     )
 
     good_metre_acc1 = 0
@@ -89,17 +99,31 @@ def test_data_songs_metre():
             )
             bad_metre += 1
 
-    print(f"All: {all_songs}")
-    print(f"Good metre - accuracy1: {good_metre_acc1}")
-    print(f"Good metre - accuracy2: {good_metre_acc2}")
-    print(f"Bad: {bad_metre}")
-    print(f"Metre accuracy1: {good_metre_acc1/all_songs}")
-    print(f"Metre accuracy2: {good_metre_acc2/all_songs}")
+    logging.info(f"All: {all_songs}")
+    logging.info(f"Good metre - accuracy1: {good_metre_acc1}")
+    logging.info(f"Good metre - accuracy2: {good_metre_acc2}")
+    logging.info(f"Bad: {bad_metre}")
+    logging.info(f"Metre accuracy1: {good_metre_acc1/all_songs}")
+    logging.info(f"Metre accuracy2: {good_metre_acc2/all_songs}")
+    write_settings()
 
 
-def test_data_songs_tempo():
+def check_tempo_acc2(result_tempo, expected_tempo):
+    range = expected_tempo * 0.02
+    return (
+        expected_tempo - 2 * range <= result_tempo * 2 <= expected_tempo + 2 * range
+        or expected_tempo - range <= result_tempo * 0.5 <= expected_tempo + range
+    )
+
+
+def check_tempo_acc1(result_tempo, expected_tempo):
+    range = expected_tempo * 0.02
+    return expected_tempo - range <= result_tempo <= expected_tempo + range
+
+
+def test_data_songs_tempo(tempo_detector: BaseTempoDetector):
     detector = tempo_metre_detector.TempoMetreDetector(
-        tempo_detector=CombFilterTempoDetector, metre_detector=None
+        tempo_detector=tempo_detector, metre_detector=None
     )
 
     good_tempo_acc1 = 0
@@ -120,12 +144,16 @@ def test_data_songs_tempo():
 
         expected_tempo = song.tempo
 
-        if expected_tempo == result_tempo:
-            logging.info(f"Good tempo detection - acc1! {expected_tempo} - {song.path}")
+        if check_tempo_acc1(result_tempo, expected_tempo):
+            logging.info(
+                f"Good tempo detection - acc1! {expected_tempo} - {song.path}: {result_tempo}"
+            )
             good_tempo_acc1 += 1
             good_tempo_acc2 += 1
-        elif expected_tempo == 2 * result_tempo or expected_tempo == 0.5 * result_tempo:
-            logging.info(f"Good tempo detection - acc2! {expected_tempo} - {song.path}")
+        elif check_tempo_acc2(result_tempo, expected_tempo):
+            logging.info(
+                f"Good tempo detection - acc2! {expected_tempo} - {song.path}: {result_tempo}"
+            )
             good_tempo_acc2 += 1
         else:
             logging.info(
@@ -133,15 +161,19 @@ def test_data_songs_tempo():
             )
             bad_tempo += 1
 
+    print(f"Tempo detector: {tempo_detector}")
     print(f"All: {all_songs}")
     print(f"Good tempo - accuracy1: {good_tempo_acc1}")
     print(f"Good tempo - accuracy2: {good_tempo_acc2}")
     print(f"Bad: {bad_tempo}")
     print(f"Tempo accuracy1: {good_tempo_acc1/all_songs}")
     print(f"Tempo accuracy2: {good_tempo_acc2/all_songs}")
+    write_settings()
 
 
 if __name__ == "__main__":
-    logging.basicConfig(level=logging.INFO)
-    # test_data_songs_metre()
-    test_data_songs_tempo()
+    logging.basicConfig(level=logging.INFO, filename="log.log")
+    # write_settings()
+    # test_data_songs_metre(SpectrogramMetreDetector)
+    # test_data_songs_tempo(ConvolveTempoDetector)
+    # test_data_songs_tempo(CombFilterTempoDetector)
