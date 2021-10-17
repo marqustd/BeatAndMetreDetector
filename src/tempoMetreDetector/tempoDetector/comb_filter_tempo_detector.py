@@ -49,7 +49,7 @@ class CombFilterTempoDetector(BaseTempoDetector):
         this_bpm_energy,
         comb_filter_signal,
         bpm,
-        detect_data,
+        detect_data: TempoDetectorData,
     ):
         plots.draw_plot(
             comb_filter_signal,
@@ -58,10 +58,10 @@ class CombFilterTempoDetector(BaseTempoDetector):
             "Amplituda",
         )
         filter_signal_fft = np.fft.fft(comb_filter_signal)
-        plots.drawCombFilterFftPlot(
+        plots.draw_comb_filter_fft_plot(
             filter_signal_fft,
             f"Widmo sygnału filtra tempa {bpm}",
-            detect_data.samplingFrequency,
+            detect_data.sampling_frequency,
         )
 
         for band in range(0, bands_amount):
@@ -69,20 +69,24 @@ class CombFilterTempoDetector(BaseTempoDetector):
             this_bpm_energy = this_bpm_energy + sum(x)
         return this_bpm_energy
 
-    def __write_progress(self, detect_data, bpm):
+    def __write_progress(self, detect_data: TempoDetectorData, bpm):
         percent_done = (
-            100 * (bpm - detect_data.minBpm) / (detect_data.maxBpm - detect_data.minBpm)
+            100
+            * (bpm - detect_data.min_bpm)
+            / (detect_data.max_bpm - detect_data.min_bpm)
         )
         logging.debug("%.2f" % percent_done, "%")
 
-    def __prepare_comb_filter_signal(self, detect_data, bpm, filter_signal):
-        filter_step = np.floor(60 / bpm * detect_data.samplingFrequency)
-        for a in range(0, detect_data.combFilterPulses):
+    def __prepare_comb_filter_signal(
+        self, detect_data: TempoDetectorData, bpm, filter_signal
+    ):
+        filter_step = np.floor(60 / bpm * detect_data.sampling_frequency)
+        for a in range(0, detect_data.comb_filter_pulses):
             filter_signal[a * int(filter_step) + 1] = 1
 
     def __calculate_fft_of_filters(self, detect_data, sample_length, bands_amount):
         comb_filter_ffts = np.zeros([bands_amount, sample_length], dtype=complex)
 
         for band in range(0, bands_amount):
-            comb_filter_ffts[band] = np.fft.fft(detect_data.signal[band])
+            comb_filter_ffts[band] = np.fft.fft(detect_data.filters_signals[band])
         return comb_filter_ffts

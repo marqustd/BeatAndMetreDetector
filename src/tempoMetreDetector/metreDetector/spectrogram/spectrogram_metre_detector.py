@@ -27,7 +27,7 @@ class SpectrogramMetreDetector(BaseMetreDetector):
 
         bsm = calculate_bsm(spectrogram, times, settings.method)
         d = self.__calculate_diagonal_function(bsm)
-        return self.__detect_metre(bsm, d)
+        return self.__detect_metre(d)
 
     def __apply_median_filter(self, spectrogram):
         if settings.median_filter == settings.MedianFilterEnum.PERCUSIVE:
@@ -43,7 +43,8 @@ class SpectrogramMetreDetector(BaseMetreDetector):
         return spectrogram
 
     def __calculate_beat_duration(self, sampling_frequency, songTempo):
-        beat_duration_seconds = 60 / songTempo
+        seconds_in_minute = 60
+        beat_duration_seconds = seconds_in_minute / songTempo
         beat_duration_samples = int(beat_duration_seconds * sampling_frequency)
         return beat_duration_samples
 
@@ -51,7 +52,7 @@ class SpectrogramMetreDetector(BaseMetreDetector):
         frequencies, times, spectrogram = signal.spectrogram(
             x=sample,
             fs=sampling_frequency,
-            nperseg=int(beat_duration_samples),
+            nperseg=int(beat_duration_samples / settings.beat_split_ratio),
             noverlap=int(beat_duration_samples / settings.noverlap_ratio),
             mode="magnitude",
         )
@@ -80,13 +81,15 @@ class SpectrogramMetreDetector(BaseMetreDetector):
         for i in range(diagonals_number):
             d[i] = np.average(np.diag(asm, i))
 
-        for i in range(diagonals_number):
+        d = d[4:-4]
+
+        for i in range(len(d)):
             d[i] = -d[i] + np.max(np.abs(d))
         return d
 
-    def __detect_metre(self, asm, d):
+    def __detect_metre(self, d):
         metre_candidates = settings.metre_candidates
-        lt = int(len(asm) / metre_candidates)
+        lt = int(len(d) / metre_candidates)
         t = np.zeros(metre_candidates)
         for c in range(2, metre_candidates, 1):
             for p in range(1, lt, 1):

@@ -23,6 +23,12 @@ def read_song(filename: str):
     return sample, samplingFrequency
 
 
+def read_song_fragment_from_beginning(filename: str, max_duration: int):
+    sample, samplingFrequency = read_song(filename)
+    sample = sample[: int(max_duration * samplingFrequency)]
+    return sample, samplingFrequency
+
+
 def read_song_fragment(filename: str, maxDuration: int):
     sample, samplingFrequency = read_song(filename)
 
@@ -46,7 +52,7 @@ def __cut_to_the_nearest_beat_in_half(
     max_duration, sample, sampling_frequency, half, threshold
 ):
     if half < 0:
-        raise ValueError("start index is negative")
+        return sample[: int(max_duration * sampling_frequency)]
 
     indexes = np.where(sample >= threshold)[0]
     index = __find_nearest(indexes, half)

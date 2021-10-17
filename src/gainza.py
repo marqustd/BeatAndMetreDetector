@@ -5,6 +5,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import settings
 from songreader import read_song_fragment
+from songreader.song_reader import read_song_fragment_from_beginning
 
 # %% Import songs list
 data = pandas.read_csv(
@@ -14,7 +15,7 @@ data = data[data.metre.notnull()]
 data
 
 # %% Load song sample
-song = data.iloc[0]
+song = data.iloc[-1]
 path = song.path
 path = os.path.relpath("../dataset/genres" + path)
 
@@ -44,7 +45,7 @@ beatDurationSec
 spectrogram, frequencies, times, im = plt.specgram(
     sample,
     Fs=samplingFrequency,
-    NFFT=int(beatDurationSample / 2),
+    NFFT=int(beatDurationSample / settings.beat_split_ratio),
     noverlap=int(beatDurationSample / settings.noverlap_ratio),
     mode="magnitude",
 )
@@ -146,7 +147,6 @@ plt.show()
 # plt.show()
 
 # %% Calculate first function d
-diagonolasNumber = int(len(asm) / 2)
 diagonolasNumber = len(asm)
 d = np.zeros(diagonolasNumber)
 for i in range(diagonolasNumber):
@@ -159,7 +159,7 @@ plt.xticks(range(0, len(d), 4))
 plt.show()
 
 # %% Calculate second function d
-for i in range(diagonolasNumber):
+for i in range(len(d)):
     d[i] = -d[i] + np.max(np.abs(d))
 
 plt.title("Diagonal function")
@@ -177,7 +177,7 @@ plt.show()
 #     t[c] = np.sum((d[p*c])/(1-((p-1)/lt)))
 
 metreCandidates = settings.metre_candidates
-lt = int(len(asm) / metreCandidates)
+lt = int(len(d) / metreCandidates)
 t = np.zeros(metreCandidates)
 for c in range(2, metreCandidates, 1):
     for p in range(1, lt, 1):
