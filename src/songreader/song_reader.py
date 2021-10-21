@@ -66,7 +66,7 @@ def __cut_to_the_nearest_beat_in_half(
             max_duration,
             sample,
             sampling_frequency,
-            half - sampling_frequency * 0.1,
+            half - sampling_frequency * 0.2,
             threshold,
         )
     return sample

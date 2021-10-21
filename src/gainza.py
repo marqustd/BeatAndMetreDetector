@@ -38,8 +38,8 @@ songTempo
 
 # %% Calculate beat duration
 beatDurationSec = 60 / songTempo
-beatDurationSample = int(beatDurationSec * samplingFrequency)
-beatDurationSec
+beatDurationSample = int(beatDurationSec * samplingFrequency) / 8  
+beatDurationSec / 8
 
 # %% target spectrogram
 spectrogram, frequencies, times, im = plt.specgram(
@@ -195,5 +195,6 @@ plt.show()
 # %% detect metre
 metre = np.argmax(t)
 metre
-
+l = []
+l.
 # %%

@@ -1,3 +1,4 @@
+import time
 import logging
 import os
 from common.accuraccy_data import AccuraccyData
@@ -33,6 +34,7 @@ def test_data_songs_metre(metre_detector: BaseMetreDetector):
         tempo_detector=None, metre_detector=metre_detector
     )
 
+    startTime = time.time()
     acc_data = AccuraccyData()
 
     data = read_dataset_only_metre()
@@ -42,7 +44,7 @@ def test_data_songs_metre(metre_detector: BaseMetreDetector):
         path = os.path.relpath("../dataset/genres" + path)
         song.path = path
 
-        result_tempo, result_metre, time = detector.detect(
+        result_tempo, result_metre, _ = detector.detect(
             song.tempo, song.metre, song.path
         )
 
@@ -55,6 +57,8 @@ def test_data_songs_metre(metre_detector: BaseMetreDetector):
         )
 
     summarize_metre_detection(metre_detector, acc_data, all_songs)
+    totalTime = time.time() - startTime
+    logging.info(f"Total time: {totalTime}")
 
 
 def test_data_songs_tempo(tempo_detector: BaseTempoDetector):
@@ -64,6 +68,7 @@ def test_data_songs_tempo(tempo_detector: BaseTempoDetector):
         tempo_detector=tempo_detector, metre_detector=None
     )
 
+    startTime = time.time()
     acc_data = AccuraccyData()
     data = read_dataset()
 
@@ -73,7 +78,7 @@ def test_data_songs_tempo(tempo_detector: BaseTempoDetector):
         path = os.path.relpath("../dataset/genres" + path)
         song.path = path
 
-        result_tempo, result_metre, time = detector.detect(
+        result_tempo, result_metre, _ = detector.detect(
             song.tempo, song.metre, song.path
         )
 
@@ -82,6 +87,8 @@ def test_data_songs_tempo(tempo_detector: BaseTempoDetector):
         check_tempo_detection(acc_data, song, result_tempo, expected_tempo)
 
     summarize_tempo_detection(tempo_detector, acc_data, all_songs)
+    totalTime = time.time() - startTime
+    logging.info(f"Total time: {totalTime}")
 
 
 def test_data_songs(
@@ -93,6 +100,7 @@ def test_data_songs(
         tempo_detector=tempo_detector, metre_detector=metre_detector
     )
 
+    startTime = time.time()
     tempo_acc_data = AccuraccyData()
     metre_acc_data = AccuraccyData()
     data = read_dataset_only_metre()
@@ -120,10 +128,12 @@ def test_data_songs(
 
     summarize_tempo_detection(tempo_detector, tempo_acc_data, all_songs)
     summarize_metre_detection(metre_detector, metre_acc_data, all_songs)
+    totalTime = time.time() - startTime
+    logging.info(f"Total time: {totalTime}")
 
 
 if __name__ == "__main__":
-    test_data_songs(CombFilterTempoDetector, SpectrogramMetreDetector)
+    # test_data_songs(CombFilterTempoDetector, SpectrogramMetreDetector)
     test_data_songs_metre(SpectrogramMetreDetector)
-    test_data_songs_tempo(CombFilterTempoDetector)
+    # test_data_songs_tempo(CombFilterTempoDetector)
     write_settings()

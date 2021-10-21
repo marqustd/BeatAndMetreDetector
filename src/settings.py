@@ -15,10 +15,10 @@ class MedianFilterEnum(Enum):
 
 # fragment
 beat_treshold = 0.9
-fragment_length = 30
+fragment_length = 25
 
 # comb filters
-band_limits = [0, 200, 400, 800, 1600, 3200, 10000]
+band_limits = [0, 200, 400, 800, 1600, 3200, 6000]
 comb_filter_pulses = 8
 min_bpm = 60
 max_bpm = 240

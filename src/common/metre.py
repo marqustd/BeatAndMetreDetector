@@ -39,7 +39,7 @@ def check_metre_accuracy_1(song, result_metre, expected_metre):
 
 def check_metre_accuracy_2(song, result_metre, expected_metre, denumerator):
     quadruples = [2, 4, 8]
-    triples = [3, 6]
+    triples = [3, 6, 12]
 
     if (expected_metre in quadruples and result_metre in quadruples) or (
         expected_metre in triples and result_metre in triples

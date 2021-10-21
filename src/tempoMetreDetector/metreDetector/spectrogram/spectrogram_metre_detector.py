@@ -87,7 +87,7 @@ class SpectrogramMetreDetector(BaseMetreDetector):
         for i in range(diagonals_number):
             d[i] = np.average(np.diag(asm, i))
 
-        d = d[4:-4]
+        # d = d[4:-4]
 
         for i in range(len(d)):
             d[i] = -d[i] + np.max(np.abs(d))
