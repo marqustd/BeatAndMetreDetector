@@ -12,6 +12,5 @@ def read_dataset():
 
 def read_dataset_only_metre():
     data = read_dataset()
-    data = data[999:]
     data = data[data.metre.notnull()]
     return data

@@ -1,5 +1,7 @@
 # %% Imports
 import os
+import librosa
+import librosa.display
 import pandas
 import numpy as np
 import matplotlib.pyplot as plt
@@ -15,7 +17,7 @@ data = data[data.metre.notnull()]
 data
 
 # %% Load song sample
-song = data.iloc[-1]
+song = data.iloc[1]
 path = song.path
 path = os.path.relpath("../dataset/genres" + path)
 
@@ -38,7 +40,7 @@ songTempo
 
 # %% Calculate beat duration
 beatDurationSec = 60 / songTempo
-beatDurationSample = int(beatDurationSec * samplingFrequency) / 8  
+beatDurationSample = int(beatDurationSec * samplingFrequency) / 8
 beatDurationSec / 8
 
 # %% target spectrogram
@@ -55,15 +57,22 @@ plt.xlabel("Time [s]")
 plt.show()
 
 # %% mfcc librosa
-# audio, samplingFrequency = librosa.load(path=path)
-# librosaMfcc = librosa.feature.mfcc(y=audio, sr=samplingFrequency, dct_type=3)
+audio, samplingFrequency = librosa.load(path=path)
+librosaMfcc = librosa.feature.mfcc(
+    y=audio,
+    sr=samplingFrequency,
+    dct_type=2,
+    n_mfcc=100,
+    n_fft=int(beatDurationSample / settings.beat_split_ratio),
+    hop_length=int(beatDurationSample / settings.beat_split_ratio),
+)
 
-# img = librosa.display.specshow(librosaMfcc, x_axis='time')
-# plt.colorbar(img)
-# plt.title('MFCC')
-# plt.xlabel('Beat')
-# plt.ylabel('Feature')
-# plt.show()
+img = librosa.display.specshow(librosaMfcc, x_axis="time")
+plt.colorbar(img)
+plt.title("MFCC")
+plt.xlabel("Beat")
+plt.ylabel("Feature")
+plt.show()
 
 # # %% Calculate spectrogram
 # frequencies, times, spectrogram = signal.spectrogram(
@@ -195,6 +204,4 @@ plt.show()
 # %% detect metre
 metre = np.argmax(t)
 metre
-l = []
-l.
 # %%

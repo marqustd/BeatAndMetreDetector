@@ -18,7 +18,7 @@ beat_treshold = 0.9
 fragment_length = 25
 
 # comb filters
-band_limits = [0, 200, 400, 800, 1600, 3200, 6000]
+band_limits = [0, 200, 400, 800, 1600, 3200, 4000]
 comb_filter_pulses = 8
 min_bpm = 60
 max_bpm = 240
@@ -37,7 +37,7 @@ draw_song_bpm_energy_plots = True
 
 # metre
 spectrogram_limit_frequency = band_limits[-1]
-median_filter_window_size = 201
+median_filter_window_size = 701
 noverlap_ratio = 64
 median_filter = MedianFilterEnum.NONE
 method = euclidian_distance
