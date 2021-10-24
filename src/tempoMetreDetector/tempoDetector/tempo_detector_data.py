@@ -4,7 +4,7 @@ import settings
 
 
 class TempoDetectorData:
-    filters_signals: np.array
+    filterbank: np.array
     accuracy: int
     min_bpm: int
     max_bpm: int
@@ -24,7 +24,7 @@ class TempoDetectorData:
         combFilterPulses: int,
         plotDictionary: Dict[int, int],
     ):
-        self.filters_signals = signal
+        self.filterbank = signal
         self.accuracy = accuracy
         self.min_bpm = minBpm
         self.max_bpm = maxBpm

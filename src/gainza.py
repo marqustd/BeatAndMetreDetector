@@ -5,6 +5,7 @@ import librosa.display
 import pandas
 import numpy as np
 import matplotlib.pyplot as plt
+from common.dataset import read_dataset
 import settings
 from songreader import read_song_fragment
 from songreader.song_reader import read_song_fragment_from_beginning
@@ -13,7 +14,7 @@ from songreader.song_reader import read_song_fragment_from_beginning
 data = pandas.read_csv(
     "../dataset/genres/genres_tempos.csv", sep=",", names=["path", "tempo", "metre"]
 )
-data = data[data.metre.notnull()]
+
 data
 
 # %% Load song sample
@@ -160,8 +161,8 @@ plt.show()
 # %% Calculate first function d
 diagonolasNumber = len(asm)
 d = np.zeros(diagonolasNumber)
-for i in range(diagonolasNumber):
-    d[i] = np.average(np.diag(asm, i))
+for g in range(diagonolasNumber):
+    d[g] = np.average(np.diag(asm, g))
 
 plt.title("Average value")
 plt.xlabel("ASM Diagonal")
@@ -170,8 +171,8 @@ plt.xticks(range(0, len(d), 4))
 plt.show()
 
 # %% Calculate second function d
-for i in range(len(d)):
-    d[i] = -d[i] + np.max(np.abs(d))
+for g in range(len(d)):
+    d[g] = -d[g] + np.max(np.abs(d))
 
 plt.title("Diagonal function")
 plt.xlabel("ASM Diagonal")

@@ -11,11 +11,7 @@ class CombFilterTempoDetector(BaseTempoDetector):
         return "CombFilterTempoDetector"
 
     def detect_tempo(self, detect_data: TempoDetectorData):
-        sample_length = len(detect_data.filters_signals[0])
-        bands_amount = len(detect_data.bands_number)
-        comb_filter_ffts = common.calculate_fft_of_filters(
-            detect_data.filters_signals, sample_length, bands_amount
-        )
+        filterbank_ffts = common.calculate_fft_of_filterbank(detect_data.filterbank)
 
         max_energy = 0
         for current_bpm in range(
@@ -23,19 +19,11 @@ class CombFilterTempoDetector(BaseTempoDetector):
         ):
             this_bpm_energy = 0
 
-            comb_filter_signal = common.prepare_comb_filter_signal(
-                detect_data.sampling_frequency,
-                detect_data.comb_filter_pulses,
-                current_bpm,
-                sample_length,
-            )
             common.write_progress(detect_data.min_bpm, detect_data.max_bpm, current_bpm)
 
             this_bpm_energy = self.__calculate_this_bmp_energy(
-                bands_amount,
-                comb_filter_ffts,
+                filterbank_ffts,
                 this_bpm_energy,
-                comb_filter_signal,
                 current_bpm,
                 detect_data,
             )
@@ -49,27 +37,21 @@ class CombFilterTempoDetector(BaseTempoDetector):
 
     def __calculate_this_bmp_energy(
         self,
-        bands_amount: int,
         comb_filter_ffts,
         this_bpm_energy,
-        comb_filter_signal,
         bpm: int,
         detect_data: TempoDetectorData,
     ):
-        plots.draw_plot(
-            comb_filter_signal,
-            f"Sygnał filtru grzebieniowego  tempa {bpm}",
-            "Próbki",
-            "Amplituda",
+        filter_signal_fft = common.get_comb_filter_fft(
+            detect_data.sampling_frequency, bpm
         )
-        filter_signal_fft = np.fft.fft(comb_filter_signal)
         plots.draw_comb_filter_fft_plot(
             filter_signal_fft,
             f"Widmo sygnału filtra tempa {bpm}",
             detect_data.sampling_frequency,
         )
 
-        for band in range(0, bands_amount):
+        for band in range(0, len(comb_filter_ffts)):
             x = (abs(filter_signal_fft * comb_filter_ffts[band])) ** 2
             this_bpm_energy = this_bpm_energy + sum(x)
         return this_bpm_energy
