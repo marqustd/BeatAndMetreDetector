@@ -58,16 +58,17 @@ plt.show()
 
 # %% mfcc librosa
 audio, samplingFrequency = librosa.load(path=path)
+audio = audio[: int(samplingFrequency * settings.fragment_length)]
+
 librosaMfcc = librosa.feature.mfcc(
     y=audio,
     sr=samplingFrequency,
     dct_type=2,
-    n_mfcc=100,
     n_fft=int(beatDurationSample / settings.beat_split_ratio),
     hop_length=int(beatDurationSample / settings.beat_split_ratio),
 )
 
-img = librosa.display.specshow(librosaMfcc, x_axis="time")
+img = librosa.display.specshow(librosaMfcc)
 plt.colorbar(img)
 plt.title("MFCC")
 plt.xlabel("Beat")
@@ -126,6 +127,7 @@ spectrogram = spectrogram[0:lastIndex, :]
 # spectrogram = percussive
 
 # %% Calculate AMS
+spectrogram = librosaMfcc
 binsAmount = len(times)
 asm = np.zeros((binsAmount, binsAmount))
 

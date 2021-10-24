@@ -18,20 +18,12 @@ class SpectrogramMetreDetector(BaseMetreDetector):
         signal = data.signal
         sampling_frequency = data.sampling_frequency
         song_tempo = data.song_tempo
-        beat_duration_samples = self.__calculate_beat_duration(
-            sampling_frequency, song_tempo
-        )
 
-        spectrogram, frequencies, times = self.__prepare_spectrogram(
-            signal, sampling_frequency, beat_duration_samples
-        )
-        spectrogram, frequencies = self.__down_sample_spectrogram(
-            spectrogram, frequencies, settings.spectrogram_limit_frequency
-        )
+        spectrogram = settings.spectrogram_function(data)
 
         spectrogram = self.__apply_median_filter(spectrogram)
 
-        bsm = calculate_bsm(spectrogram, times, settings.method)
+        bsm = calculate_bsm(spectrogram, settings.method)
         d = self.__calculate_diagonal_function(bsm)
         return self.__detect_metre(d)
 
@@ -47,29 +39,6 @@ class SpectrogramMetreDetector(BaseMetreDetector):
             )
 
         return spectrogram
-
-    def __calculate_beat_duration(self, sampling_frequency, songTempo):
-        seconds_in_minute = 60
-        beat_duration_seconds = seconds_in_minute / songTempo
-        beat_duration_samples = int(beat_duration_seconds * sampling_frequency)
-        return beat_duration_samples
-
-    def __prepare_spectrogram(self, sample, sampling_frequency, beat_duration_samples):
-        frequencies, times, spectrogram = signal.spectrogram(
-            x=sample,
-            fs=sampling_frequency,
-            nperseg=int(beat_duration_samples / settings.beat_split_ratio),
-            noverlap=int(beat_duration_samples / settings.noverlap_ratio),
-            mode="magnitude",
-        )
-        return spectrogram, frequencies, times
-
-    def __down_sample_spectrogram(self, spectrogram, frequencies, limit_frequency):
-        frequencies_less_than_limit = np.argwhere(frequencies < limit_frequency)
-        last_index = frequencies_less_than_limit[-1, 0]
-        frequencies = frequencies[0:last_index]
-        spectrogram = spectrogram[0:last_index, :]
-        return spectrogram, frequencies
 
     def __calculate_percusive_component(self, spectrogram, window_size):
         percusive = median_filter(spectrogram, window_size, 0)

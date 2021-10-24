@@ -5,6 +5,10 @@ from tempometredetector.metredetector.spectrogram.bsm_calculator import (
     cosine_distance,
     kullback_leibler,
 )
+from tempometredetector.metredetector.spectrogram.spectrogram_provider import (
+    get_mffc,
+    get_standard_spectrogram,
+)
 
 
 class MedianFilterEnum(Enum):
@@ -43,3 +47,4 @@ median_filter = MedianFilterEnum.NONE
 method = euclidian_distance
 metre_candidates = 12
 beat_split_ratio = 1
+spectrogram_function = get_mffc

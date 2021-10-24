@@ -38,13 +38,13 @@ class TempoMetreDetector:
             song_tempo = self.detect_tempo(sampling_frequency, signal)
 
         if self.__metre_detector is not None:
-            song_metre = self.detect_metre(song_tempo, sampling_frequency, signal)
+            song_metre = self.detect_metre(song_tempo, sampling_frequency, signal, path)
 
         totalTime = time.time() - startTime
 
         return song_tempo, song_metre, totalTime
 
-    def detect_metre(self, song_tempo, samplingFrequency, signal):
+    def detect_metre(self, song_tempo, samplingFrequency, signal, path: str):
         detector = self.__metre_detector()
         logging.info(f"Detecting song's metre with method {detector}")
 
@@ -52,6 +52,7 @@ class TempoMetreDetector:
             sampling_frequency=samplingFrequency,
             signal=signal,
             song_tempo=song_tempo,
+            path=path,
         )
 
         metre = detector.detect_metre(metre_detector_data)
