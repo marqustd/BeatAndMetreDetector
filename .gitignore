@@ -137,5 +137,5 @@ dmypy.json
 cython_debug/
 
 # songs
-songs/
-dataset/
+*.mp3
+*.wav
