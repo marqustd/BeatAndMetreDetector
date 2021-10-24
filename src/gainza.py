@@ -9,6 +9,13 @@ from common.dataset import read_dataset
 import settings
 from songreader import read_song_fragment
 from songreader.song_reader import read_song_fragment_from_beginning
+from tempometredetector.tempodetector.common import (
+    get_comb_filter_fft,
+    get_comb_filter_signal,
+)
+
+
+# %%
 
 # %% Import songs list
 data = pandas.read_csv(
