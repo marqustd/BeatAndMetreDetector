@@ -20,6 +20,7 @@ from tempometredetector.tempodetector.comb_filter_tempo_detector import (
 from tempometredetector.tempodetector.convolve_tempo_detector import (
     ConvolveTempoDetector,
 )
+from tempometredetector.tempodetector.librosa_tempo_detector import LibrosaTempoDetector
 
 
 def write_settings():
@@ -70,7 +71,7 @@ def test_data_songs_tempo(tempo_detector: BaseTempoDetector):
 
     startTime = time.time()
     acc_data = AccuraccyData()
-    data = read_dataset_fragment(10)
+    data = read_dataset_genres_fragment(10)
 
     all_songs = len(data)
     for song in data.iloc:
@@ -135,5 +136,5 @@ def test_data_songs(
 if __name__ == "__main__":
     # test_data_songs(CombFilterTempoDetector, SpectrogramMetreDetector)
     # test_data_songs_metre(SpectrogramMetreDetector)
-    test_data_songs_tempo(CombFilterTempoDetector)
+    test_data_songs_tempo(LibrosaTempoDetector)
     write_settings()

@@ -12,6 +12,7 @@ class TempoDetectorData:
     sampling_frequency: int
     comb_filter_pulses: int
     plot_dictionary: Dict[int, int]
+    path: str
 
     def __init__(
         self,
@@ -23,6 +24,7 @@ class TempoDetectorData:
         samplingFrequency: int,
         combFilterPulses: int,
         plotDictionary: Dict[int, int],
+        path: str,
     ):
         self.filterbank = signal
         self.accuracy = accuracy
@@ -33,6 +35,7 @@ class TempoDetectorData:
         self.comb_filter_pulses = combFilterPulses
         self.plot_dictionary = plotDictionary
         self.__checkTempoBandwidths()
+        self.path = path
 
     def __checkTempoBandwidths(self):
         if self.min_bpm < settings.min_bpm:

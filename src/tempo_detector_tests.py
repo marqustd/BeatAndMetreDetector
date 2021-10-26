@@ -22,6 +22,8 @@ from tempometredetector.tempodetector.convolve_tempo_detector import (
 )
 import sys
 
+from tempometredetector.tempodetector.librosa_tempo_detector import LibrosaTempoDetector
+
 
 def write_settings():
     for property, value in vars(settings).items():
@@ -35,7 +37,7 @@ def test_data_songs_tempo(tempo_detector: BaseTempoDetector):
 
     startTime = time.time()
     acc_data = AccuraccyData()
-    data = read_dataset_fragment(10)
+    data = read_dataset_genres()
 
     all_songs = len(data)
     for song in data.iloc:
@@ -64,8 +66,6 @@ if __name__ == "__main__":
     settings.comb_filter_pulses = comb_filter_pulses
     settings.fragment_length = fragment_length
 
-    config_logger(
-        f"results/tempo-comb-{settings.fragment_length}-{settings.comb_filter_pulses}.log"
-    )
+    config_logger(f"results/LibrosaTempoDetector.log")
 
-    test_data_songs_tempo(CombFilterTempoDetector)
+    test_data_songs_tempo(LibrosaTempoDetector)

@@ -14,6 +14,7 @@ python .\tempo_detector_tests.py 21 10
 python .\tempo_detector_tests.py 22 10
 python .\tempo_detector_tests.py 23 10
 python .\tempo_detector_tests.py 24 10
+python .\tempo_detector_tests.py 25 10
 python .\tempo_detector_tests.py 26 10
 python .\tempo_detector_tests.py 27 10
 python .\tempo_detector_tests.py 28 10

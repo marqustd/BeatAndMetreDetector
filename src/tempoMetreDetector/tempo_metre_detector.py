@@ -7,6 +7,7 @@ from songreader import song_reader
 from tempometredetector.metredetector.base_metre_detector import BaseMetreDetector
 from tempometredetector.metredetector.metre_detector_data import MetreDetectorData
 import logging
+from tempometredetector.tempodetector.librosa_tempo_detector import LibrosaTempoDetector
 from utilities import plots
 
 from tempometredetector.tempodetector import (
@@ -35,7 +36,7 @@ class TempoMetreDetector:
         )
 
         if self.__tempo_detector is not None:
-            song_tempo = self.detect_tempo(sampling_frequency, signal)
+            song_tempo = self.detect_tempo(sampling_frequency, signal, path)
 
         if self.__metre_detector is not None:
             song_metre = self.detect_metre(song_tempo, sampling_frequency, signal, path)
@@ -58,7 +59,7 @@ class TempoMetreDetector:
         metre = detector.detect_metre(metre_detector_data)
         return metre
 
-    def detect_tempo(self, samplingFrequency, signal):
+    def detect_tempo(self, samplingFrequency, signal, path: str):
         detector = self.__tempo_detector()
         logging.info(f"Detecting song's tempo with method {detector}")
         resampled, samplingFrequency = self.__resample_signal(signal, samplingFrequency)
@@ -93,32 +94,35 @@ class TempoMetreDetector:
             settings.min_bpm, settings.max_bpm
         )
 
-        firstAttemptTempoDetectorData = TempoDetectorData(
-            diffrected,
-            5,
-            settings.min_bpm,
-            settings.max_bpm,
-            settings.band_limits,
-            samplingFrequency,
-            settings.comb_filter_pulses,
-            plotDictionary,
-        )
-
-        songTempo = detector.detect_tempo(firstAttemptTempoDetectorData)
+        song_tempo = 0
+        if self.__tempo_detector is not LibrosaTempoDetector:
+            firstAttemptTempoDetectorData = TempoDetectorData(
+                diffrected,
+                5,
+                settings.min_bpm,
+                settings.max_bpm,
+                settings.band_limits,
+                samplingFrequency,
+                settings.comb_filter_pulses,
+                plotDictionary,
+                path,
+            )
+            song_tempo = detector.detect_tempo(firstAttemptTempoDetectorData)
 
         logging.debug(f"Second attempt...")
         secondAttemptTempoDetectorData = TempoDetectorData(
             diffrected,
             1,
-            songTempo - 5,
-            songTempo + 5,
+            song_tempo - 5,
+            song_tempo + 5,
             settings.band_limits,
             samplingFrequency,
             settings.comb_filter_pulses,
             plotDictionary,
+            path,
         )
-        songTempo = detector.detect_tempo(secondAttemptTempoDetectorData)
-        return songTempo
+        song_tempo = detector.detect_tempo(secondAttemptTempoDetectorData)
+        return song_tempo
 
     def __resample_signal(self, signal, samplingFrequency):
         if settings.resample_signal:
