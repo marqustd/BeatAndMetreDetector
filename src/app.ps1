@@ -1,2 +1,2 @@
-.\venv\Scripts\activate.ps1
+.\venv.ps1
 python app.py

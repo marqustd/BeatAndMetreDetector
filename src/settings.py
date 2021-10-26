@@ -23,7 +23,7 @@ fragment_length = 25
 
 # comb filters
 band_limits = [0, 200, 400, 800, 1600, 3200, 4000]
-comb_filter_pulses = 9
+comb_filter_pulses = 10
 min_bpm = 60
 max_bpm = 240
 

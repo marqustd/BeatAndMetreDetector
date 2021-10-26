@@ -1,0 +1,17 @@
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Good tempo detection - acc1! 125.0 - ..\dataset\genres\blues\blues.00000.wav: 125
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Exptected 68.0 but detect 204 - ..\dataset\genres\blues\blues.00001.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Good tempo detection - acc1! 157.0 - ..\dataset\genres\blues\blues.00002.wav: 157
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Good tempo detection - acc2! 62.0 - ..\dataset\genres\blues\blues.00003.wav: 125
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Good tempo detection - acc1! 132.0 - ..\dataset\genres\blues\blues.00004.wav: 134
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Exptected 69.0 but detect 101 - ..\dataset\genres\blues\blues.00005.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Exptected 72.0 but detect 150 - ..\dataset\genres\blues\blues.00006.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Exptected 92.0 but detect 95 - ..\dataset\genres\blues\blues.00007.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
