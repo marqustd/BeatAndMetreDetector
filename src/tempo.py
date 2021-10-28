@@ -52,6 +52,7 @@ librosa_tempo = librosa.beat.tempo(audio, sr=sampling_frequency, onset_envelope=
 librosa_tempo[0]
 
 # %%
+
 detector = tempo_metre_detector.TempoMetreDetector(
     metre_detector=None, tempo_detector=CombFilterTempoDetector
 )

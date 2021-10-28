@@ -16,12 +16,12 @@ def kullback_leibler(oneBin, secondBin):
 
 
 def calculate_bsm(spectrogram, method):
-    binsAmount = len(spectrogram[0])
-    asm = np.zeros((binsAmount, binsAmount))
+    bins_amount = len(spectrogram[0])
+    bsm = np.zeros((bins_amount, bins_amount))
 
-    for x in range(binsAmount):
-        thisBin = spectrogram[:, x]
-        for y in range(binsAmount):
-            comparedBin = spectrogram[:, y]
-            asm[x, y] = method(thisBin, comparedBin)
-    return asm
+    for x in range(bins_amount):
+        this_bin = spectrogram[:, x]
+        for y in range(bins_amount):
+            compared_bin = spectrogram[:, y]
+            bsm[x, y] = method(this_bin, compared_bin)
+    return bsm

@@ -46,11 +46,11 @@ class SpectrogramMetreDetector(BaseMetreDetector):
         spectrogram = harmonic
         return spectrogram
 
-    def __calculate_diagonal_function(self, asm):
-        diagonals_number = len(asm)
+    def __calculate_diagonal_function(self, bsm):
+        diagonals_number = len(bsm)
         d = np.zeros(diagonals_number)
         for i in range(diagonals_number):
-            d[i] = np.average(np.diag(asm, i))
+            d[i] = np.average(np.diag(bsm, i))
 
         # d = d[4:-4]
 

@@ -5,11 +5,11 @@ import librosa.display
 import pandas
 import numpy as np
 import matplotlib.pyplot as plt
-from common.dataset import read_dataset
+from common.dataset import read_dataset, read_dataset_only_metre
 import settings
 from songreader import read_song_fragment
 from songreader.song_reader import read_song_fragment_from_beginning
-from tempometredetector.tempodetector.common import (
+from tempometredetector.tempodetector.comb_filter import (
     get_comb_filter_fft,
     get_comb_filter_signal,
 )
@@ -18,14 +18,12 @@ from tempometredetector.tempodetector.common import (
 # %%
 
 # %% Import songs list
-data = pandas.read_csv(
-    "../dataset/genres/genres_tempos.csv", sep=",", names=["path", "tempo", "metre"]
-)
+data = read_dataset_only_metre()
 
 data
 
 # %% Load song sample
-song = data.iloc[1]
+song = data.iloc[86]
 path = song.path
 path = os.path.relpath("../dataset/genres" + path)
 
@@ -48,8 +46,8 @@ songTempo
 
 # %% Calculate beat duration
 beatDurationSec = 60 / songTempo
-beatDurationSample = int(beatDurationSec * samplingFrequency) / 8
-beatDurationSec / 8
+beatDurationSample = int(beatDurationSec * samplingFrequency)
+beatDurationSec
 
 # %% target spectrogram
 spectrogram, frequencies, times, im = plt.specgram(
@@ -64,24 +62,24 @@ plt.ylabel("Frequency [Hz]")
 plt.xlabel("Time [s]")
 plt.show()
 
-# %% mfcc librosa
-audio, samplingFrequency = librosa.load(path=path)
-audio = audio[: int(samplingFrequency * settings.fragment_length)]
+# # %% mfcc librosa
+# audio, samplingFrequency = librosa.load(path=path)
+# audio = audio[: int(samplingFrequency * settings.fragment_length)]
 
-librosaMfcc = librosa.feature.mfcc(
-    y=audio,
-    sr=samplingFrequency,
-    dct_type=2,
-    n_fft=int(beatDurationSample / settings.beat_split_ratio),
-    hop_length=int(beatDurationSample / settings.beat_split_ratio),
-)
+# librosaMfcc = librosa.feature.mfcc(
+#     y=audio,
+#     sr=samplingFrequency,
+#     dct_type=2,
+#     n_fft=int(beatDurationSample / settings.beat_split_ratio),
+#     hop_length=int(beatDurationSample / settings.beat_split_ratio),
+# )
 
-img = librosa.display.specshow(librosaMfcc)
-plt.colorbar(img)
-plt.title("MFCC")
-plt.xlabel("Beat")
-plt.ylabel("Feature")
-plt.show()
+# img = librosa.display.specshow(librosaMfcc)
+# plt.colorbar(img)
+# plt.title("MFCC")
+# plt.xlabel("Beat")
+# plt.ylabel("Feature")
+# plt.show()
 
 # # %% Calculate spectrogram
 # frequencies, times, spectrogram = signal.spectrogram(
@@ -134,20 +132,18 @@ spectrogram = spectrogram[0:lastIndex, :]
 # %%
 # spectrogram = percussive
 
-# %% Calculate AMS
-spectrogram = librosaMfcc
-binsAmount = len(times)
-asm = np.zeros((binsAmount, binsAmount))
+# %% Calculate BSM
+binsAmount = len(spectrogram[0])
+bsm = np.zeros((binsAmount, binsAmount))
 
 for x in range(binsAmount):
-    thisBin = spectrogram[:, x]
-    # for y in range(x, np.min([binsAmount, x+20])):
+    this_bin = spectrogram[:, x]
     for y in range(binsAmount):
-        comparedBin = spectrogram[:, y]
-        asm[x, y] = settings.method(thisBin, comparedBin)
+        compared_bin = spectrogram[:, y]
+        bsm[x, y] = settings.method(this_bin, compared_bin)
 
-plt.pcolormesh(asm)
-plt.title(f"{settings.method} ASM")
+plt.pcolormesh(bsm)
+plt.title(f"{settings.method} BSM")
 plt.xlabel("Index of frame x")
 plt.ylabel("Index of frame y")
 plt.show()
@@ -166,10 +162,10 @@ plt.show()
 # plt.show()
 
 # %% Calculate first function d
-diagonolasNumber = len(asm)
+diagonolasNumber = len(bsm)
 d = np.zeros(diagonolasNumber)
-for g in range(diagonolasNumber):
-    d[g] = np.average(np.diag(asm, g))
+for i in range(diagonolasNumber):
+    d[i] = np.average(np.diag(bsm, i))
 
 plt.title("Average value")
 plt.xlabel("ASM Diagonal")
@@ -178,8 +174,8 @@ plt.xticks(range(0, len(d), 4))
 plt.show()
 
 # %% Calculate second function d
-for g in range(len(d)):
-    d[g] = -d[g] + np.max(np.abs(d))
+for i in range(len(d)):
+    d[i] = -d[i] + np.max(np.abs(d))
 
 plt.title("Diagonal function")
 plt.xlabel("ASM Diagonal")
@@ -195,10 +191,10 @@ plt.show()
 # for c in range(2, metreCandidates, 1):
 #     t[c] = np.sum((d[p*c])/(1-((p-1)/lt)))
 
-metreCandidates = settings.metre_candidates
-lt = int(len(d) / metreCandidates)
-t = np.zeros(metreCandidates)
-for c in range(2, metreCandidates, 1):
+metre_candidates = settings.metre_candidates
+lt = int(len(d) / metre_candidates)
+t = np.zeros(metre_candidates)
+for c in range(2, metre_candidates, 1):
     for p in range(1, lt, 1):
         t[c] += (d[p * c]) / (1 - ((p - 1) / lt))
 
