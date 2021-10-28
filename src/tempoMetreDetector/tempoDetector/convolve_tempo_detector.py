@@ -4,7 +4,7 @@ from utilities import plots
 import scipy.signal
 from .base_tempo_detector import BaseTempoDetector
 from .tempo_detector_data import TempoDetectorData
-from tempometredetector.tempodetector import common
+from tempometredetector.tempodetector import comb_filter
 
 
 class ConvolveTempoDetector(BaseTempoDetector):
@@ -20,13 +20,15 @@ class ConvolveTempoDetector(BaseTempoDetector):
             detect_data.min_bpm, detect_data.max_bpm, detect_data.accuracy
         ):
             this_bpm_energy = 0
-            comb_filter_signal = common.get_comb_filter_signal(
+            comb_filter_signal = comb_filter.get_comb_filter_signal(
                 detect_data.sampling_frequency,
                 detect_data.comb_filter_pulses,
                 current_bpm,
                 sample_length,
             )
-            common.write_progress(detect_data.min_bpm, detect_data.max_bpm, current_bpm)
+            comb_filter.write_progress(
+                detect_data.min_bpm, detect_data.max_bpm, current_bpm
+            )
 
             for band in range(0, bands_amount - 1):
                 convoled = scipy.convolve(

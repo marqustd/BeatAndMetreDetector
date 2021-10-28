@@ -10,24 +10,21 @@ from common.dataset import read_dataset
 import settings
 from songreader import read_song_fragment
 from songreader.song_reader import read_song_fragment_from_beginning
-from tempometredetector.tempodetector.common import (
+from tempometredetector import tempo_metre_detector
+from tempometredetector.tempodetector.comb_filter_tempo_detector import (
+    CombFilterTempoDetector,
+)
+from tempometredetector.tempodetector.comb_filter import (
     get_comb_filter_fft,
     get_comb_filter_signal,
 )
 
 # %%
-genres = dataset.read_dataset_genres_fragment(10)
+genres = dataset.read_dataset_only_metre()
 genres
 
-# %% Import songs list
-data = pandas.read_csv(
-    "../dataset/genres/genres_tempos.csv", sep=",", names=["path", "tempo", "metre"]
-)
-
-data
-
 # %% Load song sample
-song = data.iloc[1]
+song = genres.iloc[86]
 path = song.path
 path = os.path.relpath("../dataset/genres" + path)
 
@@ -49,9 +46,16 @@ songTempo = int(song.tempo)
 songTempo
 
 # %% librosa tempo
-audio, sampling_frequency = librosa.load(path=path)
+audio, sampling_frequency = librosa.load(path=path, duration=settings.fragment_length)
 onset = librosa.onset.onset_strength(audio, sr=sampling_frequency)
 librosa_tempo = librosa.beat.tempo(audio, sr=sampling_frequency, onset_envelope=onset)
-librosa_tempo
+librosa_tempo[0]
+
+# %%
+detector = tempo_metre_detector.TempoMetreDetector(
+    metre_detector=None, tempo_detector=CombFilterTempoDetector
+)
+tempo, metre, time = detector.detect(tempo=142, metre=4, path=path)
+tempo
 
 # %%

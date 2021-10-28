@@ -42,9 +42,9 @@ draw_song_bpm_energy_plots = True
 # metre
 spectrogram_limit_frequency = band_limits[-1]
 median_filter_window_size = 701
-noverlap_ratio = 64
+noverlap_ratio = 512
 median_filter = MedianFilterEnum.NONE
 method = euclidian_distance
 metre_candidates = 12
 beat_split_ratio = 1
-spectrogram_function = get_mffc
+spectrogram_function = get_standard_spectrogram

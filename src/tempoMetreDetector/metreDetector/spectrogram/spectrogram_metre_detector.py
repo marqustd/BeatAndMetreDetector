@@ -15,10 +15,6 @@ class SpectrogramMetreDetector(BaseMetreDetector):
         return "SpectrogramMetreDetector"
 
     def detect_metre(self, data: MetreDetectorData):
-        signal = data.signal
-        sampling_frequency = data.sampling_frequency
-        song_tempo = data.song_tempo
-
         spectrogram = settings.spectrogram_function(data)
 
         spectrogram = self.__apply_median_filter(spectrogram)

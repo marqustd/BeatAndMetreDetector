@@ -1,7 +1,3 @@
-import logging
-import numpy as np
-from tempometredetector.tempodetector import common
-from utilities import plots
 from .base_tempo_detector import BaseTempoDetector
 from .tempo_detector_data import TempoDetectorData
 import librosa

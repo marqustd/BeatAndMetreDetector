@@ -2548,3 +2548,1507 @@ INFO:root:median_filter : MedianFilterEnum.NONE
 INFO:root:method : <function euclidian_distance at 0x00000173E6492EE0>
 INFO:root:metre_candidates : 12
 INFO:root:beat_split_ratio : 1
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 125.0 - ..\dataset\genres\blues\blues.00000.wav: 125
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\blues\blues.00000.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 68.0 but detect 204 - ..\dataset\genres\blues\blues.00001.wav
+INFO:root:Exptected 4/4 but detect 3 - ..\dataset\genres\blues\blues.00001.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 157.0 - ..\dataset\genres\blues\blues.00002.wav: 157
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\blues\blues.00002.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 62.0 - ..\dataset\genres\blues\blues.00003.wav: 123
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\blues\blues.00003.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 132.0 - ..\dataset\genres\blues\blues.00004.wav: 134
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\blues\blues.00004.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 69.0 but detect 102 - ..\dataset\genres\blues\blues.00005.wav
+INFO:root:Exptected 4/4 but detect 11 - ..\dataset\genres\blues\blues.00005.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 72.0 but detect 150 - ..\dataset\genres\blues\blues.00006.wav
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\blues\blues.00006.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 92.0 but detect 95 - ..\dataset\genres\blues\blues.00007.wav
+INFO:root:Exptected 4/4 but detect 11 - ..\dataset\genres\blues\blues.00007.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 168.0 - ..\dataset\genres\blues\blues.00008.wav: 167
+INFO:root:Good metre detection - acc1! 4 - ..\dataset\genres\blues\blues.00008.wav: 4
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 82.0 - ..\dataset\genres\blues\blues.00009.wav: 82
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\blues\blues.00009.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 156.0 but detect 161 - ..\dataset\genres\blues\blues.00010.wav
+INFO:root:Exptected 4/4 but detect 11 - ..\dataset\genres\blues\blues.00010.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 58.0 - ..\dataset\genres\blues\blues.00076.wav: 116
+INFO:root:Exptected 3/4 but detect 8 - ..\dataset\genres\blues\blues.00076.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 120.0 - ..\dataset\genres\blues\blues.00078.wav: 121
+INFO:root:Good metre detection - acc1! 8 - ..\dataset\genres\blues\blues.00078.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 85.0 but detect 235 - ..\dataset\genres\country\country.00000.wav
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\country\country.00000.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 130.0 - ..\dataset\genres\country\country.00001.wav: 130
+INFO:root:Exptected 4/4 but detect 3 - ..\dataset\genres\country\country.00001.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 83.0 - ..\dataset\genres\country\country.00002.wav: 82
+INFO:root:Exptected 4/4 but detect 10 - ..\dataset\genres\country\country.00002.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 80.0 - ..\dataset\genres\country\country.00003.wav: 80
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\country\country.00003.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 120.0 but detect 117 - ..\dataset\genres\country\country.00004.wav
+INFO:root:Good metre detection - acc1! 4 - ..\dataset\genres\country\country.00004.wav: 4
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 131.0 - ..\dataset\genres\country\country.00005.wav: 65
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\country\country.00005.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 112.0 - ..\dataset\genres\country\country.00006.wav: 223
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\country\country.00006.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 50.0 but detect 70 - ..\dataset\genres\country\country.00007.wav
+INFO:root:Exptected 4/4 but detect 11 - ..\dataset\genres\country\country.00007.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 66.0 but detect 210 - ..\dataset\genres\country\country.00008.wav
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\country\country.00008.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 97.0 - ..\dataset\genres\country\country.00009.wav: 97
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\country\country.00009.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 80.0 - ..\dataset\genres\country\country.00010.wav: 80
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\country\country.00010.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 140.0 - ..\dataset\genres\country\country.00040.wav: 70
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\country\country.00040.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 75.0 - ..\dataset\genres\country\country.00047.wav: 75
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\country\country.00047.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 118.0 - ..\dataset\genres\country\country.00050.wav: 235
+INFO:root:Exptected 4/4 but detect 11 - ..\dataset\genres\country\country.00050.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 61.0 but detect 210 - ..\dataset\genres\country\country.00061.wav
+INFO:root:Good metre detection - acc1! 4 - ..\dataset\genres\country\country.00061.wav: 4
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 110.0 - ..\dataset\genres\country\country.00066.wav: 110
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\country\country.00066.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 87.0 - ..\dataset\genres\country\country.00084.wav: 87
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\country\country.00084.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 112.0 - ..\dataset\genres\country\country.00097.wav: 225
+INFO:root:Exptected 3/4 but detect 2 - ..\dataset\genres\country\country.00097.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 60.0 - ..\dataset\genres\country\country.00098.wav: 60
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\country\country.00098.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 74.0 but detect 110 - ..\dataset\genres\country\country.00099.wav
+INFO:root:Exptected 4/4 but detect 3 - ..\dataset\genres\country\country.00099.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 116.0 - ..\dataset\genres\disco\disco.00000.wav: 115
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\disco\disco.00000.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 117.0 - ..\dataset\genres\disco\disco.00001.wav: 117
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\disco\disco.00001.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 115.0 - ..\dataset\genres\disco\disco.00002.wav: 115
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\disco\disco.00002.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 127.0 - ..\dataset\genres\disco\disco.00003.wav: 126
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\disco\disco.00003.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 118.0 but detect 121 - ..\dataset\genres\disco\disco.00004.wav
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\disco\disco.00004.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 108.0 - ..\dataset\genres\disco\disco.00005.wav: 108
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\disco\disco.00005.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 124.0 - ..\dataset\genres\disco\disco.00006.wav: 124
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\disco\disco.00006.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 130.0 - ..\dataset\genres\disco\disco.00007.wav: 129
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\disco\disco.00007.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 122.0 - ..\dataset\genres\disco\disco.00008.wav: 122
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\disco\disco.00008.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 130.0 - ..\dataset\genres\disco\disco.00009.wav: 129
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\disco\disco.00009.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 105.0 - ..\dataset\genres\disco\disco.00010.wav: 214
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\disco\disco.00010.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 121.0 - ..\dataset\genres\hiphop\hiphop.00000.wav: 119
+INFO:root:Good metre detection - acc1! 4 - ..\dataset\genres\hiphop\hiphop.00000.wav: 4
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 92.0 - ..\dataset\genres\hiphop\hiphop.00001.wav: 182
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\hiphop\hiphop.00001.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 102.0 but detect 99 - ..\dataset\genres\hiphop\hiphop.00002.wav
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\hiphop\hiphop.00002.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 94.0 - ..\dataset\genres\hiphop\hiphop.00003.wav: 186
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\hiphop\hiphop.00003.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 97.0 - ..\dataset\genres\hiphop\hiphop.00004.wav: 97
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\hiphop\hiphop.00004.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 143.0 - ..\dataset\genres\hiphop\hiphop.00005.wav: 71
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\hiphop\hiphop.00005.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 102.0 - ..\dataset\genres\hiphop\hiphop.00006.wav: 100
+INFO:root:Good metre detection - acc1! 4 - ..\dataset\genres\hiphop\hiphop.00006.wav: 4
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 122.0 - ..\dataset\genres\hiphop\hiphop.00007.wav: 61
+INFO:root:Good metre detection - acc1! 4 - ..\dataset\genres\hiphop\hiphop.00007.wav: 4
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 85.0 - ..\dataset\genres\hiphop\hiphop.00008.wav: 84
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\hiphop\hiphop.00008.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 103.0 - ..\dataset\genres\hiphop\hiphop.00009.wav: 207
+INFO:root:Good metre detection - acc1! 8 - ..\dataset\genres\hiphop\hiphop.00009.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 96.0 - ..\dataset\genres\hiphop\hiphop.00010.wav: 191
+INFO:root:Good metre detection - acc1! 4 - ..\dataset\genres\hiphop\hiphop.00010.wav: 4
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 97.0 but detect 144 - ..\dataset\genres\hiphop\hiphop.00065.wav
+INFO:root:Exptected 4/4 but detect 6 - ..\dataset\genres\hiphop\hiphop.00065.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 98.0 but detect 170 - ..\dataset\genres\hiphop\hiphop.00067.wav
+INFO:root:Exptected 4/4 but detect 7 - ..\dataset\genres\hiphop\hiphop.00067.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 97.0 but detect 145 - ..\dataset\genres\hiphop\hiphop.00068.wav
+INFO:root:Exptected 4/4 but detect 6 - ..\dataset\genres\hiphop\hiphop.00068.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 102.0 - ..\dataset\genres\hiphop\hiphop.00069.wav: 204
+INFO:root:Good metre detection - acc1! 4 - ..\dataset\genres\hiphop\hiphop.00069.wav: 4
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 94.0 - ..\dataset\genres\metal\metal.00000.wav: 94
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\metal\metal.00000.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 112.0 - ..\dataset\genres\metal\metal.00002.wav: 111
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\metal\metal.00002.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 98.0 - ..\dataset\genres\metal\metal.00003.wav: 194
+INFO:root:Good metre detection - acc1! 4 - ..\dataset\genres\metal\metal.00003.wav: 4
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 135.0 but detect 138 - ..\dataset\genres\metal\metal.00004.wav
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\metal\metal.00004.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 154.0 - ..\dataset\genres\metal\metal.00005.wav: 154
+INFO:root:Exptected 4/4 but detect 6 - ..\dataset\genres\metal\metal.00005.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 122.0 - ..\dataset\genres\metal\metal.00006.wav: 60
+INFO:root:Good metre detection - acc1! 4 - ..\dataset\genres\metal\metal.00006.wav: 4
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 152.0 - ..\dataset\genres\metal\metal.00007.wav: 152
+INFO:root:Good metre detection - acc1! 4 - ..\dataset\genres\metal\metal.00007.wav: 4
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 120.0 - ..\dataset\genres\metal\metal.00008.wav: 118
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\metal\metal.00008.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 114.0 but detect 170 - ..\dataset\genres\metal\metal.00009.wav
+INFO:root:Exptected 4/4 but detect 3 - ..\dataset\genres\metal\metal.00009.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 95.0 - ..\dataset\genres\metal\metal.00010.wav: 189
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\metal\metal.00010.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 112.0 - ..\dataset\genres\metal\metal.00050.wav: 113
+INFO:root:Good metre detection - acc1! 4 - ..\dataset\genres\metal\metal.00050.wav: 4
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 95.0 - ..\dataset\genres\metal\metal.00064.wav: 94
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\metal\metal.00064.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 113.0 - ..\dataset\genres\metal\metal.00075.wav: 227
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\metal\metal.00075.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 117.0 - ..\dataset\genres\metal\metal.00088.wav: 233
+INFO:root:Good metre detection - acc1! 4 - ..\dataset\genres\metal\metal.00088.wav: 4
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 73.0 - ..\dataset\genres\metal\metal.00099.wav: 147
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\metal\metal.00099.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 107.0 - ..\dataset\genres\pop\pop.00001.wav: 106
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\pop\pop.00001.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 126.0 - ..\dataset\genres\pop\pop.00002.wav: 126
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\pop\pop.00002.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 66.0 - ..\dataset\genres\pop\pop.00086.wav: 132
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\pop\pop.00086.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 101.0 - ..\dataset\genres\pop\pop.00089.wav: 101
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\pop\pop.00089.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 115.0 - ..\dataset\genres\pop\pop.00098.wav: 115
+INFO:root:Good metre detection - acc1! 4 - ..\dataset\genres\pop\pop.00098.wav: 4
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 122.0 - ..\dataset\genres\reggae\reggae.00000.wav: 122
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\reggae\reggae.00000.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 103.0 - ..\dataset\genres\reggae\reggae.00002.wav: 103
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\reggae\reggae.00002.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 74.0 - ..\dataset\genres\reggae\reggae.00003.wav: 74
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\reggae\reggae.00003.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 125.0 - ..\dataset\genres\reggae\reggae.00004.wav: 125
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\reggae\reggae.00004.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 96.0 - ..\dataset\genres\reggae\reggae.00008.wav: 96
+INFO:root:Good metre detection - acc1! 4 - ..\dataset\genres\reggae\reggae.00008.wav: 4
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 131.0 - ..\dataset\genres\reggae\reggae.00012.wav: 131
+INFO:root:Good metre detection - acc1! 4 - ..\dataset\genres\reggae\reggae.00012.wav: 4
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 142.0 but detect 95 - ..\dataset\genres\reggae\reggae.00016.wav
+INFO:root:Exptected 4/4 but detect 5 - ..\dataset\genres\reggae\reggae.00016.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 125.0 - ..\dataset\genres\blues\blues.00000.wav: 125
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\blues\blues.00000.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 68.0 but detect 204 - ..\dataset\genres\blues\blues.00001.wav
+INFO:root:Exptected 4/4 but detect 3 - ..\dataset\genres\blues\blues.00001.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 157.0 - ..\dataset\genres\blues\blues.00002.wav: 157
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\blues\blues.00002.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 62.0 - ..\dataset\genres\blues\blues.00003.wav: 123
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\blues\blues.00003.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 132.0 - ..\dataset\genres\blues\blues.00004.wav: 134
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\blues\blues.00004.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 69.0 but detect 102 - ..\dataset\genres\blues\blues.00005.wav
+INFO:root:Exptected 4/4 but detect 11 - ..\dataset\genres\blues\blues.00005.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 72.0 but detect 150 - ..\dataset\genres\blues\blues.00006.wav
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\blues\blues.00006.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 92.0 but detect 95 - ..\dataset\genres\blues\blues.00007.wav
+INFO:root:Exptected 4/4 but detect 11 - ..\dataset\genres\blues\blues.00007.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 168.0 - ..\dataset\genres\blues\blues.00008.wav: 167
+INFO:root:Good metre detection - acc1! 4 - ..\dataset\genres\blues\blues.00008.wav: 4
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 82.0 - ..\dataset\genres\blues\blues.00009.wav: 82
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\blues\blues.00009.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 156.0 but detect 161 - ..\dataset\genres\blues\blues.00010.wav
+INFO:root:Exptected 4/4 but detect 11 - ..\dataset\genres\blues\blues.00010.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 58.0 - ..\dataset\genres\blues\blues.00076.wav: 116
+INFO:root:Exptected 3/4 but detect 8 - ..\dataset\genres\blues\blues.00076.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 120.0 - ..\dataset\genres\blues\blues.00078.wav: 121
+INFO:root:Good metre detection - acc1! 8 - ..\dataset\genres\blues\blues.00078.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 85.0 but detect 235 - ..\dataset\genres\country\country.00000.wav
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\country\country.00000.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 130.0 - ..\dataset\genres\country\country.00001.wav: 130
+INFO:root:Exptected 4/4 but detect 3 - ..\dataset\genres\country\country.00001.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 83.0 - ..\dataset\genres\country\country.00002.wav: 82
+INFO:root:Exptected 4/4 but detect 10 - ..\dataset\genres\country\country.00002.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 80.0 - ..\dataset\genres\country\country.00003.wav: 80
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\country\country.00003.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 120.0 but detect 117 - ..\dataset\genres\country\country.00004.wav
+INFO:root:Good metre detection - acc1! 4 - ..\dataset\genres\country\country.00004.wav: 4
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 131.0 - ..\dataset\genres\country\country.00005.wav: 65
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\country\country.00005.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 112.0 - ..\dataset\genres\country\country.00006.wav: 223
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\country\country.00006.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 50.0 but detect 70 - ..\dataset\genres\country\country.00007.wav
+INFO:root:Exptected 4/4 but detect 11 - ..\dataset\genres\country\country.00007.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 66.0 but detect 210 - ..\dataset\genres\country\country.00008.wav
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\country\country.00008.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 97.0 - ..\dataset\genres\country\country.00009.wav: 97
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\country\country.00009.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 80.0 - ..\dataset\genres\country\country.00010.wav: 80
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\country\country.00010.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 140.0 - ..\dataset\genres\country\country.00040.wav: 70
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\country\country.00040.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 75.0 - ..\dataset\genres\country\country.00047.wav: 75
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\country\country.00047.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 118.0 - ..\dataset\genres\country\country.00050.wav: 235
+INFO:root:Exptected 4/4 but detect 11 - ..\dataset\genres\country\country.00050.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 61.0 but detect 210 - ..\dataset\genres\country\country.00061.wav
+INFO:root:Good metre detection - acc1! 4 - ..\dataset\genres\country\country.00061.wav: 4
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 110.0 - ..\dataset\genres\country\country.00066.wav: 110
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\country\country.00066.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 87.0 - ..\dataset\genres\country\country.00084.wav: 87
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\country\country.00084.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 112.0 - ..\dataset\genres\country\country.00097.wav: 225
+INFO:root:Exptected 3/4 but detect 2 - ..\dataset\genres\country\country.00097.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 60.0 - ..\dataset\genres\country\country.00098.wav: 60
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\country\country.00098.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 74.0 but detect 110 - ..\dataset\genres\country\country.00099.wav
+INFO:root:Exptected 4/4 but detect 3 - ..\dataset\genres\country\country.00099.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 116.0 - ..\dataset\genres\disco\disco.00000.wav: 115
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\disco\disco.00000.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 117.0 - ..\dataset\genres\disco\disco.00001.wav: 117
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\disco\disco.00001.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 115.0 - ..\dataset\genres\disco\disco.00002.wav: 115
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\disco\disco.00002.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 127.0 - ..\dataset\genres\disco\disco.00003.wav: 126
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\disco\disco.00003.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 118.0 but detect 121 - ..\dataset\genres\disco\disco.00004.wav
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\disco\disco.00004.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 108.0 - ..\dataset\genres\disco\disco.00005.wav: 108
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\disco\disco.00005.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 124.0 - ..\dataset\genres\disco\disco.00006.wav: 124
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\disco\disco.00006.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 130.0 - ..\dataset\genres\disco\disco.00007.wav: 129
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\disco\disco.00007.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 122.0 - ..\dataset\genres\disco\disco.00008.wav: 122
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\disco\disco.00008.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 130.0 - ..\dataset\genres\disco\disco.00009.wav: 129
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\disco\disco.00009.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 105.0 - ..\dataset\genres\disco\disco.00010.wav: 214
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\disco\disco.00010.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 121.0 - ..\dataset\genres\hiphop\hiphop.00000.wav: 119
+INFO:root:Good metre detection - acc1! 4 - ..\dataset\genres\hiphop\hiphop.00000.wav: 4
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 92.0 - ..\dataset\genres\hiphop\hiphop.00001.wav: 182
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\hiphop\hiphop.00001.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 102.0 but detect 99 - ..\dataset\genres\hiphop\hiphop.00002.wav
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\hiphop\hiphop.00002.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 94.0 - ..\dataset\genres\hiphop\hiphop.00003.wav: 186
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\hiphop\hiphop.00003.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 97.0 - ..\dataset\genres\hiphop\hiphop.00004.wav: 97
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\hiphop\hiphop.00004.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 143.0 - ..\dataset\genres\hiphop\hiphop.00005.wav: 71
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\hiphop\hiphop.00005.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 102.0 - ..\dataset\genres\hiphop\hiphop.00006.wav: 100
+INFO:root:Good metre detection - acc1! 4 - ..\dataset\genres\hiphop\hiphop.00006.wav: 4
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 122.0 - ..\dataset\genres\hiphop\hiphop.00007.wav: 61
+INFO:root:Good metre detection - acc1! 4 - ..\dataset\genres\hiphop\hiphop.00007.wav: 4
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 85.0 - ..\dataset\genres\hiphop\hiphop.00008.wav: 84
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\hiphop\hiphop.00008.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 103.0 - ..\dataset\genres\hiphop\hiphop.00009.wav: 207
+INFO:root:Good metre detection - acc1! 8 - ..\dataset\genres\hiphop\hiphop.00009.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 96.0 - ..\dataset\genres\hiphop\hiphop.00010.wav: 191
+INFO:root:Good metre detection - acc1! 4 - ..\dataset\genres\hiphop\hiphop.00010.wav: 4
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 97.0 but detect 144 - ..\dataset\genres\hiphop\hiphop.00065.wav
+INFO:root:Exptected 4/4 but detect 6 - ..\dataset\genres\hiphop\hiphop.00065.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 98.0 but detect 170 - ..\dataset\genres\hiphop\hiphop.00067.wav
+INFO:root:Exptected 4/4 but detect 7 - ..\dataset\genres\hiphop\hiphop.00067.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 97.0 but detect 145 - ..\dataset\genres\hiphop\hiphop.00068.wav
+INFO:root:Exptected 4/4 but detect 6 - ..\dataset\genres\hiphop\hiphop.00068.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 102.0 - ..\dataset\genres\hiphop\hiphop.00069.wav: 204
+INFO:root:Good metre detection - acc1! 4 - ..\dataset\genres\hiphop\hiphop.00069.wav: 4
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 94.0 - ..\dataset\genres\metal\metal.00000.wav: 94
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\metal\metal.00000.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 112.0 - ..\dataset\genres\metal\metal.00002.wav: 111
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\metal\metal.00002.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 98.0 - ..\dataset\genres\metal\metal.00003.wav: 194
+INFO:root:Good metre detection - acc1! 4 - ..\dataset\genres\metal\metal.00003.wav: 4
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 135.0 but detect 138 - ..\dataset\genres\metal\metal.00004.wav
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\metal\metal.00004.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 154.0 - ..\dataset\genres\metal\metal.00005.wav: 154
+INFO:root:Exptected 4/4 but detect 6 - ..\dataset\genres\metal\metal.00005.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 122.0 - ..\dataset\genres\metal\metal.00006.wav: 60
+INFO:root:Good metre detection - acc1! 4 - ..\dataset\genres\metal\metal.00006.wav: 4
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 152.0 - ..\dataset\genres\metal\metal.00007.wav: 152
+INFO:root:Good metre detection - acc1! 4 - ..\dataset\genres\metal\metal.00007.wav: 4
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 120.0 - ..\dataset\genres\metal\metal.00008.wav: 118
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\metal\metal.00008.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 114.0 but detect 170 - ..\dataset\genres\metal\metal.00009.wav
+INFO:root:Exptected 4/4 but detect 3 - ..\dataset\genres\metal\metal.00009.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 95.0 - ..\dataset\genres\metal\metal.00010.wav: 189
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\metal\metal.00010.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 112.0 - ..\dataset\genres\metal\metal.00050.wav: 113
+INFO:root:Good metre detection - acc1! 4 - ..\dataset\genres\metal\metal.00050.wav: 4
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 95.0 - ..\dataset\genres\metal\metal.00064.wav: 94
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\metal\metal.00064.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 113.0 - ..\dataset\genres\metal\metal.00075.wav: 227
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\metal\metal.00075.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 117.0 - ..\dataset\genres\metal\metal.00088.wav: 233
+INFO:root:Good metre detection - acc1! 4 - ..\dataset\genres\metal\metal.00088.wav: 4
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 73.0 - ..\dataset\genres\metal\metal.00099.wav: 147
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\metal\metal.00099.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 107.0 - ..\dataset\genres\pop\pop.00001.wav: 106
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\pop\pop.00001.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 126.0 - ..\dataset\genres\pop\pop.00002.wav: 126
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\pop\pop.00002.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 66.0 - ..\dataset\genres\pop\pop.00086.wav: 132
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\pop\pop.00086.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 101.0 - ..\dataset\genres\pop\pop.00089.wav: 101
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\pop\pop.00089.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 115.0 - ..\dataset\genres\pop\pop.00098.wav: 115
+INFO:root:Good metre detection - acc1! 4 - ..\dataset\genres\pop\pop.00098.wav: 4
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 122.0 - ..\dataset\genres\reggae\reggae.00000.wav: 122
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\reggae\reggae.00000.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 103.0 - ..\dataset\genres\reggae\reggae.00002.wav: 103
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\reggae\reggae.00002.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 74.0 - ..\dataset\genres\reggae\reggae.00003.wav: 74
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\reggae\reggae.00003.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 125.0 - ..\dataset\genres\reggae\reggae.00004.wav: 125
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\reggae\reggae.00004.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 96.0 - ..\dataset\genres\reggae\reggae.00008.wav: 96
+INFO:root:Good metre detection - acc1! 4 - ..\dataset\genres\reggae\reggae.00008.wav: 4
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 131.0 - ..\dataset\genres\reggae\reggae.00012.wav: 131
+INFO:root:Good metre detection - acc1! 4 - ..\dataset\genres\reggae\reggae.00012.wav: 4
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 142.0 but detect 95 - ..\dataset\genres\reggae\reggae.00016.wav
+INFO:root:Exptected 4/4 but detect 5 - ..\dataset\genres\reggae\reggae.00016.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 125.0 - ..\dataset\genres\blues\blues.00000.wav: 125
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\blues\blues.00000.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 68.0 but detect 204 - ..\dataset\genres\blues\blues.00001.wav
+INFO:root:Exptected 4/4 but detect 3 - ..\dataset\genres\blues\blues.00001.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 157.0 - ..\dataset\genres\blues\blues.00002.wav: 157
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\blues\blues.00002.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 62.0 - ..\dataset\genres\blues\blues.00003.wav: 123
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\blues\blues.00003.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 132.0 - ..\dataset\genres\blues\blues.00004.wav: 134
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\blues\blues.00004.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 69.0 but detect 102 - ..\dataset\genres\blues\blues.00005.wav
+INFO:root:Exptected 4/4 but detect 11 - ..\dataset\genres\blues\blues.00005.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 72.0 but detect 150 - ..\dataset\genres\blues\blues.00006.wav
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\blues\blues.00006.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 92.0 but detect 95 - ..\dataset\genres\blues\blues.00007.wav
+INFO:root:Exptected 4/4 but detect 11 - ..\dataset\genres\blues\blues.00007.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 168.0 - ..\dataset\genres\blues\blues.00008.wav: 167
+INFO:root:Good metre detection - acc1! 4 - ..\dataset\genres\blues\blues.00008.wav: 4
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 82.0 - ..\dataset\genres\blues\blues.00009.wav: 82
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\blues\blues.00009.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 156.0 but detect 161 - ..\dataset\genres\blues\blues.00010.wav
+INFO:root:Exptected 4/4 but detect 11 - ..\dataset\genres\blues\blues.00010.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 58.0 - ..\dataset\genres\blues\blues.00076.wav: 116
+INFO:root:Exptected 3/4 but detect 8 - ..\dataset\genres\blues\blues.00076.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 120.0 - ..\dataset\genres\blues\blues.00078.wav: 121
+INFO:root:Good metre detection - acc1! 8 - ..\dataset\genres\blues\blues.00078.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 85.0 but detect 235 - ..\dataset\genres\country\country.00000.wav
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\country\country.00000.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 130.0 - ..\dataset\genres\country\country.00001.wav: 130
+INFO:root:Exptected 4/4 but detect 3 - ..\dataset\genres\country\country.00001.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 83.0 - ..\dataset\genres\country\country.00002.wav: 82
+INFO:root:Exptected 4/4 but detect 10 - ..\dataset\genres\country\country.00002.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 80.0 - ..\dataset\genres\country\country.00003.wav: 80
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\country\country.00003.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 120.0 but detect 117 - ..\dataset\genres\country\country.00004.wav
+INFO:root:Good metre detection - acc1! 4 - ..\dataset\genres\country\country.00004.wav: 4
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 131.0 - ..\dataset\genres\country\country.00005.wav: 65
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\country\country.00005.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 112.0 - ..\dataset\genres\country\country.00006.wav: 223
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\country\country.00006.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 50.0 but detect 70 - ..\dataset\genres\country\country.00007.wav
+INFO:root:Exptected 4/4 but detect 11 - ..\dataset\genres\country\country.00007.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 66.0 but detect 210 - ..\dataset\genres\country\country.00008.wav
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\country\country.00008.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 97.0 - ..\dataset\genres\country\country.00009.wav: 97
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\country\country.00009.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 80.0 - ..\dataset\genres\country\country.00010.wav: 80
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\country\country.00010.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 140.0 - ..\dataset\genres\country\country.00040.wav: 70
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\country\country.00040.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 75.0 - ..\dataset\genres\country\country.00047.wav: 75
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\country\country.00047.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 118.0 - ..\dataset\genres\country\country.00050.wav: 235
+INFO:root:Exptected 4/4 but detect 11 - ..\dataset\genres\country\country.00050.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 61.0 but detect 210 - ..\dataset\genres\country\country.00061.wav
+INFO:root:Good metre detection - acc1! 4 - ..\dataset\genres\country\country.00061.wav: 4
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 110.0 - ..\dataset\genres\country\country.00066.wav: 110
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\country\country.00066.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 87.0 - ..\dataset\genres\country\country.00084.wav: 87
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\country\country.00084.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 112.0 - ..\dataset\genres\country\country.00097.wav: 225
+INFO:root:Exptected 3/4 but detect 2 - ..\dataset\genres\country\country.00097.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 60.0 - ..\dataset\genres\country\country.00098.wav: 60
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\country\country.00098.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 74.0 but detect 110 - ..\dataset\genres\country\country.00099.wav
+INFO:root:Exptected 4/4 but detect 3 - ..\dataset\genres\country\country.00099.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 116.0 - ..\dataset\genres\disco\disco.00000.wav: 115
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\disco\disco.00000.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 117.0 - ..\dataset\genres\disco\disco.00001.wav: 117
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\disco\disco.00001.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 115.0 - ..\dataset\genres\disco\disco.00002.wav: 115
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\disco\disco.00002.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 127.0 - ..\dataset\genres\disco\disco.00003.wav: 126
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\disco\disco.00003.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 118.0 but detect 121 - ..\dataset\genres\disco\disco.00004.wav
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\disco\disco.00004.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 108.0 - ..\dataset\genres\disco\disco.00005.wav: 108
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\disco\disco.00005.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 124.0 - ..\dataset\genres\disco\disco.00006.wav: 124
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\disco\disco.00006.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 130.0 - ..\dataset\genres\disco\disco.00007.wav: 129
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\disco\disco.00007.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 122.0 - ..\dataset\genres\disco\disco.00008.wav: 122
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\disco\disco.00008.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 130.0 - ..\dataset\genres\disco\disco.00009.wav: 129
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\disco\disco.00009.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 105.0 - ..\dataset\genres\disco\disco.00010.wav: 214
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\disco\disco.00010.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 121.0 - ..\dataset\genres\hiphop\hiphop.00000.wav: 119
+INFO:root:Good metre detection - acc1! 4 - ..\dataset\genres\hiphop\hiphop.00000.wav: 4
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 92.0 - ..\dataset\genres\hiphop\hiphop.00001.wav: 182
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\hiphop\hiphop.00001.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 102.0 but detect 99 - ..\dataset\genres\hiphop\hiphop.00002.wav
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\hiphop\hiphop.00002.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 94.0 - ..\dataset\genres\hiphop\hiphop.00003.wav: 186
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\hiphop\hiphop.00003.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 97.0 - ..\dataset\genres\hiphop\hiphop.00004.wav: 97
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\hiphop\hiphop.00004.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 143.0 - ..\dataset\genres\hiphop\hiphop.00005.wav: 71
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\hiphop\hiphop.00005.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 102.0 - ..\dataset\genres\hiphop\hiphop.00006.wav: 100
+INFO:root:Good metre detection - acc1! 4 - ..\dataset\genres\hiphop\hiphop.00006.wav: 4
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 122.0 - ..\dataset\genres\hiphop\hiphop.00007.wav: 61
+INFO:root:Good metre detection - acc1! 4 - ..\dataset\genres\hiphop\hiphop.00007.wav: 4
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 85.0 - ..\dataset\genres\hiphop\hiphop.00008.wav: 84
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\hiphop\hiphop.00008.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 103.0 - ..\dataset\genres\hiphop\hiphop.00009.wav: 207
+INFO:root:Good metre detection - acc1! 8 - ..\dataset\genres\hiphop\hiphop.00009.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 96.0 - ..\dataset\genres\hiphop\hiphop.00010.wav: 191
+INFO:root:Good metre detection - acc1! 4 - ..\dataset\genres\hiphop\hiphop.00010.wav: 4
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 97.0 but detect 144 - ..\dataset\genres\hiphop\hiphop.00065.wav
+INFO:root:Exptected 4/4 but detect 6 - ..\dataset\genres\hiphop\hiphop.00065.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 98.0 but detect 170 - ..\dataset\genres\hiphop\hiphop.00067.wav
+INFO:root:Exptected 4/4 but detect 7 - ..\dataset\genres\hiphop\hiphop.00067.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 97.0 but detect 145 - ..\dataset\genres\hiphop\hiphop.00068.wav
+INFO:root:Exptected 4/4 but detect 6 - ..\dataset\genres\hiphop\hiphop.00068.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 102.0 - ..\dataset\genres\hiphop\hiphop.00069.wav: 204
+INFO:root:Good metre detection - acc1! 4 - ..\dataset\genres\hiphop\hiphop.00069.wav: 4
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 94.0 - ..\dataset\genres\metal\metal.00000.wav: 94
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\metal\metal.00000.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 112.0 - ..\dataset\genres\metal\metal.00002.wav: 111
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\metal\metal.00002.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 98.0 - ..\dataset\genres\metal\metal.00003.wav: 194
+INFO:root:Good metre detection - acc1! 4 - ..\dataset\genres\metal\metal.00003.wav: 4
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 135.0 but detect 138 - ..\dataset\genres\metal\metal.00004.wav
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\metal\metal.00004.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 154.0 - ..\dataset\genres\metal\metal.00005.wav: 154
+INFO:root:Exptected 4/4 but detect 6 - ..\dataset\genres\metal\metal.00005.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 122.0 - ..\dataset\genres\metal\metal.00006.wav: 60
+INFO:root:Good metre detection - acc1! 4 - ..\dataset\genres\metal\metal.00006.wav: 4
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 152.0 - ..\dataset\genres\metal\metal.00007.wav: 152
+INFO:root:Good metre detection - acc1! 4 - ..\dataset\genres\metal\metal.00007.wav: 4
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 120.0 - ..\dataset\genres\metal\metal.00008.wav: 118
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\metal\metal.00008.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 114.0 but detect 170 - ..\dataset\genres\metal\metal.00009.wav
+INFO:root:Exptected 4/4 but detect 3 - ..\dataset\genres\metal\metal.00009.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 95.0 - ..\dataset\genres\metal\metal.00010.wav: 189
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\metal\metal.00010.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 112.0 - ..\dataset\genres\metal\metal.00050.wav: 113
+INFO:root:Good metre detection - acc1! 4 - ..\dataset\genres\metal\metal.00050.wav: 4
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 95.0 - ..\dataset\genres\metal\metal.00064.wav: 94
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\metal\metal.00064.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 113.0 - ..\dataset\genres\metal\metal.00075.wav: 227
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\metal\metal.00075.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 117.0 - ..\dataset\genres\metal\metal.00088.wav: 233
+INFO:root:Good metre detection - acc1! 4 - ..\dataset\genres\metal\metal.00088.wav: 4
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 73.0 - ..\dataset\genres\metal\metal.00099.wav: 147
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\metal\metal.00099.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 107.0 - ..\dataset\genres\pop\pop.00001.wav: 106
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\pop\pop.00001.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 126.0 - ..\dataset\genres\pop\pop.00002.wav: 126
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\pop\pop.00002.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 66.0 - ..\dataset\genres\pop\pop.00086.wav: 132
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\pop\pop.00086.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 101.0 - ..\dataset\genres\pop\pop.00089.wav: 101
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\pop\pop.00089.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 115.0 - ..\dataset\genres\pop\pop.00098.wav: 115
+INFO:root:Good metre detection - acc1! 4 - ..\dataset\genres\pop\pop.00098.wav: 4
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 122.0 - ..\dataset\genres\reggae\reggae.00000.wav: 122
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\reggae\reggae.00000.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 103.0 - ..\dataset\genres\reggae\reggae.00002.wav: 103
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\reggae\reggae.00002.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 74.0 - ..\dataset\genres\reggae\reggae.00003.wav: 74
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\reggae\reggae.00003.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 125.0 - ..\dataset\genres\reggae\reggae.00004.wav: 125
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\reggae\reggae.00004.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 96.0 - ..\dataset\genres\reggae\reggae.00008.wav: 96
+INFO:root:Good metre detection - acc1! 4 - ..\dataset\genres\reggae\reggae.00008.wav: 4
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 131.0 - ..\dataset\genres\reggae\reggae.00012.wav: 131
+INFO:root:Good metre detection - acc1! 4 - ..\dataset\genres\reggae\reggae.00012.wav: 4
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 142.0 but detect 95 - ..\dataset\genres\reggae\reggae.00016.wav
+INFO:root:Exptected 4/4 but detect 5 - ..\dataset\genres\reggae\reggae.00016.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 125.0 - ..\dataset\genres\blues\blues.00000.wav: 125
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\blues\blues.00000.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 125.0 - ..\dataset\genres\blues\blues.00000.wav: 125
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\blues\blues.00000.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 68.0 but detect 204 - ..\dataset\genres\blues\blues.00001.wav
+INFO:root:Exptected 4/4 but detect 3 - ..\dataset\genres\blues\blues.00001.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 157.0 - ..\dataset\genres\blues\blues.00002.wav: 157
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\blues\blues.00002.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 62.0 - ..\dataset\genres\blues\blues.00003.wav: 123
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\blues\blues.00003.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 132.0 - ..\dataset\genres\blues\blues.00004.wav: 134
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\blues\blues.00004.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 69.0 but detect 102 - ..\dataset\genres\blues\blues.00005.wav
+INFO:root:Exptected 4/4 but detect 11 - ..\dataset\genres\blues\blues.00005.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 72.0 but detect 150 - ..\dataset\genres\blues\blues.00006.wav
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\blues\blues.00006.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 92.0 but detect 95 - ..\dataset\genres\blues\blues.00007.wav
+INFO:root:Exptected 4/4 but detect 11 - ..\dataset\genres\blues\blues.00007.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 168.0 - ..\dataset\genres\blues\blues.00008.wav: 167
+INFO:root:Good metre detection - acc1! 4 - ..\dataset\genres\blues\blues.00008.wav: 4
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 82.0 - ..\dataset\genres\blues\blues.00009.wav: 82
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\blues\blues.00009.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 156.0 but detect 161 - ..\dataset\genres\blues\blues.00010.wav
+INFO:root:Exptected 4/4 but detect 11 - ..\dataset\genres\blues\blues.00010.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 58.0 - ..\dataset\genres\blues\blues.00076.wav: 116
+INFO:root:Exptected 3/4 but detect 8 - ..\dataset\genres\blues\blues.00076.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 120.0 - ..\dataset\genres\blues\blues.00078.wav: 121
+INFO:root:Good metre detection - acc1! 8 - ..\dataset\genres\blues\blues.00078.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 85.0 but detect 235 - ..\dataset\genres\country\country.00000.wav
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\country\country.00000.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 130.0 - ..\dataset\genres\country\country.00001.wav: 130
+INFO:root:Exptected 4/4 but detect 3 - ..\dataset\genres\country\country.00001.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 83.0 - ..\dataset\genres\country\country.00002.wav: 82
+INFO:root:Exptected 4/4 but detect 10 - ..\dataset\genres\country\country.00002.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 80.0 - ..\dataset\genres\country\country.00003.wav: 80
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\country\country.00003.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 120.0 but detect 117 - ..\dataset\genres\country\country.00004.wav
+INFO:root:Good metre detection - acc1! 4 - ..\dataset\genres\country\country.00004.wav: 4
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 131.0 - ..\dataset\genres\country\country.00005.wav: 65
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\country\country.00005.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 112.0 - ..\dataset\genres\country\country.00006.wav: 223
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\country\country.00006.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 50.0 but detect 70 - ..\dataset\genres\country\country.00007.wav
+INFO:root:Exptected 4/4 but detect 11 - ..\dataset\genres\country\country.00007.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 66.0 but detect 210 - ..\dataset\genres\country\country.00008.wav
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\country\country.00008.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 97.0 - ..\dataset\genres\country\country.00009.wav: 97
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\country\country.00009.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 80.0 - ..\dataset\genres\country\country.00010.wav: 80
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\country\country.00010.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 140.0 - ..\dataset\genres\country\country.00040.wav: 70
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\country\country.00040.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 75.0 - ..\dataset\genres\country\country.00047.wav: 75
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\country\country.00047.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 118.0 - ..\dataset\genres\country\country.00050.wav: 235
+INFO:root:Exptected 4/4 but detect 11 - ..\dataset\genres\country\country.00050.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 61.0 but detect 210 - ..\dataset\genres\country\country.00061.wav
+INFO:root:Good metre detection - acc1! 4 - ..\dataset\genres\country\country.00061.wav: 4
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 110.0 - ..\dataset\genres\country\country.00066.wav: 110
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\country\country.00066.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 87.0 - ..\dataset\genres\country\country.00084.wav: 87
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\country\country.00084.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 112.0 - ..\dataset\genres\country\country.00097.wav: 225
+INFO:root:Exptected 3/4 but detect 2 - ..\dataset\genres\country\country.00097.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 60.0 - ..\dataset\genres\country\country.00098.wav: 60
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\country\country.00098.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 74.0 but detect 110 - ..\dataset\genres\country\country.00099.wav
+INFO:root:Exptected 4/4 but detect 3 - ..\dataset\genres\country\country.00099.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 116.0 - ..\dataset\genres\disco\disco.00000.wav: 115
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\disco\disco.00000.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 117.0 - ..\dataset\genres\disco\disco.00001.wav: 117
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\disco\disco.00001.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 115.0 - ..\dataset\genres\disco\disco.00002.wav: 115
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\disco\disco.00002.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 127.0 - ..\dataset\genres\disco\disco.00003.wav: 126
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\disco\disco.00003.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 118.0 but detect 121 - ..\dataset\genres\disco\disco.00004.wav
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\disco\disco.00004.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 108.0 - ..\dataset\genres\disco\disco.00005.wav: 108
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\disco\disco.00005.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 124.0 - ..\dataset\genres\disco\disco.00006.wav: 124
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\disco\disco.00006.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 130.0 - ..\dataset\genres\disco\disco.00007.wav: 129
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\disco\disco.00007.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 122.0 - ..\dataset\genres\disco\disco.00008.wav: 122
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\disco\disco.00008.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 130.0 - ..\dataset\genres\disco\disco.00009.wav: 129
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\disco\disco.00009.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 105.0 - ..\dataset\genres\disco\disco.00010.wav: 214
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\disco\disco.00010.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 121.0 - ..\dataset\genres\hiphop\hiphop.00000.wav: 119
+INFO:root:Good metre detection - acc1! 4 - ..\dataset\genres\hiphop\hiphop.00000.wav: 4
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 92.0 - ..\dataset\genres\hiphop\hiphop.00001.wav: 182
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\hiphop\hiphop.00001.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 102.0 but detect 99 - ..\dataset\genres\hiphop\hiphop.00002.wav
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\hiphop\hiphop.00002.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 94.0 - ..\dataset\genres\hiphop\hiphop.00003.wav: 186
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\hiphop\hiphop.00003.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 97.0 - ..\dataset\genres\hiphop\hiphop.00004.wav: 97
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\hiphop\hiphop.00004.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 143.0 - ..\dataset\genres\hiphop\hiphop.00005.wav: 71
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\hiphop\hiphop.00005.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 102.0 - ..\dataset\genres\hiphop\hiphop.00006.wav: 100
+INFO:root:Good metre detection - acc1! 4 - ..\dataset\genres\hiphop\hiphop.00006.wav: 4
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 122.0 - ..\dataset\genres\hiphop\hiphop.00007.wav: 61
+INFO:root:Good metre detection - acc1! 4 - ..\dataset\genres\hiphop\hiphop.00007.wav: 4
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 85.0 - ..\dataset\genres\hiphop\hiphop.00008.wav: 84
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\hiphop\hiphop.00008.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 103.0 - ..\dataset\genres\hiphop\hiphop.00009.wav: 207
+INFO:root:Good metre detection - acc1! 8 - ..\dataset\genres\hiphop\hiphop.00009.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 96.0 - ..\dataset\genres\hiphop\hiphop.00010.wav: 191
+INFO:root:Good metre detection - acc1! 4 - ..\dataset\genres\hiphop\hiphop.00010.wav: 4
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 97.0 but detect 144 - ..\dataset\genres\hiphop\hiphop.00065.wav
+INFO:root:Exptected 4/4 but detect 6 - ..\dataset\genres\hiphop\hiphop.00065.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 98.0 but detect 170 - ..\dataset\genres\hiphop\hiphop.00067.wav
+INFO:root:Exptected 4/4 but detect 7 - ..\dataset\genres\hiphop\hiphop.00067.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 97.0 but detect 145 - ..\dataset\genres\hiphop\hiphop.00068.wav
+INFO:root:Exptected 4/4 but detect 6 - ..\dataset\genres\hiphop\hiphop.00068.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 102.0 - ..\dataset\genres\hiphop\hiphop.00069.wav: 204
+INFO:root:Good metre detection - acc1! 4 - ..\dataset\genres\hiphop\hiphop.00069.wav: 4
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 94.0 - ..\dataset\genres\metal\metal.00000.wav: 94
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\metal\metal.00000.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 112.0 - ..\dataset\genres\metal\metal.00002.wav: 111
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\metal\metal.00002.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 98.0 - ..\dataset\genres\metal\metal.00003.wav: 194
+INFO:root:Good metre detection - acc1! 4 - ..\dataset\genres\metal\metal.00003.wav: 4
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 135.0 but detect 138 - ..\dataset\genres\metal\metal.00004.wav
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\metal\metal.00004.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 154.0 - ..\dataset\genres\metal\metal.00005.wav: 154
+INFO:root:Exptected 4/4 but detect 6 - ..\dataset\genres\metal\metal.00005.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 122.0 - ..\dataset\genres\metal\metal.00006.wav: 60
+INFO:root:Good metre detection - acc1! 4 - ..\dataset\genres\metal\metal.00006.wav: 4
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 152.0 - ..\dataset\genres\metal\metal.00007.wav: 152
+INFO:root:Good metre detection - acc1! 4 - ..\dataset\genres\metal\metal.00007.wav: 4
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 120.0 - ..\dataset\genres\metal\metal.00008.wav: 118
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\metal\metal.00008.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 114.0 but detect 170 - ..\dataset\genres\metal\metal.00009.wav
+INFO:root:Exptected 4/4 but detect 3 - ..\dataset\genres\metal\metal.00009.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 95.0 - ..\dataset\genres\metal\metal.00010.wav: 189
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\metal\metal.00010.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 112.0 - ..\dataset\genres\metal\metal.00050.wav: 113
+INFO:root:Good metre detection - acc1! 4 - ..\dataset\genres\metal\metal.00050.wav: 4
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 95.0 - ..\dataset\genres\metal\metal.00064.wav: 94
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\metal\metal.00064.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 113.0 - ..\dataset\genres\metal\metal.00075.wav: 227
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\metal\metal.00075.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 117.0 - ..\dataset\genres\metal\metal.00088.wav: 233
+INFO:root:Good metre detection - acc1! 4 - ..\dataset\genres\metal\metal.00088.wav: 4
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 73.0 - ..\dataset\genres\metal\metal.00099.wav: 147
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\metal\metal.00099.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 107.0 - ..\dataset\genres\pop\pop.00001.wav: 106
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\pop\pop.00001.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 126.0 - ..\dataset\genres\pop\pop.00002.wav: 126
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\pop\pop.00002.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 66.0 - ..\dataset\genres\pop\pop.00086.wav: 132
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\pop\pop.00086.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 101.0 - ..\dataset\genres\pop\pop.00089.wav: 101
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\pop\pop.00089.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 115.0 - ..\dataset\genres\pop\pop.00098.wav: 115
+INFO:root:Good metre detection - acc1! 4 - ..\dataset\genres\pop\pop.00098.wav: 4
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 122.0 - ..\dataset\genres\reggae\reggae.00000.wav: 122
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\reggae\reggae.00000.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 103.0 - ..\dataset\genres\reggae\reggae.00002.wav: 103
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\reggae\reggae.00002.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 74.0 - ..\dataset\genres\reggae\reggae.00003.wav: 74
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\reggae\reggae.00003.wav: 8
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 125.0 - ..\dataset\genres\reggae\reggae.00004.wav: 125
+INFO:root:Good metre detection - acc2! 4 - ..\dataset\genres\reggae\reggae.00004.wav: 2
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 96.0 - ..\dataset\genres\reggae\reggae.00008.wav: 96
+INFO:root:Good metre detection - acc1! 4 - ..\dataset\genres\reggae\reggae.00008.wav: 4
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 131.0 - ..\dataset\genres\reggae\reggae.00012.wav: 131
+INFO:root:Good metre detection - acc1! 4 - ..\dataset\genres\reggae\reggae.00012.wav: 4
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 142.0 but detect 95 - ..\dataset\genres\reggae\reggae.00016.wav
+INFO:root:Exptected 4/4 but detect 5 - ..\dataset\genres\reggae\reggae.00016.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc1! 174.0 - ..\dataset\genres\own\Take-Five.wav: 172
+INFO:root:Exptected 5/4 but detect 10 - ..\dataset\genres\own\Take-Five.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 140.0 but detect 89 - ..\dataset\genres\own\LEPROUS-The-Sky-Is-Red-Drum-Playthrough-by-Baard-Kolstad.wav
+INFO:root:Exptected 11/4 but detect 7 - ..\dataset\genres\own\LEPROUS-The-Sky-Is-Red-Drum-Playthrough-by-Baard-Kolstad.wav
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 158.0 - ..\dataset\genres\own\OutKast-Hey-Ya.mp3: 79
+INFO:root:Good metre detection - acc1! 11 - ..\dataset\genres\own\OutKast-Hey-Ya.mp3: 11
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 190.0 but detect 133 - ..\dataset\genres\own\Danu-Sliabh.mp3
+INFO:root:Exptected 6/8 but detect 8 - ..\dataset\genres\own\Danu-Sliabh.mp3
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 55.0 but detect 135 - ..\dataset\genres\own\Frank Zappa-Watermelon in Easter Hay.mp3
+INFO:root:Exptected 9/4 but detect 6 - ..\dataset\genres\own\Frank Zappa-Watermelon in Easter Hay.mp3
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 275.0 but detect 92 - ..\dataset\genres\own\Huey Lewis-Doing It All For My Baby.mp3
+INFO:root:Exptected 12/8 but detect 8 - ..\dataset\genres\own\Huey Lewis-Doing It All For My Baby.mp3
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 250.0 but detect 66 - ..\dataset\genres\own\Jeff Beck-ScatterBrain.mp3
+INFO:root:Exptected 9/8 but detect 2 - ..\dataset\genres\own\Jeff Beck-ScatterBrain.mp3
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 200.0 but detect 105 - ..\dataset\genres\own\Koop-Forces Darling.mp3
+INFO:root:Good metre detection - acc2! 8 - ..\dataset\genres\own\Koop-Forces Darling.mp3: 4
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 120.0 but detect 139 - ..\dataset\genres\own\Pink Floyd-Money.mp3
+INFO:root:Exptected 7/8 but detect 8 - ..\dataset\genres\own\Pink Floyd-Money.mp3
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 230.0 but detect 215 - ..\dataset\genres\own\Primus-Eleven.mp3
+INFO:root:Good metre detection - acc1! 11 - ..\dataset\genres\own\Primus-Eleven.mp3: 11
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Good tempo detection - acc2! 243.0 - ..\dataset\genres\own\Steve Vai-Windows to the Soul.mp3: 121
+INFO:root:Good metre detection - acc1! 11 - ..\dataset\genres\own\Steve Vai-Windows to the Soul.mp3: 11
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 90.0 but detect 92 - ..\dataset\genres\own\The Eagles-Take It to the Limit.mp3
+INFO:root:Good metre detection - acc2! 3 - ..\dataset\genres\own\The Eagles-Take It to the Limit.mp3: 6
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 150.0 but detect 61 - ..\dataset\genres\own\The Jesus Lizard-Whirl.mp3
+INFO:root:Exptected 5/4 but detect 2 - ..\dataset\genres\own\The Jesus Lizard-Whirl.mp3
+INFO:root:Detecting song's tempo with method CombFilterTempoDetector
+INFO:root:Detecting song's metre with method SpectrogramMetreDetector
+INFO:root:Exptected 101.0 but detect 129 - ..\dataset\genres\own\Aphex Twin -Ageispolis.mp3
+INFO:root:Exptected 4/4 but detect 10 - ..\dataset\genres\own\Aphex Twin -Ageispolis.mp3
+INFO:root:Tempo detector: CombFilterTempoDetector
+INFO:root:All: 100
+INFO:root:Good tempo - accuracy1: 46
+INFO:root:Good tempo - accuracy2: 70
+INFO:root:Bad: 30
+INFO:root:Tempo accuracy1: 0.46
+INFO:root:Tempo accuracy2: 0.7
+INFO:root:Metro detector: SpectrogramMetreDetector
+INFO:root:All: 100
+INFO:root:Good metre - accuracy1: 21
+INFO:root:Good metre - accuracy2: 74
+INFO:root:Bad: 26
+INFO:root:Metre accuracy1: 0.21
+INFO:root:Metre accuracy2: 0.74
+INFO:root:Total time: 903.8143684864044
+INFO:root:__name__ : settings
+INFO:root:__doc__ : None
+INFO:root:__package__ : 
+INFO:root:__loader__ : <_frozen_importlib_external.SourceFileLoader object at 0x0000015F08A833D0>
+INFO:root:__spec__ : ModuleSpec(name='settings', loader=<_frozen_importlib_external.SourceFileLoader object at 0x0000015F08A833D0>, origin='C:\\git\\BeatAndMetreDetector\\src\\settings.py')
+INFO:root:__file__ : C:\git\BeatAndMetreDetector\src\settings.py
+INFO:root:__cached__ : C:\git\BeatAndMetreDetector\src\__pycache__\settings.cpython-38.pyc
+INFO:root:__builtins__ : {'__name__': 'builtins', '__doc__': "Built-in functions, exceptions, and other objects.\n\nNoteworthy: None is the `nil' object; Ellipsis represents `...' in slices.", '__package__': '', '__loader__': <class '_frozen_importlib.BuiltinImporter'>, '__spec__': ModuleSpec(name='builtins', loader=<class '_frozen_importlib.BuiltinImporter'>), '__build_class__': <built-in function __build_class__>, '__import__': <built-in function __import__>, 'abs': <built-in function abs>, 'all': <built-in function all>, 'any': <built-in function any>, 'ascii': <built-in function ascii>, 'bin': <built-in function bin>, 'breakpoint': <built-in function breakpoint>, 'callable': <built-in function callable>, 'chr': <built-in function chr>, 'compile': <built-in function compile>, 'delattr': <built-in function delattr>, 'dir': <built-in function dir>, 'divmod': <built-in function divmod>, 'eval': <built-in function eval>, 'exec': <built-in function exec>, 'format': <built-in function format>, 'getattr': <built-in function getattr>, 'globals': <built-in function globals>, 'hasattr': <built-in function hasattr>, 'hash': <built-in function hash>, 'hex': <built-in function hex>, 'id': <built-in function id>, 'input': <built-in function input>, 'isinstance': <built-in function isinstance>, 'issubclass': <built-in function issubclass>, 'iter': <built-in function iter>, 'len': <built-in function len>, 'locals': <built-in function locals>, 'max': <built-in function max>, 'min': <built-in function min>, 'next': <built-in function next>, 'oct': <built-in function oct>, 'ord': <built-in function ord>, 'pow': <built-in function pow>, 'print': <built-in function print>, 'repr': <built-in function repr>, 'round': <built-in function round>, 'setattr': <built-in function setattr>, 'sorted': <built-in function sorted>, 'sum': <built-in function sum>, 'vars': <built-in function vars>, 'None': None, 'Ellipsis': Ellipsis, 'NotImplemented': NotImplemented, 'False': False, 'True': True, 'bool': <class 'bool'>, 'memoryview': <class 'memoryview'>, 'bytearray': <class 'bytearray'>, 'bytes': <class 'bytes'>, 'classmethod': <class 'classmethod'>, 'complex': <class 'complex'>, 'dict': <class 'dict'>, 'enumerate': <class 'enumerate'>, 'filter': <class 'filter'>, 'float': <class 'float'>, 'frozenset': <class 'frozenset'>, 'property': <class 'property'>, 'int': <class 'int'>, 'list': <class 'list'>, 'map': <class 'map'>, 'object': <class 'object'>, 'range': <class 'range'>, 'reversed': <class 'reversed'>, 'set': <class 'set'>, 'slice': <class 'slice'>, 'staticmethod': <class 'staticmethod'>, 'str': <class 'str'>, 'super': <class 'super'>, 'tuple': <class 'tuple'>, 'type': <class 'type'>, 'zip': <class 'zip'>, '__debug__': True, 'BaseException': <class 'BaseException'>, 'Exception': <class 'Exception'>, 'TypeError': <class 'TypeError'>, 'StopAsyncIteration': <class 'StopAsyncIteration'>, 'StopIteration': <class 'StopIteration'>, 'GeneratorExit': <class 'GeneratorExit'>, 'SystemExit': <class 'SystemExit'>, 'KeyboardInterrupt': <class 'KeyboardInterrupt'>, 'ImportError': <class 'ImportError'>, 'ModuleNotFoundError': <class 'ModuleNotFoundError'>, 'OSError': <class 'OSError'>, 'EnvironmentError': <class 'OSError'>, 'IOError': <class 'OSError'>, 'WindowsError': <class 'OSError'>, 'EOFError': <class 'EOFError'>, 'RuntimeError': <class 'RuntimeError'>, 'RecursionError': <class 'RecursionError'>, 'NotImplementedError': <class 'NotImplementedError'>, 'NameError': <class 'NameError'>, 'UnboundLocalError': <class 'UnboundLocalError'>, 'AttributeError': <class 'AttributeError'>, 'SyntaxError': <class 'SyntaxError'>, 'IndentationError': <class 'IndentationError'>, 'TabError': <class 'TabError'>, 'LookupError': <class 'LookupError'>, 'IndexError': <class 'IndexError'>, 'KeyError': <class 'KeyError'>, 'ValueError': <class 'ValueError'>, 'UnicodeError': <class 'UnicodeError'>, 'UnicodeEncodeError': <class 'UnicodeEncodeError'>, 'UnicodeDecodeError': <class 'UnicodeDecodeError'>, 'UnicodeTranslateError': <class 'UnicodeTranslateError'>, 'AssertionError': <class 'AssertionError'>, 'ArithmeticError': <class 'ArithmeticError'>, 'FloatingPointError': <class 'FloatingPointError'>, 'OverflowError': <class 'OverflowError'>, 'ZeroDivisionError': <class 'ZeroDivisionError'>, 'SystemError': <class 'SystemError'>, 'ReferenceError': <class 'ReferenceError'>, 'MemoryError': <class 'MemoryError'>, 'BufferError': <class 'BufferError'>, 'Warning': <class 'Warning'>, 'UserWarning': <class 'UserWarning'>, 'DeprecationWarning': <class 'DeprecationWarning'>, 'PendingDeprecationWarning': <class 'PendingDeprecationWarning'>, 'SyntaxWarning': <class 'SyntaxWarning'>, 'RuntimeWarning': <class 'RuntimeWarning'>, 'FutureWarning': <class 'FutureWarning'>, 'ImportWarning': <class 'ImportWarning'>, 'UnicodeWarning': <class 'UnicodeWarning'>, 'BytesWarning': <class 'BytesWarning'>, 'ResourceWarning': <class 'ResourceWarning'>, 'ConnectionError': <class 'ConnectionError'>, 'BlockingIOError': <class 'BlockingIOError'>, 'BrokenPipeError': <class 'BrokenPipeError'>, 'ChildProcessError': <class 'ChildProcessError'>, 'ConnectionAbortedError': <class 'ConnectionAbortedError'>, 'ConnectionRefusedError': <class 'ConnectionRefusedError'>, 'ConnectionResetError': <class 'ConnectionResetError'>, 'FileExistsError': <class 'FileExistsError'>, 'FileNotFoundError': <class 'FileNotFoundError'>, 'IsADirectoryError': <class 'IsADirectoryError'>, 'NotADirectoryError': <class 'NotADirectoryError'>, 'InterruptedError': <class 'InterruptedError'>, 'PermissionError': <class 'PermissionError'>, 'ProcessLookupError': <class 'ProcessLookupError'>, 'TimeoutError': <class 'TimeoutError'>, 'open': <built-in function open>, 'quit': Use quit() or Ctrl-Z plus Return to exit, 'exit': Use exit() or Ctrl-Z plus Return to exit, 'copyright': Copyright (c) 2001-2020 Python Software Foundation.
+All Rights Reserved.
+
+Copyright (c) 2000 BeOpen.com.
+All Rights Reserved.
+
+Copyright (c) 1995-2001 Corporation for National Research Initiatives.
+All Rights Reserved.
+
+Copyright (c) 1991-1995 Stichting Mathematisch Centrum, Amsterdam.
+All Rights Reserved., 'credits':     Thanks to CWI, CNRI, BeOpen.com, Zope Corporation and a cast of thousands
+    for supporting Python development.  See www.python.org for more information., 'license': Type license() to see the full license text, 'help': Type help() for interactive help, or help(object) for help about object., '__pybind11_internals_v3_msvc__': <capsule object NULL at 0x0000015F1EF14D80>}
+INFO:root:Enum : <enum 'Enum'>
+INFO:root:auto : <class 'enum.auto'>
+INFO:root:euclidian_distance : <function euclidian_distance at 0x0000015F08A8A4C0>
+INFO:root:cosine_distance : <function cosine_distance at 0x0000015F08A8A550>
+INFO:root:kullback_leibler : <function kullback_leibler at 0x0000015F08A8A5E0>
+INFO:root:get_mffc : <function get_mffc at 0x0000015F08A8A940>
+INFO:root:get_standard_spectrogram : <function get_standard_spectrogram at 0x0000015F08A8A820>
+INFO:root:MedianFilterEnum : <enum 'MedianFilterEnum'>
+INFO:root:beat_treshold : 0.9
+INFO:root:fragment_length : 25
+INFO:root:band_limits : [0, 200, 400, 800, 1600, 3200, 4000]
+INFO:root:comb_filter_pulses : 10
+INFO:root:min_bpm : 60
+INFO:root:max_bpm : 240
+INFO:root:resample_signal : True
+INFO:root:resample_ratio : 4
+INFO:root:draw_plots : False
+INFO:root:draw_tempo_fft_plots : True
+INFO:root:draw_metre_fft_plots : True
+INFO:root:draw_tempo_filter_plots : True
+INFO:root:draw_metre_filter_plots : True
+INFO:root:draw_song_bpm_energy_plots : True
+INFO:root:spectrogram_limit_frequency : 4000
+INFO:root:median_filter_window_size : 701
+INFO:root:noverlap_ratio : 512
+INFO:root:median_filter : MedianFilterEnum.NONE
+INFO:root:method : <function euclidian_distance at 0x0000015F08A8A4C0>
+INFO:root:metre_candidates : 12
+INFO:root:beat_split_ratio : 1
+INFO:root:spectrogram_function : <function get_standard_spectrogram at 0x0000015F08A8A820>

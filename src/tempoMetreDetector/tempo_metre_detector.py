@@ -13,6 +13,7 @@ from utilities import plots
 from tempometredetector.tempodetector import (
     BaseTempoDetector,
     TempoDetectorData,
+    comb_filter,
 )
 
 
@@ -122,6 +123,7 @@ class TempoMetreDetector:
             path,
         )
         song_tempo = detector.detect_tempo(secondAttemptTempoDetectorData)
+        comb_filter.reset_cache()
         return song_tempo
 
     def __resample_signal(self, signal, samplingFrequency):

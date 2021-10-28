@@ -12,16 +12,16 @@ def get_standard_spectrogram(data: MetreDetectorData):
     )
 
     spectrogram, frequencies, times = __prepare_spectrogram(
-        signal=data.signal,
+        sample_signal=data.signal,
         sampling_frequency=data.sampling_frequency,
         beat_duration_samples=beat_duration_samples,
     )
-    spectrogram, frequencies = __down_sample_spectrogram(
+    spectrogram, frequencies = __limit_spectrogram_frequencies(
         spectrogram=spectrogram,
         frequencies=frequencies,
         limit_frequency=settings.spectrogram_limit_frequency,
     )
-    return spectrogram, frequencies, times
+    return spectrogram
 
 
 def get_mffc(data: MetreDetectorData):
@@ -42,9 +42,9 @@ def get_mffc(data: MetreDetectorData):
     return librosaMfcc
 
 
-def __prepare_spectrogram(signal, sampling_frequency, beat_duration_samples):
+def __prepare_spectrogram(sample_signal, sampling_frequency, beat_duration_samples):
     frequencies, times, spectrogram = signal.spectrogram(
-        x=signal,
+        x=sample_signal,
         fs=sampling_frequency,
         nperseg=int(beat_duration_samples / settings.beat_split_ratio),
         noverlap=int(beat_duration_samples / settings.noverlap_ratio),
@@ -53,7 +53,7 @@ def __prepare_spectrogram(signal, sampling_frequency, beat_duration_samples):
     return spectrogram, frequencies, times
 
 
-def __down_sample_spectrogram(spectrogram, frequencies, limit_frequency):
+def __limit_spectrogram_frequencies(spectrogram, frequencies, limit_frequency):
     frequencies_less_than_limit = np.argwhere(frequencies < limit_frequency)
     last_index = frequencies_less_than_limit[-1, 0]
     frequencies = frequencies[0:last_index]

@@ -45,7 +45,7 @@ def test_data_songs_metre(metre_detector: BaseMetreDetector):
         path = os.path.relpath("../dataset/genres" + path)
         song.path = path
 
-        result_tempo, result_metre, _ = detector.detect(
+        result_tempo, result_metre, elapsed_time = detector.detect(
             song.tempo, song.metre, song.path
         )
 
@@ -79,7 +79,7 @@ def test_data_songs_tempo(tempo_detector: BaseTempoDetector):
         path = os.path.relpath("../dataset/genres" + path)
         song.path = path
 
-        result_tempo, result_metre, _ = detector.detect(
+        result_tempo, result_metre, elapsed_time = detector.detect(
             song.tempo, song.metre, song.path
         )
 
@@ -112,7 +112,7 @@ def test_data_songs(
         path = os.path.relpath("../dataset/genres" + path)
         song.path = path
 
-        result_tempo, result_metre, time = detector.detect(
+        result_tempo, result_metre, elapsed_time = detector.detect(
             song.tempo, song.metre, song.path
         )
 
@@ -134,7 +134,7 @@ def test_data_songs(
 
 
 if __name__ == "__main__":
-    # test_data_songs(CombFilterTempoDetector, SpectrogramMetreDetector)
+    test_data_songs(CombFilterTempoDetector, SpectrogramMetreDetector)
     # test_data_songs_metre(SpectrogramMetreDetector)
-    test_data_songs_tempo(LibrosaTempoDetector)
+    # test_data_songs_tempo(LibrosaTempoDetector)
     write_settings()
