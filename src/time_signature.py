@@ -23,7 +23,7 @@ data = read_dataset_only_metre()
 data
 
 # %% Load song sample
-song = data.iloc[86]
+song = data.iloc[39]
 path = song.path
 path = os.path.relpath("../dataset/genres" + path)
 
@@ -61,25 +61,6 @@ plt.title("Spectrogram")
 plt.ylabel("Frequency [Hz]")
 plt.xlabel("Time [s]")
 plt.show()
-
-# # %% mfcc librosa
-# audio, samplingFrequency = librosa.load(path=path)
-# audio = audio[: int(samplingFrequency * settings.fragment_length)]
-
-# librosaMfcc = librosa.feature.mfcc(
-#     y=audio,
-#     sr=samplingFrequency,
-#     dct_type=2,
-#     n_fft=int(beatDurationSample / settings.beat_split_ratio),
-#     hop_length=int(beatDurationSample / settings.beat_split_ratio),
-# )
-
-# img = librosa.display.specshow(librosaMfcc)
-# plt.colorbar(img)
-# plt.title("MFCC")
-# plt.xlabel("Beat")
-# plt.ylabel("Feature")
-# plt.show()
 
 # # %% Calculate spectrogram
 # frequencies, times, spectrogram = signal.spectrogram(
@@ -131,6 +112,27 @@ spectrogram = spectrogram[0:lastIndex, :]
 
 # %%
 # spectrogram = percussive
+
+# %% mfcc librosa
+audio, samplingFrequency = librosa.load(path=path)
+audio = audio[: int(samplingFrequency * settings.fragment_length)]
+
+librosaMfcc = librosa.feature.mfcc(
+    y=audio,
+    sr=samplingFrequency,
+    dct_type=2,
+    n_fft=int(beatDurationSample / settings.beat_split_ratio),
+    hop_length=int(beatDurationSample / settings.beat_split_ratio),
+)
+
+img = librosa.display.specshow(librosaMfcc)
+plt.colorbar(img)
+plt.title("MFCC")
+plt.xlabel("Beat")
+plt.ylabel("Feature")
+plt.show()
+spectrogram = librosaMfcc
+
 
 # %% Calculate BSM
 binsAmount = len(spectrogram[0])
